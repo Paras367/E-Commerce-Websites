@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaCart Bazaar | India's Shopping Destination</title>
+<meta name="description" content="NovaCart Bazaar — Lightning deals, lakhs of products, fast delivery pan-India. Electronics, fashion, home & more.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛒</text></svg>">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ============ 10+ EXTERNAL CSS LIBRARIES ============ -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />                     <!-- 1. Font Awesome -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" />                             <!-- 2. Boxicons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" />                              <!-- 3. Animate.css -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />                                          <!-- 4. AOS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />                                <!-- 5. Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />                               <!-- 6. Toastify -->
+<link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />                                                  <!-- 7. Tippy.js -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css" />                      <!-- 8. noUiSlider -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/styles/choices.min.css" />         <!-- 9. Choices.js -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" />                        <!-- 10. Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" />                                  <!-- 11. NProgress -->
+
+<!-- Tailwind (utility engine) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          amznDark: '#131921',
+          amznNav: '#232F3E',
+          flipBlue: '#2874F0',
+          primary: { DEFAULT: '#2874F0', dark: '#1a5cc9', 50: '#EAF1FE', 100: '#D6E4FD' },
+          accent: { DEFAULT: '#FF9F00', dark: '#e08b00', 50: '#FFF6E8' },
+          deal: '#CC0C39',
+          surface: { DEFAULT: '#ffffff', dark: '#0F172A' },
+          paper: { DEFAULT: '#F1F3F6', dark: '#1E293B' },
+          ink: '#0F1111',
+          muted: '#64748B'
+        },
+        fontFamily: { display: ['Poppins', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+        boxShadow: {
+          card: '0 2px 5px 0 rgba(0,0,0,.08), 0 1px 3px -1px rgba(0,0,0,.06)',
+          cardHover: '0 20px 25px -5px rgba(0,0,0,.12), 0 10px 10px -5px rgba(0,0,0,.05)',
+          mega: '0 25px 50px -12px rgba(0,0,0,.28)'
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Alpine.js -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+<style>
+  [x-cloak] { display: none !important; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
+  .dark ::-webkit-scrollbar-thumb { background: #334155; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .drawer-enter { transition: transform .35s cubic-bezier(.22,.68,0,1.01); }
+
+  .marquee-track { display: flex; width: max-content; animation: marquee 26s linear infinite; }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .skeleton { background: linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%); background-size:200% 100%; animation: loading 1.5s infinite; }
+  @keyframes loading { 0% { background-position:200% 0; } 100% { background-position:-200% 0; } }
+
+  /* Deal progress bar stripes like Amazon lightning deals */
+  .deal-progress { background: repeating-linear-gradient(45deg,#fdece f0e,#fde 0 10px); }
+  .deal-bar { background: linear-gradient(90deg,#CC0C39,#ff5470); }
+
+  /* Video hero overlay */
+  .video-overlay { background: linear-gradient(to top, rgba(2,6,23,.92) 5%, rgba(2,6,23,.35) 55%, rgba(2,6,23,.1) 100%); }
+
+  /* Swiper nav arrow recolor */
+  .swiper-button-next, .swiper-button-prev { color: #fff !important; background: rgba(0,0,0,.35); width:38px !important; height:38px !important; border-radius:999px; }
+  .swiper-button-next:after, .swiper-button-prev:after { font-size: 16px !important; }
+  .swiper-pagination-bullet-active { background: #FF9F00 !important; }
+
+  /* noUiSlider theme */
+  .noUi-connect { background: #2874F0; }
+  .noUi-handle { border-radius: 50%; box-shadow: 0 1px 4px rgba(0,0,0,.3); border-color:#2874F0; }
+  #nProgress .bar { background: #FF9F00 !important; height:3px !important; }
+
+  input[type=checkbox], input[type=radio] { accent-color: #2874F0; }
+
+  .rating-bar-track { background:#E5E7EB; border-radius: 999px; overflow:hidden; height:8px; }
+  .dark .rating-bar-track { background:#334155; }
+  .rating-bar-fill { background:#FF9F00; height:100%; }
+
+  .badge-choice { background:#232F3E; color:#fff; }
+  .badge-bestseller { background:#CC0C39; color:#fff; }
+  .badge-sponsored { background:#eee; color:#555; }
+  .dark .badge-sponsored { background:#334155; color:#cbd5e1; }
+</style>
+</head>
+
+<body class="font-body text-ink bg-paper dark:bg-surface-dark dark:text-gray-100 antialiased"
+      x-data="ecommerce()" x-init="initApp()">
+
+
+<div x-show="ui.cookieBanner" x-cloak 
+     x-transition:enter="transition ease-out duration-500"
+     x-transition:enter-start="translate-y-full opacity-0"
+     x-transition:enter-end="translate-y-0 opacity-100"
+     x-transition:leave="transition ease-in duration-300"
+     x-transition:leave-start="translate-y-0 opacity-100"
+     x-transition:leave-end="translate-y-full opacity-0"
+     class="fixed bottom-0 inset-x-0 z-[95] p-4 sm:p-6 pointer-events-none">
+
+  <div class="pointer-events-auto max-w-7xl mx-auto bg-amznDark/95 dark:bg-gray-900/95 backdrop-blur-xl border border-white/10 dark:border-gray-700 rounded-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.3)] p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+    
+
+    <div class="w-12 h-12 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0">
+      <i class="fa-solid fa-cookie-bite text-accent text-xl"></i>
+    </div>
+
+
+    <div class="flex-1 text-center sm:text-left">
+      <h4 class="text-white font-bold text-sm sm:text-base mb-1 flex items-center justify-center sm:justify-start gap-2">
+        We value your privacy
+        <span class="hidden sm:inline-flex items-center gap-1 text-[10px] font-semibold bg-green-500/10 text-green-400 px-2 py-0.5 rounded-full border border-green-500/20">
+          <i class="fa-solid fa-shield-halved"></i> GDPR Compliant
+        </span>
+      </h4>
+      <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+        We use cookies to enhance your shopping experience, personalize content, and analyze our traffic. 
+        By clicking "Accept All", you consent to our use of cookies. Read our 
+        <a href="#" class="text-accent hover:text-accent-dark underline decoration-accent/30 underline-offset-2 font-medium transition">Privacy Policy</a>.
+      </p>
+    </div>
+
+
+    <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto shrink-0">
+      <button @click="ui.cookieBanner = false" 
+              class="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-gray-300 font-semibold px-5 py-2.5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300 text-sm">
+        Manage Preferences
+      </button>
+      <button @click="ui.cookieBanner = false; showToast('Preferences saved! Happy shopping.')" 
+              class="w-full sm:w-auto bg-accent hover:bg-accent-dark text-amznDark font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-accent/20 hover:shadow-accent/40 hover:-translate-y-0.5 transition-all duration-300 text-sm flex items-center justify-center gap-2">
+        <i class="fa-solid fa-check"></i> Accept All
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ TOP OFFER STRIP ============ -->
+<div class="bg-gradient-to-r from-primary via-flipBlue to-primary text-white text-[11px] sm:text-xs overflow-hidden">
+  <div class="marquee-track py-1.5">
+    <template x-for="n in 2">
+      <div class="flex gap-10 shrink-0 px-5">
+        <span><i class="fa-solid fa-truck-fast text-accent mr-1"></i> Free delivery above ₹499</span>
+        <span><i class="fa-solid fa-percent text-accent mr-1"></i> Bank offer: 10% instant discount on HDFC cards</span>
+        <span><i class="fa-solid fa-rotate-left text-accent mr-1"></i> 7-day replacement guarantee</span>
+        <span><i class="fa-solid fa-award text-accent mr-1"></i> Diwali Dhamaka — Up to 80% off, ends soon</span>
+        <span><i class="fa-solid fa-shield-halved text-accent mr-1"></i> 100% secure payments · COD available</span>
+      </div>
+    </template>
+  </div>
+</div>
+
+
+
+<!-- ============ TOP OFFER STRIP ============ -->
+<div class="bg-gradient-to-r from-gray-900 via-[#1a2332] to-gray-900 text-white text-[11px] sm:text-xs overflow-hidden border-b border-white/5">
+  <div class="marquee-track py-2">
+    <template x-for="n in 2">
+      <div class="flex gap-8 sm:gap-12 shrink-0 px-4 items-center">
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-accent animate-pulse"></i> <span class="font-bold text-accent">GREAT INDIAN FESTIVAL</span> is LIVE</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-truck-fast text-green-400"></i> Free & Fast Delivery on orders above ₹499</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-credit-card text-blue-400"></i> 10% Instant Discount on HDFC Bank Credit Cards</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-green-400"></i> 100% Secure Payments & Easy Returns</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-tag text-accent"></i> Extra 5% off with NovaCart Prime</span>
+      </div>
+    </template>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="sticky top-0 z-50 bg-amznDark text-white shadow-lg">
+  <!-- Row 1: Main Header -->
+  <div class="max-w-[1500px] mx-auto px-3 md:px-4 py-2.5 flex items-center gap-3 md:gap-5">
+    
+    <!-- Mobile Menu Toggle -->
+    <button class="lg:hidden text-xl p-1 hover:text-accent transition" @click="ui.mobileMenu = !ui.mobileMenu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2 shrink-0 group px-2 py-1 border border-transparent hover:border-white/30 rounded transition">
+      <div class="w-9 h-9 rounded-lg bg-accent grid place-items-center text-amznDark font-display font-extrabold text-lg shadow-md group-hover:scale-105 transition">N</div>
+      <div class="hidden sm:flex flex-col leading-none">
+        <span class="font-display font-extrabold text-xl tracking-tight">Nova<span class="text-accent">Cart</span></span>
+        <span class="text-[10px] text-gray-300 font-medium tracking-wide">Bazaar</span>
+      </div>
+    </a>
+
+    <!-- Deliver to (Amazon Style) -->
+    <button @click="ui.pincodeOpen = true" class="hidden md:flex flex-col leading-tight text-xs px-3 py-1.5 border border-transparent hover:border-white/30 rounded transition group">
+      <span class="text-gray-300 flex items-center gap-1 text-[11px]">
+        <i class="fa-solid fa-location-dot text-white"></i> Deliver to
+      </span>
+      <span class="font-bold text-white flex items-center gap-1 group-hover:text-accent transition">
+        <span x-text="deliveryPincode ? deliveryPincode : 'India'"></span>
+        <i class="fa-solid fa-chevron-down text-[8px] mt-0.5"></i>
+      </span>
+    </button>
+
+    <!-- Search Bar (The Star) -->
+    <div class="flex-1 flex items-stretch max-w-3xl mx-auto relative rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-accent transition-shadow" x-data="{ focused: false }" @click.outside="focused = false">
+      <select x-model="searchCategory" class="hidden lg:block bg-gray-100 text-gray-700 text-xs px-3 border-r border-gray-300 focus:outline-none cursor-pointer hover:bg-gray-200 transition">
+        <option value="All">All</option>
+        <option>Electronics</option>
+        <option>Fashion</option>
+        <option>Home</option>
+        <option>Gaming</option>
+        <option>Sports</option>
+        <option>Books</option>
+      </select>
+      <input type="text" x-model="searchQuery" @focus="focused = true"
+             placeholder="Search NovaCart for products, brands and more..."
+             class="flex-1 text-gray-900 px-4 py-2.5 text-sm focus:outline-none placeholder-gray-500">
+      <button class="bg-accent hover:bg-accent-dark transition text-amznDark px-5 flex items-center justify-center">
+        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+      </button>
+
+      <!-- Search Suggestions Dropdown -->
+      <div x-show="focused && searchSuggestions.length > 0" x-transition 
+           class="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-2xl z-50 max-h-80 overflow-y-auto text-gray-900 dark:text-white">
+        <div class="p-2 text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100 dark:border-gray-700 mb-1">Top Suggestions</div>
+        <template x-for="s in searchSuggestions" :key="s.id">
+          <a href="#products" @click="searchQuery = s.title; focused = false" class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-700 transition cursor-pointer">
+            <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
+            <div class="flex-1">
+              <div class="text-sm font-medium" x-text="s.title"></div>
+              <div class="text-xs text-gray-500 dark:text-gray-400" x-text="'in ' + s.category"></div>
+            </div>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <!-- Right Navigation (Amazon Style) -->
+    <div class="flex items-center gap-1 md:gap-2 shrink-0 text-xs">
+      <!-- Theme Toggle -->
+      <button @click="darkMode = !darkMode" class="hidden sm:flex flex-col leading-tight px-3 py-1.5 border border-transparent hover:border-white/30 rounded transition">
+        <span class="text-gray-300 text-[11px]">Theme</span>
+        <span class="font-bold flex items-center gap-1">
+          <i class="fa-solid" :class="darkMode ? 'fa-sun text-accent' : 'fa-moon'"></i>
+          <span x-text="darkMode ? 'Dark' : 'Light'"></span>
+        </span>
+      </button>
+
+      <!-- Account & Lists -->
+      <button @click="ui.authOpen = true" class="hidden sm:flex flex-col leading-tight px-3 py-1.5 border border-transparent hover:border-white/30 rounded transition">
+        <span class="text-gray-300 text-[11px]">Hello, sign in</span>
+        <span class="font-bold flex items-center gap-1">Account & Lists <i class="fa-solid fa-chevron-down text-[9px]"></i></span>
+      </button>
+
+      <!-- Returns & Orders -->
+      <button @click="ui.trackOpen = true" class="hidden md:flex flex-col leading-tight px-3 py-1.5 border border-transparent hover:border-white/30 rounded transition">
+        <span class="text-gray-300 text-[11px]">Returns</span>
+        <span class="font-bold">& Orders</span>
+      </button>
+
+      <!-- Cart -->
+      <button @click="ui.cartOpen = true" class="relative flex items-end gap-1 px-3 py-1.5 border border-transparent hover:border-white/30 rounded transition">
+        <span class="relative">
+          <i class="fa-solid fa-cart-shopping text-3xl"></i>
+          <span x-show="cart.count" x-cloak x-text="cart.count" class="absolute -top-1 -right-1 bg-accent text-amznDark text-[11px] font-extrabold w-5 h-5 rounded-full grid place-items-center shadow-sm"></span>
+        </span>
+        <span class="hidden md:block font-bold text-sm mb-1">Cart</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Row 2: Category Nav (Sub-header) -->
+  <div class="bg-amznNav text-[13px] hidden lg:block border-t border-white/5">
+    <div class="max-w-[1500px] mx-auto px-4 flex items-center gap-1 py-1.5 overflow-x-auto no-scrollbar">
+      <div class="relative" x-data="{ open: false }" @mouseenter="open=true" @mouseleave="open=false">
+        <button class="flex items-center gap-2 font-bold hover:bg-white/10 rounded px-3 py-1.5 transition">
+          <i class="fa-solid fa-bars"></i> All Categories
+        </button>
+        <!-- Mega Menu Dropdown -->
+        <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+             class="absolute top-full left-0 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-b-xl shadow-2xl py-2 z-50">
+          <template x-for="cat in categories" :key="cat.name">
+            <a href="#products" @click="filters.categories=[cat.name]" class="flex items-center gap-3 px-4 py-2.5 hover:bg-primary-50 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-200">
+              <span class="text-lg w-6 text-center" x-text="cat.icon"></span>
+              <span class="text-sm font-medium" x-text="cat.name"></span>
+            </a>
+          </template>
+        </div>
+      </div>
+      
+      <div class="w-px h-5 bg-white/20 mx-1"></div>
+      
+      <a href="#deals" class="font-bold hover:bg-white/10 rounded px-3 py-1.5 transition text-accent">Today's Deals</a>
+      <a href="#video-promo" class="hover:bg-white/10 rounded px-3 py-1.5 transition">NovaCart Prime</a>
+      <a href="#products" class="hover:bg-white/10 rounded px-3 py-1.5 transition">New Releases</a>
+      <a href="#" class="hover:bg-white/10 rounded px-3 py-1.5 transition">Sell on NovaCart</a>
+      <a href="#" class="hover:bg-white/10 rounded px-3 py-1.5 transition">Customer Service</a>
+      
+      <button @click="ui.membershipOpen=true" class="ml-auto flex items-center gap-1.5 bg-accent/10 text-accent border border-accent/30 px-3 py-1.5 rounded hover:bg-accent/20 transition font-bold">
+        <i class="fa-solid fa-crown"></i> Try Prime Free
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Drawer -->
+  <div x-show="ui.mobileMenu" x-cloak 
+       x-transition:enter="transition ease-out duration-300" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+       x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full"
+       class="fixed inset-y-0 left-0 z-[100] w-80 bg-white dark:bg-gray-900 shadow-2xl lg:hidden overflow-y-auto">
+    <div class="bg-amznNav text-white p-4 flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-gray-700 grid place-items-center"><i class="fa-solid fa-user text-xl"></i></div>
+      <div>
+        <p class="font-bold text-lg">Hello, Sign in</p>
+        <p class="text-xs text-gray-300">Best offers and recommendations</p>
+      </div>
+      <button @click="ui.mobileMenu = false" class="ml-auto text-xl"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="p-4 space-y-1">
+      <p class="font-bold text-gray-900 dark:text-white px-3 py-2 border-b border-gray-200 dark:border-gray-800 mb-2">Shop By Category</p>
+      <template x-for="cat in categories" :key="cat.name">
+        <a href="#products" @click="filters.categories=[cat.name]; ui.mobileMenu=false" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-800 dark:text-gray-200 font-medium">
+          <span class="text-xl w-6 text-center" x-text="cat.icon"></span> 
+          <span x-text="cat.name"></span>
+        </a>
+      </template>
+      <div class="border-t border-gray-200 dark:border-gray-800 my-4"></div>
+      <button @click="ui.authOpen = true; ui.mobileMenu = false" class="w-full bg-primary text-white py-3 rounded-lg font-bold mb-3">Sign In</button>
+      <button @click="ui.trackOpen = true; ui.mobileMenu = false" class="w-full border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white py-3 rounded-lg font-bold">Your Orders</button>
+    </div>
+  </div>
+  <!-- Mobile Menu Overlay -->
+  <div x-show="ui.mobileMenu" x-cloak @click="ui.mobileMenu = false" x-transition.opacity class="fixed inset-0 bg-black/50 z-[99] lg:hidden"></div>
+</header>
+
+<!-- ============ PINCODE MODAL ============ -->
+<div x-show="ui.pincodeOpen" x-cloak class="fixed inset-0 z-[85] grid place-items-center p-4">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="ui.pincodeOpen=false" x-transition.opacity></div>
+  <div class="relative bg-white dark:bg-gray-800 rounded-2xl w-full max-w-sm p-6 shadow-2xl border border-gray-200 dark:border-gray-700" 
+       x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
+    <button @click="ui.pincodeOpen=false" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fa-solid fa-xmark text-xl"></i></button>
+    
+    <div class="text-center mb-6">
+      <div class="w-14 h-14 mx-auto rounded-full bg-primary/10 text-primary grid place-items-center mb-3">
+        <i class="fa-solid fa-location-dot text-2xl"></i>
+      </div>
+      <h3 class="font-display font-bold text-xl text-gray-900 dark:text-white mb-1">Choose your delivery location</h3>
+      <p class="text-sm text-gray-500 dark:text-gray-400">Enter your pincode to see accurate delivery dates and product availability.</p>
+    </div>
+
+    <div class="space-y-3">
+      <button class="w-full flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-semibold py-3 rounded-xl transition">
+        <i class="fa-solid fa-crosshairs text-primary"></i> Use Current Location
+      </button>
+      
+      <div class="relative flex items-center">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <span class="text-gray-400 font-bold text-sm">+91</span>
+        </div>
+        <input type="text" x-model="pincodeInput" maxlength="6" placeholder="Enter 6-digit pincode" 
+               class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-900 rounded-xl pl-12 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition text-gray-900 dark:text-white">
+      </div>
+      
+      <button @click="setPincode()" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-xl shadow-lg shadow-primary/20 transition transform active:scale-[0.98]">
+        Apply Location
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HERO SWIPER CAROUSEL ============ -->
+<section class="relative bg-amznDark">
+  <div class="swiper hero-swiper">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide relative bg-gradient-to-br from-primary via-blue-700 to-indigo-900 text-white overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center gap-10 relative z-10">
+          <div class="flex-1 text-center md:text-left space-y-6">
+            <div class="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-full px-4 py-1.5 text-sm font-bold text-accent">
+              <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span> Diwali Dhamaka Sale is LIVE
+            </div>
+            <h1 class="hero-typed font-display font-extrabold text-4xl md:text-6xl leading-tight"></h1>
+            <p class="text-lg text-blue-100 max-w-xl mx-auto md:mx-0 leading-relaxed">Electronics, fashion & home essentials — unbeatable prices, lightning-fast delivery pan-India.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <a href="#products" class="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-amznDark font-bold py-3.5 px-8 rounded-xl shadow-lg shadow-accent/20 transition transform hover:-translate-y-1">
+                Shop Now <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <a href="#deals" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white font-bold py-3.5 px-8 rounded-xl transition">
+                View All Deals
+              </a>
+            </div>
+          </div>
+          <div class="flex-1 relative">
+            <div class="absolute inset-0 bg-accent/20 blur-3xl rounded-full"></div>
+            <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80" loading="lazy" class="relative rounded-2xl shadow-2xl w-full object-cover h-64 md:h-80 border border-white/20 transform hover:scale-105 transition duration-700">
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide relative bg-gradient-to-br from-rose-600 via-red-700 to-gray-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center gap-10 relative z-10">
+          <div class="flex-1 text-center md:text-left space-y-6">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm font-bold">
+              <i class="fa-solid fa-bolt text-yellow-400"></i> Limited Time Offer
+            </div>
+            <h2 class="font-display font-extrabold text-4xl md:text-6xl leading-tight">Up to 80% Off <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">Premium Electronics</span></h2>
+            <p class="text-lg text-rose-100 max-w-xl mx-auto md:mx-0">Headphones, smartwatches & gaming gear on lightning deals. Stocks are running out fast!</p>
+            <a href="#deals" class="inline-flex items-center justify-center gap-2 bg-white text-rose-700 font-bold py-3.5 px-8 rounded-xl shadow-lg transition transform hover:-translate-y-1 hover:shadow-xl">
+              Grab Deals Now <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="flex-1 relative">
+            <div class="absolute inset-0 bg-yellow-400/20 blur-3xl rounded-full"></div>
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" loading="lazy" class="relative rounded-2xl shadow-2xl w-full object-cover h-64 md:h-80 border border-white/20 transform hover:scale-105 transition duration-700">
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide relative bg-gradient-to-br from-amber-600 via-orange-600 to-gray-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center gap-10 relative z-10">
+          <div class="flex-1 text-center md:text-left space-y-6">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm font-bold">
+              <i class="fa-solid fa-shirt text-white"></i> New Arrivals
+            </div>
+            <h2 class="font-display font-extrabold text-4xl md:text-6xl leading-tight">Fashion Fest <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-amber-200">Flat 50% Off</span></h2>
+            <p class="text-lg text-amber-100 max-w-xl mx-auto md:mx-0">Ethnic wear, sneakers, bags — new arrivals every week. Elevate your style today.</p>
+            <a href="#products" class="inline-flex items-center justify-center gap-2 bg-amznDark text-white border border-white/20 font-bold py-3.5 px-8 rounded-xl shadow-lg transition transform hover:-translate-y-1 hover:bg-gray-800">
+              Explore Fashion <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="flex-1 relative">
+            <div class="absolute inset-0 bg-orange-500/20 blur-3xl rounded-full"></div>
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" loading="lazy" class="relative rounded-2xl shadow-2xl w-full object-cover h-64 md:h-80 border border-white/20 transform hover:scale-105 transition duration-700">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination !bottom-4"></div>
+    <div class="swiper-button-next !hidden md:!grid"></div>
+    <div class="swiper-button-prev !hidden md:!grid"></div>
+  </div>
+</section>
+
+<!-- ============ BANK OFFERS + COUPON STRIP ============ -->
+<section class="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 py-6">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <!-- Offer 1 -->
+      <div class="group bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 cursor-pointer flex items-center gap-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 grid place-items-center shrink-0 group-hover:scale-110 transition">
+          <i class="fa-solid fa-credit-card text-xl"></i>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-gray-900 dark:text-white mb-0.5">10% Instant Discount</p>
+          <p class="text-[11px] text-gray-500 dark:text-gray-400">On HDFC Bank Credit Cards</p>
+        </div>
+      </div>
+      
+      <!-- Offer 2 -->
+      <div class="group bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 cursor-pointer flex items-center gap-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-12 h-12 rounded-full bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 grid place-items-center shrink-0 group-hover:scale-110 transition">
+          <i class="fa-solid fa-indian-rupee-sign text-xl"></i>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-gray-900 dark:text-white mb-0.5">No Cost EMI</p>
+          <p class="text-[11px] text-gray-500 dark:text-gray-400">Available on orders above ₹3000</p>
+        </div>
+      </div>
+      
+      <!-- Offer 3 -->
+      <div class="group bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 cursor-pointer flex items-center gap-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-12 h-12 rounded-full bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 grid place-items-center shrink-0 group-hover:scale-110 transition">
+          <i class="fa-solid fa-rotate-left text-xl"></i>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-gray-900 dark:text-white mb-0.5">Free & Easy Returns</p>
+          <p class="text-[11px] text-gray-500 dark:text-gray-400">7-day replacement guarantee</p>
+        </div>
+      </div>
+      
+      <!-- Offer 4 -->
+      <div class="group bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 cursor-pointer flex items-center gap-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 grid place-items-center shrink-0 group-hover:scale-110 transition">
+          <i class="fa-solid fa-certificate text-xl"></i>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-gray-900 dark:text-white mb-0.5">100% Genuine</p>
+          <p class="text-[11px] text-gray-500 dark:text-gray-400">Authentic products guaranteed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATEGORY GRID ============ -->
+<section class="py-8 max-w-7xl mx-auto px-4">
+  <h2 class="font-display font-bold text-xl mb-4">Shop by Category</h2>
+  <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 gap-4">
+    <template x-for="cat in categories" :key="cat.name">
+      <a href="#products" @click="filters.categories=[cat.name]" class="flex flex-col items-center gap-2 group cursor-pointer bg-white dark:bg-gray-800 rounded-xl p-3 border border-gray-200 dark:border-gray-700 hover:shadow-cardHover hover:-translate-y-1 transition" data-aos="zoom-in">
+        <div class="w-14 h-14 rounded-full bg-paper dark:bg-gray-700 grid place-items-center text-2xl group-hover:bg-primary group-hover:text-white transition duration-300" x-text="cat.icon"></div>
+        <span class="text-[11px] font-semibold text-muted group-hover:text-primary transition text-center" x-text="cat.name"></span>
+      </a>
+    </template>
+  </div>
+</section>
+
+<!-- ============ LIGHTNING DEALS ============ -->
+<section id="deals" class="py-10 bg-gradient-to-b from-rose-50 to-transparent dark:from-gray-900/40">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between mb-5">
+      <div class="flex items-center gap-3">
+        <i class="fa-solid fa-bolt text-3xl text-deal animate-pulse"></i>
+        <div>
+          <h2 class="font-display font-extrabold text-2xl text-deal">Lightning Deals</h2>
+          <p class="text-xs text-muted">Grab them before the clock — and the stock — runs out.</p>
+        </div>
+      </div>
+      <a href="#products" class="text-primary font-semibold text-sm hover:underline hidden sm:block">See all deals <i class="fa-solid fa-chevron-right text-xs"></i></a>
+    </div>
+
+    <div class="swiper deals-swiper pb-2">
+      <div class="swiper-wrapper">
+        <template x-for="product in dealProducts" :key="'deal'+product.id">
+          <div class="swiper-slide !w-64">
+            <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-card overflow-hidden flex flex-col h-full">
+              <div class="relative aspect-square bg-gray-100 dark:bg-gray-700 cursor-pointer" @click="viewProduct(product)">
+                <img :src="product.image" loading="lazy" class="w-full h-full object-cover">
+                <span class="absolute top-2 left-2 bg-deal text-white text-[10px] font-bold px-2 py-1 rounded">-<span x-text="product.discount"></span>%</span>
+              </div>
+              <div class="p-3 flex flex-col flex-1">
+                <p class="text-xs font-semibold line-clamp-2 mb-1" x-text="product.title"></p>
+                <div class="flex items-baseline gap-2 mb-2">
+                  <span class="font-display font-bold text-primary" x-text="'₹' + product.price.toLocaleString('en-IN')"></span>
+                  <span class="text-xs line-through text-muted" x-text="'₹' + product.mrp.toLocaleString('en-IN')"></span>
+                </div>
+                <div class="rating-bar-track mb-1 relative">
+                  <div class="deal-bar h-full rounded-full" :style="'width:' + product.dealClaimed + '%'"></div>
+                </div>
+                <p class="text-[10px] text-muted mb-2"><span x-text="product.dealClaimed"></span>% claimed</p>
+                <div class="mt-auto text-[11px] font-bold text-deal flex items-center gap-1" x-data="{}" x-init="$el._end = product.dealEnd">
+                  <i class="fa-regular fa-clock"></i>
+                  <span x-text="dealCountdown(product.dealEnd)"></span>
+                </div>
+                <button @click="cart.add(product); showToast('Added deal to cart!')" class="mt-2 w-full bg-accent hover:bg-accent-dark text-amznDark text-xs font-bold py-2 rounded-lg transition">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="video-promo" class="relative py-0 overflow-hidden group">
+  <!-- Cinematic Video Background with slow zoom effect -->
+  <div class="absolute inset-0 w-full h-full overflow-hidden">
+    <video class="absolute inset-0 w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-[10000ms] ease-linear" 
+           autoplay muted loop playsinline
+           poster="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=80">
+      <source src="https://media.istockphoto.com/id/1305498256/video/close-up-leg-of-woman-walking-shopping-bag.mp4" type="video/mp4">
+    </video>
+  </div>
+
+
+  <div class="absolute inset-0 bg-gradient-to-r from-amznDark/95 via-amznDark/70 to-transparent"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-amznDark/80 via-transparent to-transparent"></div>
+
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 h-full flex flex-col justify-center py-16 md:py-0">
+    <div class="max-w-2xl">
+      
+
+      <div data-aos="fade-down" data-aos-delay="100" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-xs font-bold text-white mb-6 shadow-lg">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent"></span>
+        </span>
+        <span class="tracking-wide uppercase">Festive Collection Live</span>
+      </div>
+
+
+      <h2 data-aos="fade-up" data-aos-delay="200" class="font-display font-extrabold text-4xl md:text-6xl leading-[1.1] text-white mb-4 drop-shadow-lg">
+        Style That <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-yellow-300">Moves With You</span>
+      </h2>
+
+
+      <p data-aos="fade-up" data-aos-delay="300" class="text-gray-200 text-lg md:text-xl max-w-lg mb-8 leading-relaxed drop-shadow-md">
+        A curated edit of this season's most-loved fashion & lifestyle picks. Premium quality, ethically sourced, delivered to your door in 24 hours.
+      </p>
+
+
+      <div data-aos="fade-up" data-aos-delay="400" class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        
+
+        <a href="#products" class="group/btn relative inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-amznDark font-bold px-8 py-4 rounded-xl shadow-[0_0_20px_rgba(255,159,0,0.3)] hover:shadow-[0_0_30px_rgba(255,159,0,0.5)] transition-all duration-300 transform hover:-translate-y-1">
+          <span>Shop The Edit</span>
+          <i class="fa-solid fa-arrow-right transition-transform duration-300 group-hover/btn:translate-x-1"></i>
+        </a>
+
+
+        <a href="#deals" class="inline-flex items-center gap-2 text-white font-semibold px-6 py-4 rounded-xl border border-white/30 hover:bg-white/10 backdrop-blur-sm transition-all duration-300">
+          <i class="fa-solid fa-play text-xs"></i> Watch Lookbook
+        </a>
+
+      </div>
+
+
+      <div data-aos="fade-up" data-aos-delay="500" class="mt-10 flex items-center gap-4 p-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl w-fit">
+        <div class="flex -space-x-3">
+          <img src="https://i.pravatar.cc/100?img=5" class="w-10 h-10 rounded-full border-2 border-amznDark object-cover" alt="Shopper">
+          <img src="https://i.pravatar.cc/100?img=9" class="w-10 h-10 rounded-full border-2 border-amznDark object-cover" alt="Shopper">
+          <img src="https://i.pravatar.cc/100?img=12" class="w-10 h-10 rounded-full border-2 border-amznDark object-cover" alt="Shopper">
+          <div class="w-10 h-10 rounded-full border-2 border-amznDark bg-accent text-amznDark text-[10px] font-bold grid place-items-center">+2k</div>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span class="text-white font-bold text-sm">12,400+ shopping now</span>
+          </div>
+          <div class="flex text-accent text-[10px]">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <span class="text-gray-300 ml-1.5">Rated 4.9/5 by verified buyers</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div data-aos="fade-left" data-aos-delay="600" class="absolute right-4 md:right-12 bottom-8 md:bottom-12 z-10 hidden md:block">
+    <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="w-10 h-10 rounded-lg bg-accent/20 grid place-items-center text-accent">
+          <i class="fa-solid fa-truck-fast text-lg"></i>
+        </div>
+        <div>
+          <p class="text-white font-bold text-sm">Free Express Delivery</p>
+          <p class="text-gray-300 text-xs">On all festive orders</p>
+        </div>
+      </div>
+      <div class="h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
+        <div class="h-full bg-accent w-3/4 rounded-full animate-pulse"></div>
+      </div>
+      <p class="text-[10px] text-gray-300 mt-1.5 text-right">75% of today's slots booked</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAIN: SIDEBAR + PRODUCT GRID ============ -->
+<section class="py-10 max-w-7xl mx-auto px-4" id="products">
+  <div class="flex flex-col lg:flex-row gap-8">
+
+    <!-- Sidebar Filters (Sticky for better UX) -->
+    <aside class="w-full lg:w-72 shrink-0 space-y-5 lg:sticky lg:top-24 self-start z-10">
+      
+      <!-- Main Filter Card -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm">
+        <div class="flex items-center justify-between mb-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+          <h3 class="font-display font-bold text-lg text-gray-900 dark:text-white flex items-center gap-2">
+            <i class="fa-solid fa-sliders text-primary"></i> Filters
+          </h3>
+          <button @click="resetFilters()" class="text-xs font-semibold text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 px-2 py-1 rounded transition">
+            Clear All
+          </button>
+        </div>
+
+        <!-- Price Range -->
+        <div class="mb-6">
+          <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-3">Price</h4>
+          <div id="priceSlider" class="mt-2 mb-4"></div>
+          <div class="flex justify-between text-xs font-medium text-gray-600 dark:text-gray-300">
+            <span x-text="'₹' + parseInt(filters.minPrice).toLocaleString('en-IN')"></span>
+            <span class="text-primary font-bold" x-text="'₹' + parseInt(filters.maxPrice).toLocaleString('en-IN')"></span>
+          </div>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-6">
+          <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-3">Department</h4>
+          <div class="space-y-2.5 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+            <template x-for="cat in ['Electronics','Fashion','Home','Gaming','Sports','Books','Kitchen','Accessories','Furniture']" :key="cat">
+              <label class="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:text-primary dark:hover:text-primary transition group">
+                <input type="checkbox" x-model="filters.categories" :value="cat" class="w-4 h-4 rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary dark:bg-gray-700 transition cursor-pointer">
+                <span x-text="cat" class="group-hover:translate-x-0.5 transition-transform"></span>
+              </label>
+            </template>
+          </div>
+        </div>
+
+        <!-- Customer Rating -->
+        <div class="mb-6">
+          <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-3">Customer Review</h4>
+          <div class="space-y-2.5">
+            <template x-for="rating in [4,3,2]" :key="rating">
+              <label class="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:text-primary transition">
+                <input type="radio" name="rating" x-model="filters.minRating" :value="rating" class="w-4 h-4 border-gray-300 dark:border-gray-600 text-primary focus:ring-primary dark:bg-gray-700 cursor-pointer">
+                <div class="flex items-center gap-0.5 text-amber-500 text-xs">
+                  <template x-for="i in 5"><i class="fa-solid fa-star" :class="i <= rating ? 'text-amber-500' : 'text-gray-300 dark:text-gray-600'"></i></template>
+                </div>
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400">& Up</span>
+              </label>
+            </template>
+          </div>
+        </div>
+
+        <!-- Discount -->
+        <div class="mb-2">
+          <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-3">Discount</h4>
+          <div class="space-y-2.5">
+            <template x-for="d in [50,40,30]" :key="d">
+              <label class="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:text-primary transition">
+                <input type="radio" name="discount" x-model="filters.minDiscount" :value="d" class="w-4 h-4 border-gray-300 dark:border-gray-600 text-primary focus:ring-primary dark:bg-gray-700 cursor-pointer">
+                <span class="text-xs font-medium" x-text="d + '% Off or more'"></span>
+              </label>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recently Viewed -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm" x-show="recentlyViewed.length > 0" x-cloak>
+        <h3 class="font-display font-bold text-sm text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+          <i class="fa-regular fa-clock text-primary"></i> Recently Viewed
+        </h3>
+        <div class="space-y-3">
+          <template x-for="item in recentlyViewed.slice(0,3)" :key="item.id">
+            <div class="flex gap-3 items-center group cursor-pointer p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition" @click="ui.quickview = item">
+              <img :src="item.image" loading="lazy" class="w-12 h-12 rounded-lg object-cover bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600">
+              <div class="flex-1 min-w-0">
+                <div class="text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-1 group-hover:text-primary transition" x-text="item.title"></div>
+                <div class="text-xs font-bold text-gray-900 dark:text-white" x-text="'₹' + item.price.toLocaleString('en-IN')"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Grid Area -->
+    <div class="flex-1">
+      
+      <!-- Sticky Top Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-4 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm sticky top-20 z-20">
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-gray-900 dark:text-white text-lg" x-text="filteredProducts.length"></span> 
+          <span class="text-sm text-gray-600 dark:text-gray-400">results found</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-gray-500 dark:text-gray-400 hidden sm:inline font-medium">Sort by:</span>
+          <select id="sortSelect" x-model="sortBy" class="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-gray-900 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none cursor-pointer transition">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+            <option value="discount">Highest Discount</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <template x-for="(product,i) in filteredProducts" :key="product.id">
+          <div class="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col relative" data-aos="fade-up" :data-aos-delay="(i % 6) * 50">
+            
+            <!-- Image Area -->
+            <div class="relative overflow-hidden aspect-[4/3] bg-gray-50 dark:bg-gray-700/50">
+              <!-- Changed to object-contain with padding for true e-commerce product look -->
+              <img :src="product.image" loading="lazy" :alt="product.title" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500 cursor-pointer" @click="viewProduct(product)">
+
+              <!-- Badges -->
+              <div class="absolute top-3 left-3 flex flex-col gap-1.5">
+                <span x-show="product.badge==='choice'" class="bg-[#232F3E] text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm flex items-center gap-1"><i class="fa-solid fa-award text-accent"></i> Choice</span>
+                <span x-show="product.badge==='bestseller'" class="bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">#1 Bestseller</span>
+                <span x-show="product.badge==='sponsored'" class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-[10px] font-medium px-2 py-1 rounded shadow-sm">Sponsored</span>
+                <span class="bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm w-fit" x-text="product.discount + '% OFF'"></span>
+                <span x-show="product.stock < 10" class="bg-gray-900 dark:bg-gray-700 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm w-fit flex items-center gap-1">
+                  <i class="fa-solid fa-triangle-exclamation text-[8px] text-red-400"></i> Only <span x-text="product.stock"></span> left
+                </span>
+              </div>
+
+              <!-- Wishlist Button -->
+              <button @click="wishlist.toggle(product)" class="absolute top-3 right-3 w-9 h-9 bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm rounded-full grid place-items-center text-gray-400 hover:text-red-500 hover:bg-white transition shadow-sm border border-gray-100 dark:border-gray-700" :class="wishlist.has(product.id) ? 'text-red-500' : ''">
+                <i class="fa-solid fa-heart" :class="wishlist.has(product.id) ? 'fa-solid' : 'fa-regular'"></i>
+              </button>
+
+              <!-- Compare Checkbox -->
+              <label class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-2.5 py-1.5 rounded-lg text-[11px] font-semibold text-gray-700 dark:text-gray-200 cursor-pointer shadow-sm hover:bg-white dark:hover:bg-gray-800 transition border border-gray-200 dark:border-gray-700">
+                <input type="checkbox" x-model="compareList" :value="product" :disabled="compareList.length >= 3 && !compareList.includes(product)" class="rounded border-gray-400 text-primary focus:ring-primary cursor-pointer"> 
+                Compare
+              </label>
+
+              <!-- Hover Add to Cart (High Visibility) -->
+              <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-gradient-to-t from-black/90 via-black/50 to-transparent">
+                <button @click="cart.add(product); showToast('Added to cart successfully!')" class="w-full bg-accent hover:bg-accent-dark text-gray-900 font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2 transition transform active:scale-95">
+                  <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-4 flex flex-col flex-1">
+              <!-- Amazon-style Rating Pill -->
+              <div class="flex items-center gap-1.5 mb-2">
+                <span class="flex items-center gap-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold px-1.5 py-0.5 rounded">
+                  <span x-text="product.rating"></span> <i class="fa-solid fa-star text-[8px]"></i>
+                </span>
+                <span class="text-xs text-gray-500 dark:text-gray-400" x-text="'(' + product.reviews.toLocaleString('en-IN') + ')'"></span>
+              </div>
+
+              <!-- Title -->
+              <h3 class="font-display font-semibold text-gray-900 dark:text-white text-sm leading-snug mb-1.5 line-clamp-2 group-hover:text-primary transition cursor-pointer min-h-[2.5rem]" x-text="product.title" @click="viewProduct(product)"></h3>
+              
+              <!-- Brand -->
+              <p class="text-xs text-gray-500 dark:text-gray-400 mb-3" x-text="product.brand"></p>
+
+              <!-- Trust Signals (Amazon-like) -->
+              <div class="space-y-1.5 mb-3">
+                <div class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check-circle text-primary text-xs"></i>
+                  <span class="text-[11px] font-semibold text-gray-700 dark:text-gray-300">Fulfilled by NovaCart</span>
+                </div>
+                <p class="text-[11px] text-gray-600 dark:text-gray-400 flex items-center gap-1">
+                  <i class="fa-solid fa-truck-fast text-gray-400"></i> 
+                  <span>FREE Delivery by <span class="font-semibold text-gray-900 dark:text-white">Tomorrow</span></span>
+                </p>
+                <p class="text-[11px] text-gray-500 dark:text-gray-400">
+                  No Cost EMI from <span class="font-semibold text-gray-900 dark:text-white" x-text="'₹' + Math.round(product.price/6).toLocaleString('en-IN')"></span>/mo
+                </p>
+              </div>
+
+              <!-- Price Block -->
+              <div class="mt-auto pt-3 border-t border-gray-100 dark:border-gray-700 flex items-end justify-between">
+                <div class="flex flex-col">
+                  <div class="flex items-baseline gap-1">
+                    <span class="text-[10px] text-gray-500 dark:text-gray-400 align-top mt-1">₹</span>
+                    <span class="font-display font-extrabold text-2xl text-gray-900 dark:text-white" x-text="product.price.toLocaleString('en-IN')"></span>
+                  </div>
+                  <div class="flex items-center gap-2 mt-0.5">
+                    <span class="text-xs text-gray-500 dark:text-gray-400 line-through" x-text="'₹' + product.mrp.toLocaleString('en-IN')"></span>
+                    <span class="text-xs font-bold text-green-600 dark:text-green-400" x-text="product.discount + '% off'"></span>
+                  </div>
+                </div>
+                <button @click="viewProduct(product)" class="text-xs font-semibold text-primary hover:text-primary-dark underline decoration-primary/30 underline-offset-4 transition">Quick View</button>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <!-- Empty State -->
+      <div x-show="filteredProducts.length === 0" x-cloak class="text-center py-20 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 border-dashed">
+        <i class="fa-solid fa-magnifying-glass text-5xl text-gray-300 dark:text-gray-600 mb-4"></i>
+        <p class="text-lg font-semibold text-gray-700 dark:text-gray-300">No products match your filters.</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Try adjusting your price range or category.</p>
+        <button @click="resetFilters()" class="text-sm font-semibold text-primary hover:text-primary-dark bg-primary/10 hover:bg-primary/20 px-4 py-2 rounded-lg transition">Clear all filters</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ FREQUENTLY BOUGHT TOGETHER ============ -->
+<section class="py-10 max-w-7xl mx-auto px-4" x-show="fbtProducts.length" x-cloak>
+  <h2 class="font-display font-bold text-xl mb-5"><i class="bx bx-layer text-primary"></i> Frequently Bought Together</h2>
+  <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-card p-6 flex flex-col md:flex-row items-center gap-6">
+    <div class="flex items-center gap-3 flex-wrap justify-center">
+      <template x-for="(p,idx) in fbtProducts" :key="p.id">
+        <div class="flex items-center gap-3">
+          <div class="flex flex-col items-center">
+            <img :src="p.image" loading="lazy" class="w-24 h-24 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+            <p class="text-[11px] mt-1 font-bold text-primary" x-text="'₹' + p.price.toLocaleString('en-IN')"></p>
+          </div>
+          <span x-show="idx < fbtProducts.length - 1" class="text-2xl text-muted font-light">+</span>
+        </div>
+      </template>
+    </div>
+    <div class="flex-1 text-center md:text-left">
+      <p class="text-sm text-muted mb-1">Total price:</p>
+      <p class="font-display font-extrabold text-2xl text-primary mb-3" x-text="'₹' + fbtTotal.toLocaleString('en-IN')"></p>
+      <button @click="fbtProducts.forEach(p => cart.add(p)); showToast('Bundle added to cart!')" class="bg-accent hover:bg-accent-dark text-amznDark font-bold px-6 py-2.5 rounded-lg transition">Add all to Cart</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPONSORED CAROUSEL ============ -->
+<section class="py-8 max-w-7xl mx-auto px-4">
+  <h2 class="font-display font-bold text-xl mb-5 flex items-center gap-2"><i class="bx bx-trending-up text-primary"></i> Sponsored products related to your search</h2>
+  <div class="swiper sponsored-swiper">
+    <div class="swiper-wrapper">
+      <template x-for="product in sponsoredProducts" :key="'sp'+product.id">
+        <div class="swiper-slide !w-52">
+          <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 cursor-pointer hover:shadow-cardHover transition" @click="viewProduct(product)">
+            <img :src="product.image" loading="lazy" class="w-full aspect-square object-cover rounded-lg mb-2">
+            <p class="text-xs line-clamp-2 mb-1" x-text="product.title"></p>
+            <p class="font-bold text-primary text-sm" x-text="'₹' + product.price.toLocaleString('en-IN')"></p>
+            <p class="text-[10px] text-muted">Sponsored</p>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CUSTOMER REVIEWS HIGHLIGHT ============ -->
+<section class="py-12 bg-white dark:bg-gray-800 border-y border-gray-200 dark:border-gray-700">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="font-display font-bold text-2xl mb-8 text-center">What Our Customers Say</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <template x-for="rev in customerReviews" :key="rev.name">
+        <div class="bg-paper dark:bg-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-700" data-aos="fade-up">
+          <div class="flex items-center gap-3 mb-3">
+            <img :src="rev.avatar" loading="lazy" class="w-10 h-10 rounded-full">
+            <div>
+              <p class="font-bold text-sm" x-text="rev.name"></p>
+              <div class="flex text-accent text-xs"><template x-for="i in 5"><i class="fa-solid fa-star" :class="i <= rev.rating ? '' : 'text-gray-300 dark:text-gray-600'"></i></template></div>
+            </div>
+            <i class="fa-solid fa-circle-check text-primary ml-auto" x-tooltip="'Verified Purchase'"></i>
+          </div>
+          <p class="text-sm text-muted line-clamp-3" x-text="rev.text"></p>
+          <div class="flex items-center gap-2 mt-3 text-xs text-muted"><i class="fa-regular fa-thumbs-up"></i> Helpful (<span x-text="rev.helpful"></span>)</div>
+        </div>
+      </template>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES STRIP ============ -->
+<section class="py-14 bg-primary-50 dark:bg-gray-900/50 border-y border-gray-200 dark:border-gray-800" id="features">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="flex items-start gap-4 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary grid place-items-center text-xl shrink-0"><i class="fa-solid fa-truck-fast"></i></div>
+      <div>
+        <h4 class="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">Free Delivery</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">On all orders above ₹499 across India.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-4 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="100">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary grid place-items-center text-xl shrink-0"><i class="fa-solid fa-shield-halved"></i></div>
+      <div>
+        <h4 class="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">Secure Payment</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">100% secure checkout with SSL encryption.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-4 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="200">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary grid place-items-center text-xl shrink-0"><i class="fa-solid fa-rotate-left"></i></div>
+      <div>
+        <h4 class="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">Easy Returns</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">7-day hassle-free return and exchange policy.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-4 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="300">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary grid place-items-center text-xl shrink-0"><i class="fa-solid fa-headset"></i></div>
+      <div>
+        <h4 class="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">24/7 Support</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Dedicated support team ready to help you.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-4 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="400">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary grid place-items-center text-xl shrink-0"><i class="fa-solid fa-award"></i></div>
+      <div>
+        <h4 class="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">Quality Assured</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Premium products with strict quality checks.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-4 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="500">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary grid place-items-center text-xl shrink-0"><i class="fa-solid fa-percent"></i></div>
+      <div>
+        <h4 class="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">Best Prices</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Competitive pricing with regular discounts.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-4 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="600">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary grid place-items-center text-xl shrink-0"><i class="fa-solid fa-box-open"></i></div>
+      <div>
+        <h4 class="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">Fast Dispatch</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Orders processed within 24 hours.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-4 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="700">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary grid place-items-center text-xl shrink-0"><i class="fa-solid fa-gift"></i></div>
+      <div>
+        <h4 class="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">Gift Wrapping</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Complimentary gift wrapping available.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PREMIUM APP DOWNLOAD & NEWSLETTER ============ -->
+<section class="relative py-16 bg-gradient-to-br from-amznNav via-[#1a2332] to-amznDark text-white overflow-hidden">
+  <!-- Decorative Background Elements -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+  <div class="absolute bottom-0 left-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+    
+    <!-- Left: Content & Newsletter -->
+    <div data-aos="fade-right" data-aos-duration="800">
+      <div class="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 text-accent px-3 py-1 rounded-full text-xs font-bold mb-4">
+        <i class="fa-solid fa-mobile-screen-button"></i> EXCLUSIVE APP BENEFITS
+      </div>
+      <h3 class="font-display font-extrabold text-3xl md:text-4xl mb-4 leading-tight">
+        Shop Smarter with the <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-yellow-300">NovaCart App</span>
+      </h3>
+      <p class="text-gray-300 text-base mb-8 max-w-md leading-relaxed">
+        Get early access to lightning deals, real-time order tracking, and app-only coupons. Join <span class="text-white font-bold">2.5 Million+</span> happy shoppers today.
+      </p>
+
+      <!-- App Store Buttons -->
+      <div class="flex flex-wrap gap-4 mb-10">
+        <a href="#" class="group flex items-center gap-3 bg-black border border-white/10 rounded-xl px-5 py-3 hover:border-accent/50 hover:bg-white/5 transition-all duration-300 shadow-lg">
+          <i class="fa-brands fa-google-play text-2xl text-gray-300 group-hover:text-accent transition"></i>
+          <div class="text-left leading-none">
+            <p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Get it on</p>
+            <p class="text-base font-bold text-white group-hover:text-accent transition">Google Play</p>
+          </div>
+        </a>
+        <a href="#" class="group flex items-center gap-3 bg-black border border-white/10 rounded-xl px-5 py-3 hover:border-accent/50 hover:bg-white/5 transition-all duration-300 shadow-lg">
+          <i class="fa-brands fa-apple text-2xl text-gray-300 group-hover:text-accent transition"></i>
+          <div class="text-left leading-none">
+            <p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Download on the</p>
+            <p class="text-base font-bold text-white group-hover:text-accent transition">App Store</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Interactive Newsletter Form -->
+      <div x-data="{ email: '', subscribed: false }" class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-1.5 flex flex-col sm:flex-row gap-2 max-w-lg">
+        <div class="relative flex-1">
+          <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input type="email" x-model="email" :disabled="subscribed" placeholder="Enter your email for exclusive deals" 
+                 class="w-full bg-transparent text-white placeholder-gray-400 pl-10 pr-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/50 text-sm disabled:opacity-50">
+        </div>
+        <button @click="if(email) { subscribed = true; showToast('Subscribed! Check your inbox for a welcome coupon.'); email = ''; setTimeout(() => subscribed = false, 5000); } else { showToast('Please enter a valid email'); }" 
+                :disabled="subscribed"
+                class="bg-accent hover:bg-accent-dark text-amznDark font-bold px-6 py-3 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 min-w-[140px] disabled:opacity-70 disabled:cursor-not-allowed">
+          <span x-show="!subscribed">Subscribe</span>
+          <span x-show="subscribed" class="flex items-center gap-2"><i class="fa-solid fa-check"></i> Subscribed</span>
+        </button>
+      </div>
+      <p class="text-[11px] text-gray-500 mt-3 flex items-center gap-1.5">
+        <i class="fa-solid fa-shield-halved"></i> We respect your privacy. Unsubscribe at any time.
+      </p>
+    </div>
+
+    <!-- Right: CSS Phone Mockup -->
+    <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200" class="relative flex justify-center lg:justify-end">
+      <!-- Floating decorative elements behind phone -->
+      <div class="absolute -top-10 -right-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-2xl animate-bounce" style="animation-duration: 3s;">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-green-500/20 text-green-400 grid place-items-center"><i class="fa-solid fa-check"></i></div>
+          <div>
+            <p class="text-xs text-gray-300">Order Delivered</p>
+            <p class="text-sm font-bold text-white">#NC-8842</p>
+          </div>
+        </div>
+      </div>
+      <div class="absolute bottom-10 -left-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-2xl animate-bounce" style="animation-duration: 4s;">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-accent/20 text-accent grid place-items-center"><i class="fa-solid fa-percent"></i></div>
+          <div>
+            <p class="text-xs text-gray-300">App Exclusive</p>
+            <p class="text-sm font-bold text-white">Extra 15% OFF</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Frame -->
+      <div class="relative w-64 h-[500px] bg-gray-900 rounded-[3rem] border-[6px] border-gray-800 shadow-2xl overflow-hidden ring-1 ring-white/10">
+        <!-- Notch -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-2xl z-20"></div>
+        <!-- Screen Content -->
+        <div class="w-full h-full bg-gradient-to-b from-primary to-amznDark p-4 pt-10 flex flex-col">
+          <div class="flex items-center justify-between mb-6">
+            <div class="w-8 h-8 rounded-full bg-white/20"></div>
+            <div class="w-20 h-3 rounded-full bg-white/20"></div>
+          </div>
+          <div class="bg-white/10 rounded-2xl p-4 mb-4 backdrop-blur-sm border border-white/10">
+            <div class="w-16 h-3 rounded-full bg-accent mb-2 w-1/3"></div>
+            <div class="w-full h-24 rounded-xl bg-white/5 mb-2"></div>
+            <div class="w-3/4 h-3 rounded-full bg-white/20 mb-1"></div>
+            <div class="w-1/2 h-3 rounded-full bg-white/10"></div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+              <div class="w-full aspect-square rounded-lg bg-white/10 mb-2"></div>
+              <div class="w-2/3 h-2 rounded-full bg-white/20 mb-1"></div>
+              <div class="w-1/2 h-2 rounded-full bg-accent/50"></div>
+            </div>
+            <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+              <div class="w-full aspect-square rounded-lg bg-white/10 mb-2"></div>
+              <div class="w-2/3 h-2 rounded-full bg-white/20 mb-1"></div>
+              <div class="w-1/2 h-2 rounded-full bg-accent/50"></div>
+            </div>
+          </div>
+          <!-- Bottom Nav -->
+          <div class="mt-auto flex justify-around items-center py-3 border-t border-white/10">
+            <div class="w-6 h-6 rounded-full bg-accent"></div>
+            <div class="w-6 h-6 rounded-full bg-white/20"></div>
+            <div class="w-6 h-6 rounded-full bg-white/20"></div>
+            <div class="w-6 h-6 rounded-full bg-white/20"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PREMIUM FOOTER ============ -->
+<footer class="bg-amznDark text-gray-400 pt-16 pb-8 border-t border-white/5 relative">
+  <div class="max-w-7xl mx-auto px-4">
+    
+    <!-- Top Footer Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12 mb-12 text-sm">
+      
+      <!-- Brand Column -->
+      <div class="col-span-2 md:col-span-4 lg:col-span-1">
+        <div class="flex items-center gap-2.5 mb-5">
+          <div class="w-10 h-10 rounded-xl bg-accent grid place-items-center text-amznDark font-display font-extrabold text-xl shadow-lg shadow-accent/20">N</div>
+          <span class="font-display font-extrabold text-2xl text-white">Nova<span class="text-accent">Cart</span></span>
+        </div>
+        <p class="mb-6 leading-relaxed text-gray-400">India's most trusted destination for premium products, unbeatable prices, and a seamless shopping experience.</p>
+        
+        <!-- Social Links with Hover Fill Effect -->
+        <div class="flex gap-3">
+          <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 grid place-items-center text-gray-400 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all duration-300 hover:-translate-y-1">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 grid place-items-center text-gray-400 hover:bg-black hover:text-white hover:border-white transition-all duration-300 hover:-translate-y-1">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 grid place-items-center text-gray-400 hover:bg-[#E4405F] hover:text-white hover:border-[#E4405F] transition-all duration-300 hover:-translate-y-1">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 grid place-items-center text-gray-400 hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000] transition-all duration-300 hover:-translate-y-1">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2 -->
+      <div>
+        <h4 class="font-display font-bold text-white mb-5 text-base">Get to Know Us</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">About NovaCart</a></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">Careers</a></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">Press Releases</a></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">NovaCart Science</a></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">Sustainability</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3 -->
+      <div>
+        <h4 class="font-display font-bold text-white mb-5 text-base">Make Money with Us</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">Sell on NovaCart</a></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">Become an Affiliate</a></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">Advertise Products</a></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">Self-Publish with Us</a></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">Fulfilment by NC</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4 -->
+      <div>
+        <h4 class="font-display font-bold text-white mb-5 text-base">Let Us Help You</h4>
+        <ul class="space-y-3">
+          <li><button @click="ui.trackOpen=true" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block text-left">Track Your Order</button></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">Returns Centre</a></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">100% Purchase Protection</a></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">Shipping Rates & Policies</a></li>
+          <li><a href="#" class="hover:text-accent hover:translate-x-1 transition-all duration-200 inline-block">Help Centre</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 5: Contact & Trust -->
+      <div>
+        <h4 class="font-display font-bold text-white mb-5 text-base">Contact & Support</h4>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3 group">
+            <div class="w-8 h-8 rounded-lg bg-white/5 grid place-items-center text-accent group-hover:bg-accent group-hover:text-amznDark transition"><i class="fa-solid fa-location-dot"></i></div>
+            <span class="text-sm leading-snug mt-1">#765, Tech Park, Bengaluru, KA 560001</span>
+          </li>
+          <li class="flex items-center gap-3 group">
+            <div class="w-8 h-8 rounded-lg bg-white/5 grid place-items-center text-accent group-hover:bg-accent group-hover:text-amznDark transition"><i class="fa-solid fa-envelope"></i></div>
+            <a href="mailto:support@novacartbazaar.com" class="text-sm hover:text-white transition">support@novacartbazaar.com</a>
+          </li>
+          <li class="flex items-center gap-3 group">
+            <div class="w-8 h-8 rounded-lg bg-white/5 grid place-items-center text-accent group-hover:bg-accent group-hover:text-amznDark transition"><i class="fa-solid fa-phone"></i></div>
+            <a href="tel:+919876543210" class="text-sm hover:text-white transition">+91 98765 43210</a>
+          </li>
+        </ul>
+        
+        <!-- Trust Badges -->
+        <div class="mt-6 flex items-center gap-3">
+          <div class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved text-green-500"></i>
+            <span class="text-[10px] font-bold text-gray-300 uppercase">SSL Secure</span>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 flex items-center gap-2">
+            <i class="fa-solid fa-certificate text-accent"></i>
+            <span class="text-[10px] font-bold text-gray-300 uppercase">Verified</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-y border-white/5 py-6 mb-8">
+      <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4 text-center md:text-left">We Accept</p>
+      <div class="flex flex-wrap justify-center md:justify-start gap-4 text-3xl text-gray-400">
+        <i class="fa-brands fa-cc-visa hover:text-white transition-colors duration-300" title="Visa"></i>
+        <i class="fa-brands fa-cc-mastercard hover:text-white transition-colors duration-300" title="Mastercard"></i>
+        <i class="fa-brands fa-cc-amex hover:text-white transition-colors duration-300" title="American Express"></i>
+        <i class="fa-brands fa-cc-paypal hover:text-white transition-colors duration-300" title="PayPal"></i>
+        <i class="fa-brands fa-cc-apple-pay hover:text-white transition-colors duration-300" title="Apple Pay"></i>
+        <i class="fa-brands fa-google-pay hover:text-white transition-colors duration-300" title="Google Pay"></i>
+        <div class="flex items-center gap-1 text-sm font-bold text-gray-400 hover:text-white transition-colors duration-300 border border-white/10 rounded px-2 py-1">
+          <i class="fa-solid fa-building-columns text-lg"></i>
+        </div>
+        <div class="flex items-center gap-1 text-sm font-bold text-gray-400 hover:text-white transition-colors duration-300 border border-white/10 rounded px-2 py-1">
+          <i class="fa-solid fa-money-bill-wave text-lg"></i>
+        </div>
+      </div recent>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+      <p>© 2026 <span class="text-gray-300 font-semibold">SoftwareLabs</span>. All rights reserved. Proprietary License.</p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-accent transition">Privacy Policy</a>
+        <a href="#" class="hover:text-accent transition">Terms of Use</a>
+        <a href="#" class="hover:text-accent transition">Sitemap</a>
+        <span class="flex items-center gap-1 text-gray-600">Made with <i class="fa-solid fa-heart text-red-500 text-[10px] animate-pulse"></i> in India</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<div x-show="ui.cartOpen" x-cloak class="fixed inset-0 z-[70]" aria-modal="true" role="dialog">
+  <div class="absolute inset-0 bg-black/50" x-show="ui.cartOpen" x-transition.opacity @click="ui.cartOpen = false"></div>
+  <div class="absolute right-0 top-0 h-full w-full sm:w-[440px] bg-white dark:bg-surface-dark flex flex-col shadow-2xl drawer-enter"
+       x-show="ui.cartOpen" x-transition:enter="drawer-enter" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+       x-transition:leave="drawer-enter" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
+    <div class="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-800">
+      <h3 class="font-display font-bold text-lg"><i class="fa-solid fa-cart-shopping text-primary mr-1.5"></i> Your Cart <span class="text-muted text-sm font-normal" x-text="'(' + cart.count + ' items)'"></span></h3>
+      <button @click="ui.cartOpen = false" class="w-8 h-8 grid place-items-center rounded-full hover:bg-paper dark:hover:bg-gray-800 transition"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto px-5 py-4 space-y-4">
+      <template x-if="cart.items.length === 0">
+        <div class="h-full flex flex-col items-center justify-center text-center gap-3 py-16">
+          <i class="fa-solid fa-cart-arrow-down text-5xl text-muted/30"></i>
+          <p class="font-display font-semibold text-lg">Your cart is empty</p>
+          <button @click="ui.cartOpen = false" class="mt-4 px-6 py-2.5 bg-primary text-white rounded-lg text-sm font-semibold hover:bg-primary-dark transition">Start Shopping</button>
+        </div>
+      </template>
+
+      <template x-for="item in cart.items" :key="item.id">
+        <div class="flex gap-3 border-b border-gray-100 dark:border-gray-800 pb-4">
+          <img :src="item.image" loading="lazy" :alt="item.title" class="w-20 h-20 rounded-lg object-cover bg-gray-100 dark:bg-gray-700 shrink-0">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium line-clamp-2" x-text="item.title"></p>
+            <p class="text-xs text-muted mt-0.5" x-text="item.brand"></p>
+            <p class="text-[10px] text-green-600 mt-0.5"><i class="fa-solid fa-check"></i> In stock</p>
+            <div class="flex items-center justify-between mt-2">
+              <div class="flex items-center border border-gray-300 dark:border-gray-700 rounded-lg">
+                <button @click="cart.dec(item.id)" class="w-7 h-7 grid place-items-center hover:text-primary transition">−</button>
+                <span class="w-7 text-center text-sm font-medium" x-text="item.qty"></span>
+                <button @click="cart.inc(item.id)" class="w-7 h-7 grid place-items-center hover:text-primary transition">+</button>
+              </div>
+              <span class="font-display font-bold text-primary" x-text="'₹' + (item.price * item.qty).toLocaleString('en-IN')"></span>
+            </div>
+            <div class="flex gap-3 mt-2 text-[11px]">
+              <button @click="cart.saveForLater(item.id)" class="text-primary hover:underline">Save for later</button>
+              <button @click="cart.remove(item.id)" class="text-muted hover:text-red-500">Delete</button>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <div x-show="cart.savedForLater.length > 0" x-cloak class="pt-2">
+        <p class="font-bold text-sm mb-3">Saved for later (<span x-text="cart.savedForLater.length"></span>)</p>
+        <template x-for="item in cart.savedForLater" :key="'sfl'+item.id">
+          <div class="flex gap-3 border-b border-gray-100 dark:border-gray-800 pb-3 mb-3">
+            <img :src="item.image" loading="lazy" class="w-14 h-14 rounded-lg object-cover bg-gray-100 dark:bg-gray-700">
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-medium line-clamp-1" x-text="item.title"></p>
+              <p class="text-xs font-bold text-primary" x-text="'₹' + item.price.toLocaleString('en-IN')"></p>
+              <button @click="cart.moveToCart(item.id)" class="text-[11px] text-primary hover:underline">Move to cart</button>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-200 dark:border-gray-800 px-5 py-4 space-y-2 bg-paper dark:bg-gray-900" x-show="cart.items.length > 0" x-cloak>
+      <div class="flex gap-2 mb-1">
+        <input type="text" x-model="couponInput" placeholder="Coupon code" class="flex-1 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg px-3 py-2 text-xs">
+        <button @click="applyCoupon()" class="bg-amznNav text-white text-xs font-bold px-4 rounded-lg">Apply</button>
+      </div>
+      <p x-show="coupon.applied" x-cloak class="text-[11px] text-green-600"><i class="fa-solid fa-check-circle"></i> <span x-text="coupon.code"></span> applied — saved ₹<span x-text="coupon.savings"></span></p>
+      <div class="flex items-center justify-between text-sm text-muted"><span>Subtotal</span><span x-text="'₹' + cart.subtotal.toLocaleString('en-IN')"></span></div>
+      <div class="flex items-center justify-between text-sm text-green-600"><span>Delivery</span><span x-text="cart.subtotal > 499 ? 'FREE' : '₹49'"></span></div>
+      <div class="flex items-center justify-between font-display font-bold text-xl pt-2 border-t border-gray-200 dark:border-gray-800"><span>Total</span><span class="text-primary" x-text="'₹' + cart.total.toLocaleString('en-IN')"></span></div>
+      <button @click="ui.cartOpen = false; ui.checkoutOpen = true" class="w-full bg-accent hover:bg-accent-dark transition text-amznDark font-bold py-3.5 rounded-xl shadow-lg">Proceed to Checkout</button>
+      <p class="text-[11px] text-center text-muted"><i class="fa-solid fa-lock"></i> 100% Secure Checkout · COD Available</p>
+    </div>
+  </div>
+</div>
+
+
+<div x-show="ui.wishOpen" x-cloak class="fixed inset-0 z-[70]" aria-modal="true" role="dialog">
+  <div class="absolute inset-0 bg-black/50" x-show="ui.wishOpen" x-transition.opacity @click="ui.wishOpen = false"></div>
+  <div class="absolute right-0 top-0 h-full w-full sm:w-[420px] bg-white dark:bg-surface-dark flex flex-col shadow-2xl drawer-enter"
+       x-show="ui.wishOpen" x-transition:enter="drawer-enter" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+       x-transition:leave="drawer-enter" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
+    <div class="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-800">
+      <h3 class="font-display font-bold text-lg"><i class="fa-solid fa-heart text-red-500 mr-1.5"></i> Wishlist</h3>
+      <button @click="ui.wishOpen = false" class="w-8 h-8 grid place-items-center rounded-full hover:bg-paper dark:hover:bg-gray-800 transition"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="flex-1 overflow-y-auto px-5 py-4 space-y-4">
+      <template x-if="wishlist.items.length === 0">
+        <div class="h-full flex flex-col items-center justify-center text-center gap-3 py-16">
+          <i class="fa-regular fa-heart text-5xl text-muted/30"></i>
+          <p class="font-display font-semibold text-lg">No favourites yet</p>
+        </div>
+      </template>
+      <template x-for="item in wishlist.items" :key="item.id">
+        <div class="flex gap-3 border-b border-gray-100 dark:border-gray-800 pb-4 items-center">
+          <img :src="item.image" loading="lazy" :alt="item.title" class="w-16 h-16 rounded-lg object-cover bg-gray-100 dark:bg-gray-700 shrink-0">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium line-clamp-2" x-text="item.title"></p>
+            <p class="font-display font-bold text-sm mt-1 text-primary" x-text="'₹' + item.price.toLocaleString('en-IN')"></p>
+          </div>
+          <div class="flex flex-col gap-2">
+            <button @click="cart.add(item); showToast('Moved to cart')" class="text-xs bg-primary text-white px-3 py-1.5 rounded-md hover:bg-primary-dark transition font-medium">Add</button>
+            <button @click="wishlist.toggle(item)" class="text-xs text-muted hover:text-red-500 transition"><i class="fa-regular fa-trash-can"></i></button>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+</div>
+
+
+<div x-show="ui.quickview" x-cloak class="fixed inset-0 z-[80] grid place-items-center p-4" aria-modal="true" role="dialog" x-data="{ tab: 'desc' }">
+  <div class="absolute inset-0 bg-black/60" x-show="ui.quickview" x-transition.opacity @click="ui.quickview = null"></div>
+  <div class="relative bg-white dark:bg-surface-dark rounded-2xl w-full max-w-4xl max-h-[92vh] overflow-y-auto shadow-2xl"
+       x-show="ui.quickview" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
+    <button @click="ui.quickview = null" class="absolute top-3 right-3 w-9 h-9 grid place-items-center rounded-full bg-paper dark:bg-gray-800 hover:bg-red-100 dark:hover:bg-red-900/40 z-10 transition"><i class="fa-solid fa-xmark"></i></button>
+    <template x-if="ui.quickview">
+      <div>
+        <div class="grid md:grid-cols-2 gap-0 md:gap-8">
+          <div class="bg-gray-100 dark:bg-gray-700 p-6 md:rounded-tl-2xl">
+            <img :src="ui.quickview.image" loading="lazy" :alt="ui.quickview.title" class="w-full aspect-square object-cover rounded-xl shadow-sm">
+          </div>
+          <div class="p-6 md:pr-8 flex flex-col">
+            <p class="text-xs font-bold text-accent uppercase tracking-wide" x-text="ui.quickview.brand"></p>
+            <h3 class="font-display font-bold text-2xl mt-1 mb-2" x-text="ui.quickview.title"></h3>
+            <div class="flex items-center gap-2 mb-4">
+              <span class="flex items-center gap-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs px-2 py-0.5 rounded font-bold" x-text="ui.quickview.rating + ' ★'"></span>
+              <span class="text-xs text-muted" x-text="ui.quickview.reviews.toLocaleString('en-IN') + ' ratings'"></span>
+            </div>
+            <div class="flex items-baseline gap-3 mb-1">
+              <span class="font-display font-extrabold text-3xl text-primary" x-text="'₹' + ui.quickview.price.toLocaleString('en-IN')"></span>
+              <span class="line-through text-muted text-lg" x-text="'₹' + ui.quickview.mrp.toLocaleString('en-IN')"></span>
+              <span class="text-green-600 font-bold text-sm bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded" x-text="Math.round((1 - ui.quickview.price/ui.quickview.mrp)*100) + '% off'"></span>
+            </div>
+            <p class="text-[11px] text-muted mb-4">Inclusive of all taxes · No Cost EMI from ₹<span x-text="Math.round(ui.quickview.price/6).toLocaleString('en-IN')"></span>/mo</p>
+
+            <div class="flex gap-2 mb-4">
+              <input type="text" x-model="pincodeCheck" placeholder="Enter pincode" class="flex-1 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg px-3 py-2 text-xs">
+              <button @click="pincodeChecked = true; showToast('Delivery available at ' + pincodeCheck)" class="bg-amznNav text-white text-xs font-bold px-4 rounded-lg">Check</button>
+            </div>
+            <p x-show="pincodeChecked" x-cloak class="text-xs text-green-600 mb-3"><i class="fa-solid fa-truck"></i> Delivery by <span class="font-semibold text-ink dark:text-white" x-text="estDeliveryDate"></span> to <span x-text="pincodeCheck"></span></p>
+
+            <div class="flex items-center gap-3 mb-4">
+              <div class="flex items-center border border-gray-300 dark:border-gray-700 rounded-lg">
+                <button @click="if(qvQty > 1) qvQty--" class="w-10 h-10 hover:text-primary transition text-lg">−</button>
+                <span class="w-10 text-center font-medium" x-text="qvQty"></span>
+                <button @click="qvQty++" class="w-10 h-10 hover:text-primary transition text-lg">+</button>
+              </div>
+              <button @click="cart.add(ui.quickview, qvQty); showToast('Added to cart!'); ui.quickview = null; qvQty = 1" class="flex-1 bg-primary hover:bg-primary-dark transition text-white font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2">
+                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+              </button>
+              <button @click="wishlist.toggle(ui.quickview)" class="w-12 h-12 grid place-items-center border border-gray-300 dark:border-gray-700 rounded-xl hover:border-red-500 hover:text-red-500 transition shrink-0" :class="wishlist.has(ui.quickview.id) ? 'text-red-500 border-red-500' : ''">
+                <i class="fa-solid fa-heart" :class="wishlist.has(ui.quickview.id) ? 'fa-solid' : 'fa-regular'"></i>
+              </button>
+            </div>
+            <button @click="cart.add(ui.quickview, qvQty); ui.quickview = null; ui.checkoutOpen = true; qvQty=1" class="w-full bg-accent hover:bg-accent-dark text-amznDark font-bold py-3 rounded-xl shadow-lg">Buy Now</button>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="px-6 pb-6">
+          <div class="flex gap-4 border-b border-gray-200 dark:border-gray-700 mt-4 mb-4 text-sm font-semibold">
+            <button @click="tab='desc'" class="pb-2 border-b-2 transition" :class="tab==='desc' ? 'border-primary text-primary' : 'border-transparent text-muted'">Description</button>
+            <button @click="tab='reviews'" class="pb-2 border-b-2 transition" :class="tab==='reviews' ? 'border-primary text-primary' : 'border-transparent text-muted'">Ratings & Reviews</button>
+          </div>
+          <div x-show="tab==='desc'">
+            <p class="text-sm text-muted leading-relaxed">Genuine <span x-text="ui.quickview.brand"></span> product with manufacturer warranty. Carefully packed and quality-checked before dispatch, with easy 7-day returns if it's not the right fit.</p>
+          </div>
+          <div x-show="tab==='reviews'" x-cloak>
+            <canvas id="ratingChart" height="90"></canvas>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+</div>
+
+
+<div x-show="ui.compareOpen" x-cloak class="fixed inset-0 z-[80] grid place-items-center p-4" aria-modal="true" role="dialog">
+  <div class="absolute inset-0 bg-black/60" x-transition.opacity @click="ui.compareOpen = false"></div>
+  <div class="relative bg-white dark:bg-surface-dark rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl p-6" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="font-display font-bold text-2xl"><i class="fa-solid fa-code-compare text-primary mr-2"></i> Compare Products</h3>
+      <button @click="ui.compareOpen = false" class="w-8 h-8 grid place-items-center rounded-full hover:bg-paper dark:hover:bg-gray-800 transition"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead><tr>
+          <th class="text-left p-3 border-b dark:border-gray-700 w-32">Feature</th>
+          <template x-for="item in compareList" :key="item.id">
+            <th class="p-3 border-b dark:border-gray-700 min-w-[200px]">
+              <img :src="item.image" loading="lazy" class="w-24 h-24 object-cover rounded-lg mx-auto mb-2">
+              <div class="font-bold line-clamp-2" x-text="item.title"></div>
+              <button @click="compareList = compareList.filter(i => i.id !== item.id)" class="text-xs text-red-500 hover:underline mt-1">Remove</button>
+            </th>
+          </template>
+        </tr></thead>
+        <tbody>
+          <tr><td class="p-3 border-b dark:border-gray-700 font-semibold">Price</td>
+            <template x-for="item in compareList" :key="item.id"><td class="p-3 border-b dark:border-gray-700 text-center font-bold text-primary" x-text="'₹' + item.price.toLocaleString('en-IN')"></td></template>
+          </tr>
+          <tr><td class="p-3 border-b dark:border-gray-700 font-semibold">Rating</td>
+            <template x-for="item in compareList" :key="item.id"><td class="p-3 border-b dark:border-gray-700 text-center"><span class="text-accent" x-text="item.rating + ' ★'"></span> <span class="text-muted text-xs" x-text="'(' + item.reviews + ')'"></span></td></template>
+          </tr>
+          <tr><td class="p-3 border-b dark:border-gray-700 font-semibold">Brand</td>
+            <template x-for="item in compareList" :key="item.id"><td class="p-3 border-b dark:border-gray-700 text-center" x-text="item.brand"></td></template>
+          </tr>
+          <tr><td class="p-3 font-semibold">Action</td>
+            <template x-for="item in compareList" :key="item.id"><td class="p-3 text-center"><button @click="cart.add(item); showToast('Added to cart')" class="bg-primary text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-primary-dark transition">Add to Cart</button></td></template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div x-show="ui.checkoutOpen" x-cloak class="fixed inset-0 z-[80] grid place-items-center p-4" aria-modal="true" role="dialog">
+  <div class="absolute inset-0 bg-black/60" x-transition.opacity @click="ui.checkoutOpen = false"></div>
+  <div class="relative bg-white dark:bg-surface-dark rounded-2xl w-full max-w-2xl max-h-[92vh] overflow-y-auto shadow-2xl p-6 md:p-8" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
+    <button @click="ui.checkoutOpen = false" class="absolute top-4 right-4 w-8 h-8 grid place-items-center rounded-full hover:bg-paper dark:hover:bg-gray-800 transition"><i class="fa-solid fa-xmark"></i></button>
+    <h3 class="font-display font-bold text-2xl mb-1"><i class="fa-solid fa-bag-shopping text-accent mr-2"></i> Secure Checkout</h3>
+    <p class="text-sm text-muted mb-6">Fast, secure, and delivered with care.</p>
+
+    <form @submit.prevent="placeOrder()" class="space-y-4">
+      <div class="grid md:grid-cols-2 gap-4">
+        <input type="text" required placeholder="Full Name" class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary">
+        <input type="text" required placeholder="Mobile Number" class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary">
+      </div>
+      <input type="text" required placeholder="Delivery Address (House No., Street, Locality)" class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary">
+      <div class="grid md:grid-cols-2 gap-4">
+        <input type="text" required placeholder="Pincode" class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary">
+        <select id="stateSelect" class="w-full">
+          <option>Select State</option><option>Karnataka</option><option>Maharashtra</option><option>Delhi</option><option>Haryana</option><option>Punjab</option>
+        </select>
+      </div>
+      <div>
+        <label class="text-xs font-semibold text-muted mb-1 block">Preferred delivery date</label>
+        <input id="deliveryDatePicker" type="text" placeholder="Choose a delivery date" class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary">
+      </div>
+
+      <div class="border-t border-gray-200 dark:border-gray-800 pt-4 mt-4">
+        <p class="text-sm font-bold mb-3">Payment Method</p>
+        <div class="grid grid-cols-3 gap-3 text-sm" x-data="{ pay: 'cod' }">
+          <label class="flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-3 cursor-pointer transition" :class="pay === 'cod' ? 'border-primary ring-1 ring-primary bg-primary-50 dark:bg-primary/10' : 'hover:border-primary'">
+            <input type="radio" name="pay" value="cod" x-model="pay"> <i class="fa-solid fa-money-bill-wave text-green-600"></i> COD
+          </label>
+          <label class="flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-3 cursor-pointer transition" :class="pay === 'upi' ? 'border-primary ring-1 ring-primary bg-primary-50 dark:bg-primary/10' : 'hover:border-primary'">
+            <input type="radio" name="pay" value="upi" x-model="pay"> <i class="fa-solid fa-qrcode text-primary"></i> UPI
+          </label>
+          <label class="flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-3 cursor-pointer transition" :class="pay === 'card' ? 'border-primary ring-1 ring-primary bg-primary-50 dark:bg-primary/10' : 'hover:border-primary'">
+            <input type="radio" name="pay" value="card" x-model="pay"> <i class="fa-regular fa-credit-card text-accent"></i> Card
+          </label>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 dark:border-gray-800 pt-4 space-y-2 text-sm">
+        <div class="flex justify-between text-muted"><span>Subtotal</span><span x-text="'₹' + cart.subtotal.toLocaleString('en-IN')"></span></div>
+        <div class="flex justify-between text-green-600"><span>Delivery</span><span x-text="cart.subtotal > 499 ? 'FREE' : '₹49'"></span></div>
+        <div class="flex justify-between font-display font-bold text-xl pt-2"><span>Total Payable</span><span class="text-primary" x-text="'₹' + cart.total.toLocaleString('en-IN')"></span></div>
+      </div>
+
+      <button type="submit" class="w-full bg-green-600 hover:bg-green-700 transition text-white font-bold py-4 rounded-xl shadow-lg mt-4 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-lock"></i> Place Order Securely
+      </button>
+    </form>
+  </div>
+</div>
+
+
+<div x-show="ui.authOpen" x-cloak class="fixed inset-0 z-[80] grid place-items-center p-4" aria-modal="true" role="dialog" x-data="{ tab: 'login' }">
+  <div class="absolute inset-0 bg-black/60" x-transition.opacity @click="ui.authOpen = false"></div>
+  <div class="relative bg-white dark:bg-surface-dark rounded-2xl w-full max-w-sm shadow-2xl p-6 md:p-8" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
+    <button @click="ui.authOpen = false" class="absolute top-4 right-4 w-8 h-8 grid place-items-center rounded-full hover:bg-paper dark:hover:bg-gray-800 transition"><i class="fa-solid fa-xmark"></i></button>
+    <div class="text-center mb-6">
+      <div class="w-14 h-14 mx-auto rounded-xl bg-accent grid place-items-center text-amznDark font-display font-bold text-2xl shadow-lg mb-3">N</div>
+      <h3 class="font-display font-bold text-xl">Welcome to NovaCart Bazaar</h3>
+      <p class="text-sm text-muted mt-1">Sign in to access your orders and wishlist.</p>
+    </div>
+    <div class="flex bg-paper dark:bg-gray-800 rounded-lg p-1 mb-6 text-sm font-medium">
+      <button @click="tab = 'login'" :class="tab === 'login' ? 'bg-white dark:bg-gray-700 shadow-sm text-primary' : 'text-muted'" class="flex-1 py-2 rounded-md transition">Log In</button>
+      <button @click="tab = 'signup'" :class="tab === 'signup' ? 'bg-white dark:bg-gray-700 shadow-sm text-primary' : 'text-muted'" class="flex-1 py-2 rounded-md transition">Sign Up</button>
+    </div>
+    <form @submit.prevent="ui.authOpen = false; showToast(tab === 'login' ? 'Welcome back!' : 'Account created successfully!')" class="space-y-4">
+      <template x-if="tab === 'signup'"><input type="text" required placeholder="Full Name" class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary"></template>
+      <input type="text" required placeholder="Email or Mobile Number" class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary">
+      <input type="password" required placeholder="Password" class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary">
+      <button type="submit" class="w-full bg-primary hover:bg-primary-dark transition text-white font-bold py-3 rounded-lg shadow-lg" x-text="tab === 'login' ? 'Log In' : 'Create Account'"></button>
+    </form>
+    <p class="text-[11px] text-center text-muted mt-6">This is a demo store. No real data is processed or stored.</p>
+  </div>
+</div>
+
+
+<div x-show="ui.trackOpen" x-cloak class="fixed inset-0 z-[80] grid place-items-center p-4" aria-modal="true" role="dialog">
+  <div class="absolute inset-0 bg-black/60" x-transition.opacity @click="ui.trackOpen = false"></div>
+  <div class="relative bg-white dark:bg-surface-dark rounded-2xl w-full max-w-lg shadow-2xl p-6 md:p-8" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
+    <button @click="ui.trackOpen = false" class="absolute top-4 right-4 w-8 h-8 grid place-items-center rounded-full hover:bg-paper dark:hover:bg-gray-800 transition"><i class="fa-solid fa-xmark"></i></button>
+    <h3 class="font-display font-bold text-xl mb-1"><i class="fa-solid fa-truck-fast text-primary mr-2"></i> Track Your Order</h3>
+    <p class="text-sm text-muted mb-1">Order <span class="font-semibold text-ink dark:text-white">#NC10234</span></p>
+    <p class="text-xs text-muted mb-6">Premium Wireless Headphones + 2 more items</p>
+    <div class="relative pl-8">
+      <div class="absolute left-3 top-1 bottom-1 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+      <template x-for="(step,i) in orderTimeline" :key="step.label">
+        <div class="relative mb-6 last:mb-0">
+          <div class="absolute -left-8 w-6 h-6 rounded-full grid place-items-center text-white text-[10px]" :class="i <= orderStage ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-600'"><i class="fa-solid" :class="step.icon"></i></div>
+          <p class="font-semibold text-sm" :class="i <= orderStage ? 'text-ink dark:text-white' : 'text-muted'" x-text="step.label"></p>
+          <p class="text-xs text-muted" x-text="step.time"></p>
+        </div>
+      </template>
+    </div>
+  </div>
+</div>
+
+
+<div x-show="ui.membershipOpen" x-cloak class="fixed inset-0 z-[80] grid place-items-center p-4" aria-modal="true" role="dialog">
+  <div class="absolute inset-0 bg-black/60" x-transition.opacity @click="ui.membershipOpen = false"></div>
+  <div class="relative bg-gradient-to-br from-amznNav to-amznDark text-white rounded-2xl w-full max-w-md shadow-2xl p-8 text-center" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
+    <button @click="ui.membershipOpen = false" class="absolute top-4 right-4 w-8 h-8 grid place-items-center rounded-full hover:bg-white/10 transition"><i class="fa-solid fa-xmark"></i></button>
+    <i class="fa-solid fa-crown text-5xl text-accent mb-4"></i>
+    <h3 class="font-display font-bold text-2xl mb-2">NC Prime Membership</h3>
+    <p class="text-gray-300 text-sm mb-6">Free same-day delivery, exclusive lightning deals & Prime Video — all for ₹149/month.</p>
+    <button @click="ui.membershipOpen=false; showToast('Welcome to NC Prime! 👑')" class="w-full bg-accent hover:bg-accent-dark text-amznDark font-bold py-3 rounded-xl">Start Free Trial</button>
+  </div>
+</div>
+
+<!-- Compare floating button -->
+<button x-show="compareList.length > 0" x-cloak @click="ui.compareOpen = true"
+        class="fixed bottom-24 left-6 z-[60] bg-amznDark text-white px-6 py-3 rounded-full shadow-2xl font-bold flex items-center gap-3 hover:scale-105 transition">
+  <i class="fa-solid fa-code-compare"></i> Compare (<span x-text="compareList.length"></span>)
+</button>
+
+<!-- Back to top -->
+<button x-show="ui.showBackToTop" x-cloak @click="window.scrollTo({top:0,behavior:'smooth'})"
+        class="fixed bottom-24 right-6 z-[60] w-11 h-11 bg-amznNav text-white rounded-full shadow-xl grid place-items-center hover:bg-primary transition">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- Chat bubble -->
+<button @click="showToast('Support chat coming soon — email us at support@novacartbazaar.com')"
+        class="fixed bottom-6 right-6 z-[60] w-14 h-14 bg-primary text-white rounded-full shadow-2xl grid place-items-center hover:bg-primary-dark transition animate__animated animate__pulse animate__infinite animate__slower">
+  <i class="fa-solid fa-headset text-xl"></i>
+</button>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>                                 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>                        
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>                                     
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>                                           
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>                                                        
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>                                                     
+<script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>                       
+<script src="https://unpkg.com/@popperjs/core@2"></script>                                                           
+<script src="https://unpkg.com/tippy.js@6"></script>                                                                    
+<script src="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/scripts/choices.min.js"></script>            
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>                            
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>                                              
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>                
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>                              
+<script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>                                       
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" async></script>                            
+
+<script>
+  // Alpine "tooltip" directive powered by Tippy.js
+  document.addEventListener('alpine:init', () => {
+    Alpine.directive('tooltip', (el, { expression }) => {
+      let text = eval(expression);
+      if (window.tippy) tippy(el, { content: text, theme: 'light' });
+    });
+  });
+
+  function ecommerce() {
+    return {
+      darkMode: localStorage.getItem('novacart_theme') === 'dark',
+      qvQty: 1,
+      searchQuery: '',
+      searchCategory: 'All',
+      sortBy: 'featured',
+      deliveryPincode: '',
+      pincodeInput: '',
+      pincodeCheck: '',
+      pincodeChecked: false,
+      estDeliveryDate: '',
+      couponInput: '',
+      coupon: { applied: false, code: '', savings: 0 },
+      orderStage: 1,
+
+      ui: {
+        mobileMenu: false, cartOpen: false, wishOpen: false, quickview: null,
+        authOpen: false, checkoutOpen: false, compareOpen: false, trackOpen: false,
+        pincodeOpen: false, notifOpen: false, membershipOpen: false, cookieBanner: true,
+        showBackToTop: false
+      },
+
+      filters: { minPrice: 0, maxPrice: 25000, categories: [], minRating: 0, minDiscount: 0 },
+      compareList: [],
+      recentlyViewed: [],
+
+      orderTimeline: [
+        { label: 'Order Confirmed', time: 'Yesterday, 10:14 AM', icon: 'fa-check' },
+        { label: 'Shipped', time: 'Yesterday, 6:40 PM', icon: 'fa-box' },
+        { label: 'Out for Delivery', time: 'Today, 8:05 AM', icon: 'fa-truck' },
+        { label: 'Delivered', time: 'Expected today by 9 PM', icon: 'fa-house' }
+      ],
+
+      customerReviews: [
+        { name: 'Aarav Sharma', rating: 5, avatar: 'https://i.pravatar.cc/100?img=12', text: 'Delivery was super fast and the headphones sound amazing. Definitely buying again from NovaCart Bazaar!', helpful: 214 },
+        { name: 'Priya Nair', rating: 4, avatar: 'https://i.pravatar.cc/100?img=32', text: 'Great packaging, genuine product, easy returns process when I needed a size exchange.', helpful: 132 },
+        { name: 'Rohan Mehta', rating: 5, avatar: 'https://i.pravatar.cc/100?img=45', text: 'Best prices I found anywhere, and the lightning deals actually deliver real savings.', helpful: 98 }
+      ],
+
+      categories: [
+        { name: 'Electronics', icon: '💻' }, { name: 'Fashion', icon: '👕' }, { name: 'Home', icon: '🏠' },
+        { name: 'Beauty', icon: '💄' }, { name: 'Sports', icon: '⚽' }, { name: 'Books', icon: '📚' },
+        { name: 'Gaming', icon: '🎮' }, { name: 'Kitchen', icon: '🍳' }
+      ],
+
+      products: [
+        { id: 1, title: "Premium Wireless Noise-Cancelling Headphones", brand: "AudioTech Pro", price: 4999, mrp: 8999, discount: 44, rating: 4.8, reviews: 1240, stock: 5, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80", category: "Electronics", badge: "choice" },
+        { id: 2, title: "Smart Fitness Watch Pro with GPS", brand: "FitGear", price: 2499, mrp: 4999, discount: 50, rating: 4.6, reviews: 856, stock: 12, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80", category: "Electronics", badge: "bestseller" },
+        { id: 3, title: "Ergonomic Mechanical Keyboard RGB", brand: "KeyMaster", price: 3299, mrp: 5499, discount: 40, rating: 4.9, reviews: 2100, stock: 8, image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80", category: "Electronics", badge: "" },
+        { id: 4, title: "Ultra-Slim 27-inch 4K UHD Monitor", brand: "ViewMax", price: 18999, mrp: 24999, discount: 24, rating: 4.7, reviews: 430, stock: 3, image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80", category: "Electronics", badge: "sponsored" },
+        { id: 5, title: "Premium Leather Laptop Backpack", brand: "UrbanCarry", price: 1899, mrp: 3499, discount: 46, rating: 4.5, reviews: 670, stock: 20, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80", category: "Fashion", badge: "" },
+        { id: 6, title: "Portable Waterproof Bluetooth Speaker", brand: "SoundBlast", price: 1299, mrp: 2499, discount: 48, rating: 4.4, reviews: 1500, stock: 15, image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80", category: "Electronics", badge: "bestseller" },
+        { id: 7, title: "Minimalist Analog Wrist Watch", brand: "Timeless", price: 3499, mrp: 6999, discount: 50, rating: 4.7, reviews: 320, stock: 7, image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=600&q=80", category: "Fashion", badge: "" },
+        { id: 8, title: "360° Smart Home Security Camera", brand: "SafeGuard", price: 1999, mrp: 3999, discount: 50, rating: 4.3, reviews: 890, stock: 9, image: "https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?auto=format&fit=crop&w=600&q=80", category: "Home", badge: "sponsored" },
+        { id: 9, title: "Wireless Gaming Mouse RGB", brand: "GameX", price: 1599, mrp: 2999, discount: 47, rating: 4.8, reviews: 980, stock: 18, image: "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=600&q=80", category: "Gaming", badge: "choice" },
+        { id: 10, title: "USB-C Fast Charging Power Bank 20000mAh", brand: "VoltMax", price: 1799, mrp: 2999, discount: 40, rating: 4.6, reviews: 1150, stock: 25, image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=600&q=80", category: "Electronics", badge: "" },
+        { id: 11, title: "Premium Cotton Oversized T-Shirt", brand: "StyleHub", price: 799, mrp: 1499, discount: 47, rating: 4.4, reviews: 540, stock: 35, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80", category: "Fashion", badge: "" },
+        { id: 12, title: "Classic Men's Denim Jacket", brand: "UrbanEdge", price: 1999, mrp: 3999, discount: 50, rating: 4.6, reviews: 740, stock: 14, image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80", category: "Fashion", badge: "bestseller" },
+        { id: 13, title: "Women's Premium Leather Handbag", brand: "LuxeCarry", price: 2499, mrp: 4999, discount: 50, rating: 4.7, reviews: 620, stock: 11, image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80", category: "Fashion", badge: "" },
+        { id: 14, title: "Classic Running Sneakers", brand: "StrideX", price: 2299, mrp: 4499, discount: 49, rating: 4.5, reviews: 1890, stock: 22, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80", category: "Fashion", badge: "choice" },
+        { id: 15, title: "Premium Sunglasses UV400", brand: "SunVision", price: 999, mrp: 1999, discount: 50, rating: 4.3, reviews: 430, stock: 30, image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80", category: "Fashion", badge: "" },
+        { id: 16, title: "Smart LED Desk Lamp with Touch Control", brand: "BrightHome", price: 1199, mrp: 2499, discount: 52, rating: 4.5, reviews: 680, stock: 16, image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80", category: "Home", badge: "" },
+        { id: 17, title: "Modern Minimalist Table Lamp", brand: "GlowDecor", price: 899, mrp: 1799, discount: 50, rating: 4.4, reviews: 390, stock: 18, image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80", category: "Home", badge: "" },
+        { id: 18, title: "Memory Foam Orthopedic Pillow", brand: "SleepWell", price: 1299, mrp: 2499, discount: 48, rating: 4.6, reviews: 940, stock: 28, image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80", category: "Home", badge: "sponsored" },
+        { id: 19, title: "Premium Cotton Bedsheet King Size", brand: "HomeNest", price: 1599, mrp: 2999, discount: 47, rating: 4.5, reviews: 720, stock: 19, image: "https://images.unsplash.com/photo-1616628182506-7e5d5f9c5e5b?auto=format&fit=crop&w=600&q=80", category: "Home", badge: "" },
+        { id: 20, title: "Aesthetic Wall Mirror Round Frame", brand: "DecorCraft", price: 1799, mrp: 3499, discount: 49, rating: 4.4, reviews: 280, stock: 10, image: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=600&q=80", category: "Home", badge: "" },
+        { id: 21, title: "RGB Gaming Headset with Microphone", brand: "GameZone", price: 1999, mrp: 3999, discount: 50, rating: 4.7, reviews: 1640, stock: 13, image: "https://images.unsplash.com/photo-1599669454699-248893623440?auto=format&fit=crop&w=600&q=80", category: "Gaming", badge: "bestseller" },
+        { id: 22, title: "Mechanical Gaming Keyboard 87 Keys", brand: "HyperKey", price: 2799, mrp: 4999, discount: 44, rating: 4.8, reviews: 1250, stock: 9, image: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=600&q=80", category: "Gaming", badge: "" },
+        { id: 23, title: "RGB Gaming Mouse Pad XXL", brand: "FireDesk", price: 999, mrp: 1999, discount: 50, rating: 4.6, reviews: 870, stock: 24, image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80", category: "Gaming", badge: "" },
+        { id: 24, title: "Gaming Controller Wireless", brand: "PlayCore", price: 2499, mrp: 4499, discount: 44, rating: 4.5, reviews: 930, stock: 12, image: "https://images.unsplash.com/photo-1592840496694-26c035b52b7e?auto=format&fit=crop&w=600&q=80", category: "Gaming", badge: "" },
+        { id: 25, title: "Adjustable Gaming Chair with Lumbar Support", brand: "ProSeat", price: 8999, mrp: 14999, discount: 40, rating: 4.6, reviews: 510, stock: 6, image: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=600&q=80", category: "Gaming", badge: "choice" },
+        { id: 26, title: "Stainless Steel Insulated Water Bottle", brand: "HydroPeak", price: 699, mrp: 1299, discount: 46, rating: 4.7, reviews: 2300, stock: 45, image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80", category: "Sports", badge: "" },
+        { id: 27, title: "Professional Yoga Mat Non-Slip", brand: "FlexFit", price: 899, mrp: 1799, discount: 50, rating: 4.6, reviews: 1150, stock: 32, image: "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?auto=format&fit=crop&w=600&q=80", category: "Sports", badge: "" },
+        { id: 28, title: "Adjustable Dumbbell Set 20kg", brand: "PowerLift", price: 3499, mrp: 5999, discount: 42, rating: 4.5, reviews: 670, stock: 8, image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=600&q=80", category: "Sports", badge: "" },
+        { id: 29, title: "Professional Football Size 5", brand: "SportPro", price: 899, mrp: 1599, discount: 44, rating: 4.4, reviews: 830, stock: 21, image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80", category: "Sports", badge: "" },
+        { id: 30, title: "Carbon Fiber Badminton Racket", brand: "SmashPro", price: 1299, mrp: 2499, discount: 48, rating: 4.6, reviews: 590, stock: 15, image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=600&q=80", category: "Sports", badge: "" },
+        { id: 31, title: "Bestselling Fiction Novel Collection", brand: "BookVerse", price: 599, mrp: 999, discount: 40, rating: 4.8, reviews: 1840, stock: 40, image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80", category: "Books", badge: "bestseller" },
+        { id: 32, title: "The Art of Modern Programming", brand: "TechReads", price: 799, mrp: 1299, discount: 38, rating: 4.7, reviews: 920, stock: 25, image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=600&q=80", category: "Books", badge: "" },
+        { id: 33, title: "Complete Python Programming Guide", brand: "CodePress", price: 899, mrp: 1499, discount: 40, rating: 4.9, reviews: 2150, stock: 18, image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=600&q=80", category: "Books", badge: "choice" },
+        { id: 34, title: "Premium Hardcover Notebook", brand: "PaperCraft", price: 399, mrp: 699, discount: 43, rating: 4.5, reviews: 780, stock: 50, image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=600&q=80", category: "Books", badge: "" },
+        { id: 35, title: "Minimalist Daily Planner 2026", brand: "PlanPerfect", price: 499, mrp: 899, discount: 44, rating: 4.6, reviews: 460, stock: 34, image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80", category: "Books", badge: "" },
+        { id: 36, title: "4-Slice Automatic Pop-Up Toaster", brand: "KitchenPro", price: 2299, mrp: 3999, discount: 43, rating: 4.5, reviews: 740, stock: 12, image: "https://images.unsplash.com/photo-1584990347449-ae3c7e8f0f24?auto=format&fit=crop&w=600&q=80", category: "Kitchen", badge: "" },
+        { id: 37, title: "Digital Air Fryer 5.5L", brand: "CrispMaster", price: 4999, mrp: 7999, discount: 38, rating: 4.7, reviews: 1320, stock: 9, image: "https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=600&q=80", category: "Kitchen", badge: "bestseller" },
+        { id: 38, title: "Automatic Electric Coffee Maker", brand: "BrewMaster", price: 3499, mrp: 5999, discount: 42, rating: 4.6, reviews: 860, stock: 7, image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80", category: "Kitchen", badge: "" },
+        { id: 39, title: "Premium Non-Stick Cookware Set", brand: "ChefChoice", price: 2999, mrp: 4999, discount: 40, rating: 4.5, reviews: 670, stock: 14, image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80", category: "Kitchen", badge: "" },
+        { id: 40, title: "Electric Hand Blender 500W", brand: "BlendPro", price: 1199, mrp: 1999, discount: 40, rating: 4.4, reviews: 590, stock: 20, image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=600&q=80", category: "Kitchen", badge: "" },
+        { id: 41, title: "Fast Wireless Charging Pad", brand: "ChargeX", price: 899, mrp: 1599, discount: 44, rating: 4.5, reviews: 1120, stock: 27, image: "https://images.unsplash.com/photo-1591290619762-c588b8a3c0f8?auto=format&fit=crop&w=600&q=80", category: "Accessories", badge: "" },
+        { id: 42, title: "Braided USB-C Fast Charging Cable", brand: "CableMax", price: 399, mrp: 799, discount: 50, rating: 4.7, reviews: 3200, stock: 60, image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=600&q=80", category: "Accessories", badge: "bestseller" },
+        { id: 43, title: "Premium Laptop Sleeve 15.6-inch", brand: "ShieldCase", price: 699, mrp: 1299, discount: 46, rating: 4.6, reviews: 830, stock: 26, image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80", category: "Accessories", badge: "" },
+        { id: 44, title: "Wireless Earbuds with ANC", brand: "EchoPods", price: 2199, mrp: 3999, discount: 45, rating: 4.7, reviews: 2780, stock: 16, image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80", category: "Electronics", badge: "choice" },
+        { id: 45, title: "Smartphone Tripod with Bluetooth Remote", brand: "ShotPro", price: 799, mrp: 1499, discount: 47, rating: 4.5, reviews: 940, stock: 31, image: "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?auto=format&fit=crop&w=600&q=80", category: "Accessories", badge: "" },
+        { id: 46, title: "Modern Wooden Study Desk", brand: "WoodCraft", price: 5999, mrp: 8999, discount: 33, rating: 4.6, reviews: 310, stock: 5, image: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6b0?auto=format&fit=crop&w=600&q=80", category: "Furniture", badge: "" },
+        { id: 47, title: "Ergonomic Office Chair", brand: "ComfortSeat", price: 7499, mrp: 11999, discount: 38, rating: 4.7, reviews: 540, stock: 7, image: "https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&w=600&q=80", category: "Furniture", badge: "sponsored" },
+        { id: 48, title: "Modern 3-Seater Fabric Sofa", brand: "CasaLiving", price: 18999, mrp: 29999, discount: 37, rating: 4.5, reviews: 190, stock: 4, image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80", category: "Furniture", badge: "" },
+        { id: 49, title: "Minimalist Bedside Table", brand: "HomeWood", price: 2499, mrp: 4499, discount: 44, rating: 4.4, reviews: 270, stock: 11, image: "https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&w=600&q=80", category: "Furniture", badge: "" },
+        { id: 50, title: "Premium Full HD Android Smart TV 43-inch", brand: "VisionTech", price: 24999, mrp: 34999, discount: 29, rating: 4.7, reviews: 870, stock: 6, image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=600&q=80", category: "Electronics", badge: "bestseller" }
+      ],
+
+      get searchSuggestions() {
+        if (this.searchQuery.length < 2) return [];
+        return this.products.filter(p => p.title.toLowerCase().includes(this.searchQuery.toLowerCase())).slice(0, 5);
+      },
+
+      get filteredProducts() {
+        let result = this.products.filter(p => {
+          const matchesSearch = p.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || p.brand.toLowerCase().includes(this.searchQuery.toLowerCase());
+          const matchesCat = (this.searchCategory === 'All' || p.category === this.searchCategory);
+          const matchesPrice = p.price >= this.filters.minPrice && p.price <= this.filters.maxPrice;
+          const matchesCategory = this.filters.categories.length === 0 || this.filters.categories.includes(p.category);
+          const matchesRating = p.rating >= this.filters.minRating;
+          const matchesDiscount = p.discount >= this.filters.minDiscount;
+          return matchesSearch && matchesCat && matchesPrice && matchesCategory && matchesRating && matchesDiscount;
+        });
+        if (this.sortBy === 'price-low') result.sort((a, b) => a.price - b.price);
+        else if (this.sortBy === 'price-high') result.sort((a, b) => b.price - a.price);
+        else if (this.sortBy === 'rating') result.sort((a, b) => b.rating - a.rating);
+        else if (this.sortBy === 'discount') result.sort((a, b) => b.discount - a.discount);
+        return result;
+      },
+
+      get dealProducts() {
+        return this.products.slice(0, 8).map(p => ({
+          ...p,
+          dealClaimed: p._claimed ?? (p._claimed = Math.floor(30 + Math.random() * 60)),
+          dealEnd: p._end ?? (p._end = Date.now() + (2 + Math.random() * 10) * 3600 * 1000)
+        }));
+      },
+
+      get sponsoredProducts() {
+        return this.products.filter(p => p.badge === 'sponsored' || p.badge === 'choice').slice(0, 8);
+      },
+
+      get fbtProducts() {
+        return this.products.slice(8, 11);
+      },
+      get fbtTotal() {
+        return this.fbtProducts.reduce((s, p) => s + p.price, 0);
+      },
+
+      cart: {
+        items: [], savedForLater: [],
+        get count() { return this.items.reduce((s, i) => s + i.qty, 0); },
+        get subtotal() { return this.items.reduce((s, i) => s + i.price * i.qty, 0); },
+        get total() { return this.subtotal + (this.subtotal > 499 ? 0 : 49); },
+        add(product, qty = 1) {
+          const existing = this.items.find(i => i.id === product.id);
+          if (existing) existing.qty += qty; else this.items.push({ ...product, qty });
+        },
+        remove(id) { this.items = this.items.filter(i => i.id !== id); },
+        inc(id) { const i = this.items.find(i => i.id === id); if (i) i.qty++; },
+        dec(id) { const i = this.items.find(i => i.id === id); if (i) { if (i.qty > 1) i.qty--; else this.remove(id); } },
+        saveForLater(id) {
+          const i = this.items.find(i => i.id === id);
+          if (i) { this.savedForLater.push(i); this.remove(id); }
+        },
+        moveToCart(id) {
+          const i = this.savedForLater.find(i => i.id === id);
+          if (i) { this.add(i, i.qty); this.savedForLater = this.savedForLater.filter(x => x.id !== id); }
+        }
+      },
+
+      wishlist: {
+        items: [],
+        has(id) { return this.items.some(i => i.id === id); },
+        toggle(product) {
+          if (this.has(product.id)) { this.items = this.items.filter(i => i.id !== product.id); }
+          else { this.items.push(product); }
+        }
+      },
+
+      viewProduct(product) {
+        this.ui.quickview = product;
+        this.pincodeChecked = false;
+        if (!this.recentlyViewed.find(p => p.id === product.id)) {
+          this.recentlyViewed.unshift(product);
+          if (this.recentlyViewed.length > 5) this.recentlyViewed.pop();
+        }
+        this.$nextTick(() => this.renderRatingChart(product));
+      },
+
+      renderRatingChart(product) {
+        const canvas = document.getElementById('ratingChart');
+        if (!canvas || typeof Chart === 'undefined') return;
+        if (this._chart) this._chart.destroy();
+        const dist = [Math.round(product.reviews*0.62), Math.round(product.reviews*0.22), Math.round(product.reviews*0.08), Math.round(product.reviews*0.05), Math.round(product.reviews*0.03)];
+        this._chart = new Chart(canvas.getContext('2d'), {
+          type: 'bar',
+          data: { labels: ['5★','4★','3★','2★','1★'], datasets: [{ data: dist, backgroundColor: '#FF9F00', borderRadius: 6 }] },
+          options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { display: false } } } }
+        });
+      },
+
+      dealCountdown(end) {
+        const distance = end - Date.now();
+        if (distance < 0) return 'Deal ended';
+        const h = Math.floor(distance / 36e5), m = Math.floor((distance % 36e5) / 6e4), s = Math.floor((distance % 6e4) / 1000);
+        return `${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
+      },
+
+      setPincode() {
+        if (this.pincodeInput.length === 6) {
+          this.deliveryPincode = this.pincodeInput;
+          this.ui.pincodeOpen = false;
+          this.showToast('Delivery location updated to ' + this.pincodeInput);
+        } else {
+          this.showToast('Please enter a valid 6-digit pincode');
+        }
+      },
+
+      applyCoupon() {
+        if (this.couponInput.trim().toUpperCase() === 'NC50' && !this.coupon.applied) {
+          const savings = Math.round(this.cart.subtotal * 0.1);
+          this.coupon = { applied: true, code: 'NC50', savings };
+          this.showToast('Coupon applied! You saved ₹' + savings);
+        } else if (this.coupon.applied) {
+          this.showToast('Coupon already applied');
+        } else {
+          this.showToast('Try coupon code: NC50');
+        }
+      },
+
+      placeOrder() {
+        this.ui.checkoutOpen = false;
+        this.cart.items = [];
+        this.orderStage = 1;
+        if (window.confetti) confetti({ particleCount: 140, spread: 80, origin: { y: 0.6 } });
+        if (window.Swal) {
+          Swal.fire({
+            title: 'Order Placed! 🎉',
+            html: 'Your order <b>#NC10234</b> has been confirmed and will arrive soon.',
+            icon: 'success',
+            confirmButtonColor: '#2874F0',
+            confirmButtonText: 'Track Order'
+          }).then(res => { if (res.isConfirmed) this.ui.trackOpen = true; });
+        } else {
+          this.showToast('Order placed successfully!');
+        }
+      },
+
+      resetFilters() {
+        this.filters = { minPrice: 0, maxPrice: 25000, categories: [], minRating: 0, minDiscount: 0 };
+        this.searchQuery = ''; this.searchCategory = 'All';
+        if (this._priceSlider) this._priceSlider.set([0, 25000]);
+      },
+
+      showToast(message) {
+        if (window.Toastify) {
+          Toastify({
+            text: message, duration: 3000, gravity: 'bottom', position: 'right',
+            style: { background: '#0F1111', borderRadius: '10px', fontFamily: 'Inter, sans-serif' }
+          }).showToast();
+        }
+      },
+
+      initApp() {
+        this.$watch('darkMode', v => {
+          document.documentElement.classList.toggle('dark', v);
+          localStorage.setItem('novacart_theme', v ? 'dark' : 'light');
+        });
+        if (this.darkMode) document.documentElement.classList.add('dark');
+
+        // Estimated delivery date (today + 3 days)
+        const d = new Date(); d.setDate(d.getDate() + 3);
+        this.estDeliveryDate = d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+
+        this.$nextTick(() => {
+          this.initLibraries();
+          this.initGSAP();
+        });
+      },
+
+      initLibraries() {
+     
+        if (window.NProgress) { NProgress.start(); setTimeout(() => NProgress.done(), 500); }
+        if (window.AOS) AOS.init({ once: true, duration: 600, easing: 'ease-out-cubic' });
+        if (window.Swiper) {
+          new Swiper('.hero-swiper', { loop: true, autoplay: { delay: 4500 }, pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' } });
+          new Swiper('.deals-swiper', { slidesPerView: 'auto', spaceBetween: 16, freeMode: true });
+          new Swiper('.sponsored-swiper', { slidesPerView: 'auto', spaceBetween: 14, freeMode: true });
+        }
+
+      
+        if (window.Typed) {
+          new Typed('.hero-typed', { strings: ['Upgrade Your Lifestyle Today.', 'Deals That Actually Deliver.', 'India Shops NovaCart Bazaar.'], typeSpeed: 45, backSpeed: 25, backDelay: 1800, loop: true });
+        }
+
+     
+        const priceEl = document.getElementById('priceSlider');
+        if (priceEl && window.noUiSlider) {
+          noUiSlider.create(priceEl, { start: [0, 25000], connect: true, range: { min: 0, max: 25000 }, step: 500 });
+          this._priceSlider = priceEl.noUiSlider;
+          priceEl.noUiSlider.on('update', (values) => {
+            this.filters.minPrice = parseInt(values[0]); this.filters.maxPrice = parseInt(values[1]);
+          });
+        }
+
+
+        if (window.Choices) {
+          document.querySelectorAll('#sortSelect, #stateSelect').forEach(el => new Choices(el, { searchEnabled: false, itemSelectText: '' }));
+        }
+
+ 
+        if (window.flatpickr) {
+          flatpickr('#deliveryDatePicker', { minDate: 'today', dateFormat: 'd M Y', disableMobile: true });
+        }
+
+ 
+        setInterval(() => { this.$refs && null; }, 1000);
+        setInterval(() => { this.products = [...this.products]; }, 1000);
+
+   
+        window.addEventListener('scroll', () => { this.ui.showBackToTop = window.scrollY > 600; });
+      },
+
+            initGSAP() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+        
+        gsap.registerPlugin(ScrollTrigger);
+        
+
+        gsap.utils.toArray('.gsap-feature').forEach((el) => {
+          gsap.fromTo(el, 
+            { y: 30, opacity: 0 },
+            {
+              y: 0, 
+              opacity: 1, 
+              duration: 0.8, 
+              ease: 'power2.out',
+              immediateRender: false, 
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 85%',
+                once: true
+              }
+            }
+          );
+        });
+      }
+      
+    }
+  }
+</script>
+</body>
+</html>
