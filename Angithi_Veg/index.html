@@ -1,0 +1,5485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angithi — Pure Veg | Fire-Fed Flavours, Rooted in Home</title>
+<meta name="description" content="Angithi is a coal-fired, family-run pure vegetarian kitchen serving three generations of hand-written recipes — tandoor breads, slow-cooked dals and biryani, cooked the way it's always been cooked.">
+
+<link rel="icon" href="data:,">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>
+<script src="https://unpkg.com/splitting@1.0.6/dist/splitting.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script src="https://unpkg.com/imask@7.1.3/dist/imask.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ==========================================================================
+   ANGITHI — Pure Veg | Fire-Fed Flavours, Rooted in Home
+   Premium Stylesheet with Advanced Features & Dark Mode Support
+   ========================================================================== */
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+@import url('https://unpkg.com/balloon-css/balloon.min.css');
+@import url('https://unpkg.com/open-props');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.css');
+@import url('https://unpkg.com/aos@2.3.1/dist/aos.css');
+@import url('https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css');
+@import url('https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
+@import url('https://unpkg.com/tippy.js@6/dist/tippy.css');
+
+:root {
+  /* Brand Colors */
+  --color-coal: #121212;
+  --color-charcoal: #1E1E1E;
+  --color-ember: #D94E2A;
+  --color-ember-glow: rgba(217, 78, 42, 0.4);
+  --color-brass: #C5A059;
+  --color-brass-light: #E5C585;
+  --color-cream: #F9F5F0;
+  --color-smoke: #E8E4DF;
+  --color-text: #2D2D2D;
+  --color-text-light: #737373;
+  --color-error: #E53935;
+  --color-success: #43A047;
+  
+  /* Pure Veg Specific Colors */
+  --color-veg: #2E7D32;
+  --color-veg-light: #E8F5E9;
+  --color-vegan: #388E3C;
+  --color-jain: #F57C00;
+  --color-jain-light: #FFF3E0;
+
+  /* Typography */
+  --font-serif: 'Fraunces', serif;
+  --font-sans: 'Work Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Spacing & Layout */
+  --container-width: 1200px;
+  --header-height: 80px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows & Effects */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.15);
+  --shadow-brass: 0 8px 24px rgba(197, 160, 89, 0.3);
+  --glass-bg: rgba(30, 30, 30, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --transition-fast: 0.2s var(--ease-out);
+  --transition-base: 0.4s var(--ease-out);
+  --transition-slow: 0.8s var(--ease-out);
+}
+
+/* ==========================================================================
+   DARK MODE SUPPORT
+   ========================================================================== */
+body.dark-theme {
+  --color-cream: #0F0F0F;
+  --color-text: #E8E4DF;
+  --color-charcoal: #1A1A1A;
+  --color-smoke: #2A2A2A;
+  --color-coal: #050505;
+  --glass-bg: rgba(15, 15, 15, 0.9);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme h1, 
+body.dark-theme h2, 
+body.dark-theme h3, 
+body.dark-theme h4 {
+  color: var(--color-cream);
+}
+
+body.dark-theme .menu-item,
+body.dark-theme .reserve-form,
+body.dark-theme .special-card,
+body.dark-theme .benefit-item {
+  background: var(--color-charcoal);
+}
+
+body.dark-theme .story-text p,
+body.dark-theme .section-head p,
+body.dark-theme .menu-item-body > p {
+  color: #A0A0A0;
+}
+
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+::selection {
+  background-color: var(--color-brass);
+  color: var(--color-coal);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-coal);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brass);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-coal);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-coal);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-brass {
+  background: var(--color-brass);
+  color: var(--color-coal);
+  box-shadow: var(--shadow-brass);
+}
+
+.btn-brass:hover {
+  background: var(--color-brass-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(197, 160, 89, 0.4);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-cream);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-brass);
+  color: var(--color-brass);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-coal);
+  border: 2px solid var(--color-coal);
+}
+
+.btn-outline:hover {
+  background: var(--color-coal);
+  color: var(--color-cream);
+}
+
+.btn-outline.btn-light {
+  color: var(--color-cream);
+  border-color: var(--color-cream);
+}
+
+.btn-outline.btn-light:hover {
+  background: var(--color-cream);
+  color: var(--color-coal);
+}
+
+.btn-sm {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.8rem;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-loading {
+  display: none;
+}
+
+.btn.is-loading .btn-label {
+  display: none;
+}
+
+.btn.is-loading .btn-loading {
+  display: inline-flex;
+}
+
+/* ==========================================================================
+   PRELOADER
+   ========================================================================== */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--color-coal);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader-inner {
+  text-align: center;
+  color: var(--color-cream);
+}
+
+.preloader-mark {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  color: var(--color-brass);
+  display: block;
+  margin-bottom: 1.5rem;
+  animation: pulse 2s infinite;
+}
+
+.preloader-bar {
+  width: 200px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 auto 1rem;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.preloader-bar span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: var(--color-brass);
+  animation: loadBar 2s var(--ease-out) forwards;
+}
+
+.preloader-inner p {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+@keyframes loadBar {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.95); }
+}
+
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 1000;
+  transition: all var(--transition-base);
+  border-bottom: 1px solid transparent;
+}
+
+.site-header.scrolled {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--glass-border);
+  height: 70px;
+}
+
+.header-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-cream);
+}
+
+.brand-mark {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--color-brass);
+  line-height: 1;
+}
+
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.pure-veg-badge {
+  background: var(--color-veg);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-brass);
+  transition: width var(--transition-base);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--color-brass);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-toggle, .lang-toggle, .cart-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-cream);
+  background: rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.theme-toggle:hover, .lang-toggle:hover, .cart-btn:hover {
+  background: var(--color-brass);
+  color: var(--color-coal);
+}
+
+.cart-count {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: var(--color-veg);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-coal);
+}
+
+.header-phone {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-cream);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-phone:hover {
+  color: var(--color-brass);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.5rem;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-cream);
+  transition: all var(--transition-fast);
+}
+
+/* ==========================================================================
+   CART SIDEBAR
+   ========================================================================== */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 400px;
+  height: 100vh;
+  background: var(--color-cream);
+  z-index: 2000;
+  box-shadow: -10px 0 40px rgba(0,0,0,0.2);
+  transition: right var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-sidebar.active {
+  right: 0;
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-smoke);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h3 {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cart-header h3 i {
+  color: var(--color-veg);
+}
+
+.cart-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all var(--transition-fast);
+}
+
+.cart-close:hover {
+  background: var(--color-smoke);
+  color: var(--color-error);
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.cart-empty {
+  text-align: center;
+  color: var(--color-text-light);
+  margin-top: 3rem;
+  font-style: italic;
+}
+
+.cart-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-smoke);
+}
+
+.cart-item-img {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cart-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-details h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.cart-item-details .price {
+  font-family: var(--font-mono);
+  color: var(--color-veg);
+  font-weight: 600;
+}
+
+.cart-item-remove {
+  color: var(--color-text-light);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color var(--transition-fast);
+}
+
+.cart-item-remove:hover {
+  color: var(--color-error);
+}
+
+.cart-footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-smoke);
+  background: var(--color-smoke);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: var(--font-serif);
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-coal);
+  overflow: hidden;
+}
+
+.ember-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(18, 18, 18, 0.9) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 2rem;
+  color: var(--color-cream);
+}
+
+.pure-veg-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(46, 125, 50, 0.15);
+  border: 1px solid rgba(129, 199, 132, 0.4);
+  color: #81C784;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(4px);
+}
+
+.hero-title {
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-brass) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--color-brass);
+  margin-bottom: 1.5rem;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.hero-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+}
+
+.hero-feature i {
+  color: var(--color-brass);
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  animation: bounce 2s infinite;
+}
+
+.hero-scroll-cue span {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-brass), transparent);
+}
+
+.hero-scroll-cue small {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* ==========================================================================
+   MARQUEE TICKER
+   ========================================================================== */
+.marquee-strip {
+  background: var(--color-brass);
+  color: var(--color-coal);
+  padding: 1rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 10;
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 3rem;
+  animation: marquee 40s linear infinite;
+}
+
+.marquee-track span {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.marquee-track i {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   QUICK BOOKING BAR
+   ========================================================================== */
+.quick-booking-bar {
+  background: var(--color-coal);
+  padding: 1.5rem 0;
+  position: relative;
+  z-index: 50;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.quick-booking-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.quick-booking-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-cream);
+}
+
+.quick-booking-item i {
+  font-size: 1.5rem;
+  color: var(--color-brass);
+  width: 40px;
+  text-align: center;
+}
+
+.quick-booking-item strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.quick-booking-item span {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   STORY SECTION
+   ========================================================================== */
+.story {
+  padding: 8rem 0;
+  background: var(--color-cream);
+}
+
+.story-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.story-media {
+  position: relative;
+  height: 500px;
+}
+
+.story-img {
+  position: absolute;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-slow);
+}
+
+.story-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.story-img:hover img {
+  transform: scale(1.05);
+}
+
+.story-img-1 {
+  width: 70%;
+  height: 80%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.story-img-2 {
+  width: 60%;
+  height: 60%;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  border: 4px solid var(--color-cream);
+}
+
+.story-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  background: var(--color-brass);
+  color: var(--color-coal);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  animation: rotateBadge 20s linear infinite;
+}
+
+@keyframes rotateBadge {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.story-badge > * {
+  animation: counterRotate 20s linear infinite;
+}
+
+@keyframes counterRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+.story-badge-num {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.story-badge-txt {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+.story-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.story-text p {
+  margin-bottom: 1.5rem;
+  color: #555;
+  font-size: 1.05rem;
+}
+
+.story-text em {
+  color: var(--color-ember);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.story-quote {
+  border-left: 3px solid var(--color-brass);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-charcoal);
+}
+
+.story-quote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--color-ember);
+}
+
+.story-highlights {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-smoke);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+}
+
+.highlight-item i {
+  color: var(--color-veg);
+}
+
+/* ==========================================================================
+   STATS SECTION
+   ========================================================================== */
+.stats {
+  background: var(--color-charcoal);
+  padding: 5rem 0;
+  color: var(--color-cream);
+}
+
+.stats-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.stat-item {
+  padding: 1rem;
+}
+
+.stat-num {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--color-brass);
+  line-height: 1;
+}
+
+.stat-suffix {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--color-brass);
+}
+
+.stat-item p {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.75rem;
+}
+
+/* ==========================================================================
+   CHEF'S SPECIALS
+   ========================================================================== */
+.chef-specials {
+  padding: 6rem 0;
+  background: var(--color-smoke);
+}
+
+.specials-grid {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.special-card {
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+
+.special-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.special-img {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.special-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.special-card:hover .special-img img {
+  transform: scale(1.1);
+}
+
+.special-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--color-brass);
+  color: var(--color-coal);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.special-content {
+  padding: 1.5rem;
+}
+
+.special-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.special-content p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.special-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+.special-meta i {
+  color: var(--color-ember);
+  margin-right: 0.25rem;
+}
+
+.special-price {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-veg);
+}
+
+/* ==========================================================================
+   MENU SECTION
+   ========================================================================== */
+.menu-section {
+  padding: 8rem 0;
+  background: var(--color-cream);
+}
+
+.section-head {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+}
+
+.section-head h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-head p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.menu-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  padding: 0 2rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--color-smoke);
+  border-radius: var(--radius-full);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: var(--color-coal);
+  color: var(--color-cream);
+  border-color: var(--color-coal);
+}
+
+.menu-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding: 0 2rem;
+}
+
+.menu-tab {
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.menu-tab span {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.menu-tab:hover, .menu-tab.active {
+  color: var(--color-coal);
+  border-bottom-color: var(--color-brass);
+}
+
+.menu-tab.active span {
+  color: var(--color-ember);
+  opacity: 1;
+}
+
+.menu-grid {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.menu-item {
+  background: #fff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.menu-item-img {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.menu-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.menu-item:hover .menu-item-img img {
+  transform: scale(1.1);
+}
+
+.add-to-cart-btn {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-brass);
+  color: var(--color-coal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-md);
+}
+
+.menu-item:hover .add-to-cart-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.add-to-cart-btn:hover {
+  background: var(--color-veg);
+  color: white;
+}
+
+.menu-item-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+  gap: 1rem;
+}
+
+.menu-item-top h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.menu-item-top .price {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--color-ember);
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.menu-item-body > p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.menu-item-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.menu-item-tags span {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tag-veg { background: var(--color-veg-light); color: var(--color-veg); }
+.tag-veg i { color: var(--color-veg); }
+
+.tag-vegan { background: #E8F5E9; color: #2E7D32; }
+.tag-vegan i { color: #2E7D32; }
+
+.tag-jain { background: var(--color-jain-light); color: var(--color-jain); }
+.tag-jain i { color: var(--color-jain); }
+
+.tag-spice { background: var(--color-smoke); color: var(--color-charcoal); }
+.tag-spice i { color: var(--color-ember); }
+
+.tag-time { background: var(--color-smoke); color: var(--color-charcoal); }
+.tag-time i { color: var(--color-brass); }
+
+.nutrition-info {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--color-smoke);
+}
+
+/* ==========================================================================
+   ONLINE ORDERING SECTION
+   ========================================================================== */
+.online-order {
+  padding: 6rem 0;
+  background: var(--color-cream);
+}
+
+.order-platforms {
+  max-width: var(--container-width);
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.platform-card {
+  background: var(--color-charcoal);
+  color: var(--color-cream);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.platform-card:hover {
+  transform: translateY(-5px);
+  background: var(--color-coal);
+}
+
+.platform-card i {
+  font-size: 2.5rem;
+  color: var(--color-brass);
+  margin-bottom: 1rem;
+}
+
+.platform-card h3 {
+  color: var(--color-cream);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.platform-card p {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+.platform-tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--color-veg);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.order-benefits {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.benefit-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.benefit-item i {
+  font-size: 1.5rem;
+  color: var(--color-brass);
+  width: 40px;
+  text-align: center;
+}
+
+.benefit-item h4 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.benefit-item p {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+}
+
+/* ==========================================================================
+   GALLERY SECTION
+   ========================================================================== */
+.gallery {
+  padding: 8rem 0;
+  background: var(--color-coal);
+  color: var(--color-cream);
+}
+
+.gallery .section-head h2 {
+  color: var(--color-cream);
+}
+
+.gallery .section-head .eyebrow {
+  color: var(--color-brass);
+}
+
+.gallery-grid {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 280px);
+  gap: 1rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out), filter 0.4s ease;
+  filter: grayscale(20%);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+  filter: grayscale(0%);
+}
+
+.gallery-zoom {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.gallery-zoom i {
+  font-size: 2rem;
+  color: var(--color-brass);
+  transform: scale(0.8);
+  transition: transform var(--transition-base);
+}
+
+.gallery-item:hover .gallery-zoom {
+  opacity: 1;
+}
+
+.gallery-item:hover .gallery-zoom i {
+  transform: scale(1);
+}
+
+/* Masonry-like grid areas */
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+.gallery-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+.gallery-item:nth-child(4) { grid-column: span 2; grid-row: span 1; }
+.gallery-item:nth-child(5) { grid-column: span 2; grid-row: span 1; }
+
+/* ==========================================================================
+   TESTIMONIALS SECTION
+   ========================================================================== */
+.testimonials {
+  padding: 8rem 0;
+  background: var(--color-smoke);
+}
+
+.testimonial-carousel {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-track {
+  display: flex;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.testimonial-slide {
+  min-width: 100%;
+  text-align: center;
+  padding: 2rem;
+}
+
+.testimonial-slide .stars {
+  color: var(--color-brass);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.2rem;
+}
+
+.testimonial-slide blockquote {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--color-charcoal);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-slide figcaption {
+  font-weight: 600;
+  color: var(--color-coal);
+}
+
+.testimonial-slide figcaption span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-ember);
+  margin-top: 0.25rem;
+}
+
+.testimonial-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.testimonial-controls button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--color-text-light);
+  color: var(--color-coal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.testimonial-controls button:hover {
+  background: var(--color-coal);
+  color: var(--color-brass);
+  border-color: var(--color-coal);
+}
+
+.testimonial-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.testimonial-dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-text-light);
+  border: none;
+  padding: 0;
+  transition: all var(--transition-fast);
+}
+
+.testimonial-dots button.active {
+  background: var(--color-brass);
+  transform: scale(1.2);
+}
+
+/* ==========================================================================
+   GIFT CARDS SECTION
+   ========================================================================== */
+.gift-cards {
+  padding: 6rem 0;
+  background: var(--color-smoke);
+}
+
+.gift-cards-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.gift-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.gift-features {
+  list-style: none;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.gift-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--color-charcoal);
+}
+
+.gift-features li i {
+  color: var(--color-veg);
+}
+
+.gift-image img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  transform: rotate(2deg);
+  transition: transform var(--transition-base);
+}
+
+.gift-image img:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* ==========================================================================
+   RESERVATION SECTION
+   ========================================================================== */
+.reserve {
+  padding: 8rem 0;
+  background: var(--color-cream);
+}
+
+.reserve-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.reserve-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.reserve-text p {
+  color: #555;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+.reserve-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reserve-points li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: var(--color-charcoal);
+}
+
+.reserve-points li i {
+  color: var(--color-brass);
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+}
+
+.reserve-form {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-field label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.875rem 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-coal);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--color-smoke);
+  transition: border-color var(--transition-fast);
+  outline: none;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-bottom-color: var(--color-brass);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #aaa;
+}
+
+.field-error {
+  font-size: 0.8rem;
+  color: var(--color-error);
+  display: none;
+  margin-top: 0.25rem;
+}
+
+.form-field.invalid input,
+.form-field.invalid select,
+.form-field.invalid textarea {
+  border-bottom-color: var(--color-error);
+}
+
+.form-field.invalid .field-error {
+  display: block;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-smoke);
+  border-radius: var(--radius-sm);
+  width: fit-content;
+  overflow: hidden;
+}
+
+.stepper-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--color-charcoal);
+  transition: background var(--transition-fast);
+}
+
+.stepper-btn:hover {
+  background: var(--color-smoke);
+}
+
+#guestCount {
+  width: 40px;
+  text-align: center;
+  font-weight: 600;
+  border-left: 1px solid var(--color-smoke);
+  border-right: 1px solid var(--color-smoke);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.time-slot {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid var(--color-smoke);
+  border-radius: var(--radius-full);
+  color: var(--color-charcoal);
+  transition: all var(--transition-fast);
+}
+
+.time-slot:hover {
+  border-color: var(--color-brass);
+  color: var(--color-brass);
+}
+
+.time-slot.active {
+  background: var(--color-brass);
+  border-color: var(--color-brass);
+  color: var(--color-coal);
+  font-weight: 600;
+}
+
+#timeError {
+  margin-top: 0.5rem;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-charcoal);
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  width: auto;
+  accent-color: var(--color-brass);
+}
+
+/* ==========================================================================
+   EVENTS BANNER
+   ========================================================================== */
+.events-banner {
+  background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), 
+              url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
+  padding: 6rem 0;
+  color: var(--color-cream);
+}
+
+.events-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.events-inner .eyebrow {
+  color: var(--color-brass);
+}
+
+.events-inner h2 {
+  color: var(--color-cream);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.events-inner p {
+  max-width: 600px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   NEWSLETTER SECTION
+   ========================================================================== */
+.newsletter-section {
+  padding: 4rem 0;
+  background: var(--color-brass);
+}
+
+.newsletter-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.newsletter-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-coal);
+}
+
+.newsletter-content i {
+  font-size: 2rem;
+}
+
+.newsletter-content h3 {
+  color: var(--color-coal);
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.newsletter-content p {
+  color: rgba(18, 18, 18, 0.7);
+  font-size: 0.95rem;
+}
+
+.newsletter-form {
+  display: flex;
+  background: var(--color-coal);
+  border-radius: var(--radius-full);
+  padding: 0.25rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.newsletter-form input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  outline: none;
+}
+
+.newsletter-form input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.newsletter-form button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-brass);
+  color: var(--color-coal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.newsletter-form button:hover {
+  background: var(--color-cream);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  background: var(--color-coal);
+  color: var(--color-smoke);
+  padding: 5rem 0 0;
+}
+
+.footer-top {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+}
+
+.footer-col h4 {
+  color: var(--color-cream);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.footer-about p {
+  margin: 1.5rem 0;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.8;
+}
+
+.brand-footer {
+  color: var(--color-cream);
+}
+
+.pure-veg-badge-small {
+  background: var(--color-veg);
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-cream);
+  transition: all var(--transition-fast);
+}
+
+.social-links a:hover {
+  background: var(--color-brass);
+  border-color: var(--color-brass);
+  color: var(--color-coal);
+  transform: translateY(-3px);
+}
+
+.footer-col p {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+.footer-col p i {
+  color: var(--color-brass);
+  margin-top: 0.25rem;
+}
+
+.footer-col a {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-col a:hover {
+  color: var(--color-brass);
+}
+
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hours-table td {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hours-table td:first-child {
+  font-weight: 600;
+  color: var(--color-cream);
+  padding-right: 1rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--color-brass);
+  padding-left: 0.5rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.5rem;
+}
+
+.footer-credit {
+  color: var(--color-brass);
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   FLOATING ELEMENTS
+   ========================================================================== */
+
+
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--color-brass);
+  color: var(--color-coal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+  z-index: 900;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--color-brass-light);
+  transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   LIGHTBOX
+   ========================================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+  padding: 2rem;
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-cream);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.lightbox-close:hover {
+  background: var(--color-brass);
+  color: var(--color-coal);
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  transform: scale(0.9);
+  transition: transform var(--transition-base);
+}
+
+.lightbox.active img {
+  transform: scale(1);
+}
+
+#lightboxCaption {
+  margin-top: 1.5rem;
+  color: var(--color-cream);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  text-align: center;
+  max-width: 600px;
+}
+
+/* ==========================================================================
+   TOAST CONTAINER
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.toast {
+  background: var(--color-charcoal);
+  color: var(--color-cream);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border-left: 4px solid var(--color-brass);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 300px;
+  animation: slideInRight 0.4s var(--ease-out);
+}
+
+.toast.success { border-left-color: var(--color-success); }
+.toast.error { border-left-color: var(--color-error); }
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .story-inner,
+  .reserve-inner,
+  .gift-cards-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .story-media {
+    height: 400px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+  
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; height: 300px; }
+  .gallery-item:nth-child(2),
+  .gallery-item:nth-child(3),
+  .gallery-item:nth-child(4),
+  .gallery-item:nth-child(5) { grid-column: span 1; height: 250px; }
+
+  .specials-grid,
+  .order-platforms,
+  .order-benefits {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 70px;
+  }
+  
+  .main-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background: var(--color-coal);
+    padding: 2rem;
+    transform: translateY(-150%);
+    transition: transform var(--transition-base);
+    border-bottom: 1px solid var(--glass-border);
+  }
+  
+  .main-nav.active {
+    transform: translateY(0);
+  }
+  
+  .main-nav ul {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .nav-toggle {
+    display: flex;
+  }
+  
+  .nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  .header-phone {
+    display: none;
+  }
+  
+  .stats-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .events-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footer-col p {
+    justify-content: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+  
+  .quick-booking-inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .specials-grid,
+  .order-platforms,
+  .order-benefits,
+  .gift-features {
+    grid-template-columns: 1fr;
+  }
+
+  .newsletter-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cart-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .gallery-item:nth-child(n) {
+    grid-column: span 1;
+    height: 250px;
+  }
+  
+  .stats-inner {
+    grid-template-columns: 1fr;
+  }
+  
+  .reserve-form {
+    padding: 1.5rem;
+  }
+
+  .hero-features {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+/* ==========================================================================
+   NEW FEATURES — Open Status, Order Type, Coupons, Qty Stepper, Receipt Modal,
+   Search, Favorites, Floating Quick Actions, Mobile Bottom Nav
+   ========================================================================== */
+
+/* --- Live Open/Closed badge --- */
+.open-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(255,255,255,0.1);
+  color: var(--color-cream);
+  white-space: nowrap;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-text-light);
+  flex-shrink: 0;
+}
+.open-status-badge.is-open { background: rgba(46,125,50,0.18); color: #8BC34A; border-color: rgba(46,125,50,0.4); }
+.open-status-badge.is-open .status-dot { background: #8BC34A; box-shadow: 0 0 0 3px rgba(139,195,74,0.25); animation: pulse-dot 1.8s infinite; }
+.open-status-badge.is-closed { background: rgba(229,57,53,0.15); color: #FF8A80; border-color: rgba(229,57,53,0.4); }
+.open-status-badge.is-closed .status-dot { background: #FF8A80; }
+@media (max-width: 1150px) {
+  .open-status-badge { display: none; }
+}
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(46,125,50,0.35); }
+  50% { box-shadow: 0 0 0 5px rgba(46,125,50,0); }
+}
+
+/* --- Order type toggle --- */
+.order-type-toggle {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem 0;
+}
+.order-type-btn {
+  flex: 1;
+  padding: 0.6rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border: 1.5px solid var(--color-smoke);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all var(--transition-fast);
+}
+.order-type-btn i { font-size: 1rem; }
+.order-type-btn.active,
+.order-type-btn:hover {
+  border-color: var(--color-brass);
+  background: var(--color-brass);
+  color: var(--color-coal);
+}
+
+/* --- Delivery address --- */
+.delivery-address-wrap {
+  padding: 0 1.5rem 1rem;
+}
+.delivery-address-wrap label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--color-text-light);
+}
+.delivery-address-wrap textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid var(--color-smoke);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  resize: vertical;
+  background: var(--color-cream);
+  color: var(--color-text);
+}
+
+/* --- Coupon box --- */
+.coupon-box {
+  padding: 0 1.5rem 1rem;
+}
+.coupon-input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+.coupon-input-row input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid var(--color-smoke);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  background: var(--color-cream);
+  color: var(--color-text);
+}
+.coupon-msg {
+  font-size: 0.78rem;
+  margin-top: 0.5rem;
+  min-height: 1em;
+}
+.coupon-msg.success { color: var(--color-veg); }
+.coupon-msg.error { color: var(--color-error); }
+
+/* --- Cart summary rows / qty stepper --- */
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+}
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.cart-qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--color-smoke);
+  border-radius: var(--radius-full);
+  padding: 0.15rem 0.6rem;
+}
+.cart-qty-btn {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-ember);
+  width: 20px;
+}
+.cart-qty-stepper span {
+  min-width: 14px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+/* --- Receipt / Order confirmation modal --- */
+.receipt-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+  padding: 1.5rem;
+}
+.receipt-modal.active { opacity: 1; visibility: visible; }
+.receipt-modal-inner {
+  background: var(--color-cream);
+  color: var(--color-text);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem 2rem;
+  max-width: 420px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform var(--transition-base);
+}
+.receipt-modal.active .receipt-modal-inner { transform: scale(1); }
+.receipt-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.receipt-close:hover { background: var(--color-smoke); }
+.receipt-check {
+  font-size: 3rem;
+  color: var(--color-veg);
+  margin-bottom: 0.5rem;
+}
+.receipt-modal-inner h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+.receipt-id { font-family: var(--font-mono); color: var(--color-text-light); margin-bottom: 0.25rem; }
+.receipt-type { text-align: left; font-size: 0.85rem; color: var(--color-brass); margin: 0.5rem 0 1rem; font-weight: 600; }
+.receipt-list {
+  list-style: none;
+  text-align: left;
+  border-top: 1px dashed var(--color-smoke);
+  border-bottom: 1px dashed var(--color-smoke);
+  padding: 0.75rem 0;
+  margin-bottom: 0.75rem;
+}
+.receipt-list li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  padding: 0.3rem 0;
+  font-family: var(--font-mono);
+}
+.receipt-totals p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-bottom: 0.35rem;
+  font-family: var(--font-mono);
+}
+.receipt-grand {
+  font-size: 1.1rem !important;
+  font-weight: 700;
+  color: var(--color-text) !important;
+  font-family: var(--font-serif) !important;
+}
+.receipt-eta {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--color-veg);
+  font-weight: 600;
+}
+.receipt-actions { margin-top: 1.5rem; }
+
+/* --- Menu search & favorites --- */
+.menu-search-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.menu-search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--color-cream);
+  border: 1.5px solid var(--color-smoke);
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.25rem;
+  width: 100%;
+  max-width: 420px;
+}
+.menu-search-box i { color: var(--color-text-light); }
+.menu-search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+.fav-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-smoke);
+  background: transparent;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+.fav-toggle-btn i { color: var(--color-error); }
+.fav-toggle-btn.active,
+.fav-toggle-btn:hover {
+  background: var(--color-error);
+  border-color: var(--color-error);
+  color: #fff;
+}
+.fav-toggle-btn.active i,
+.fav-toggle-btn:hover i { color: #fff; }
+
+.fav-btn {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  z-index: 2;
+  transition: all var(--transition-fast);
+}
+.fav-btn:hover { transform: scale(1.1); }
+.fav-btn.active { color: var(--color-error); }
+.fav-btn.active i { animation: heart-pop 0.35s ease; }
+@keyframes heart-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.menu-empty-state {
+  text-align: center;
+  color: var(--color-text-light);
+  font-style: italic;
+  padding: 3rem 1rem;
+  font-size: 1.05rem;
+}
+.menu-empty-state i { font-size: 2rem; display: block; margin-bottom: 0.75rem; color: var(--color-brass); }
+
+/* --- Floating quick action buttons --- */
+.quick-actions {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 1500;
+}
+.quick-action-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-fast);
+}
+.quick-action-btn:hover { transform: translateY(-3px) scale(1.05); }
+.quick-action-btn.whatsapp { background: #25D366; }
+.quick-action-btn.call { background: var(--color-ember); }
+
+/* --- Mobile bottom nav --- */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  display: none;
+  background: var(--color-coal);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  z-index: 1600;
+  padding: 0.5rem 0.25rem;
+  box-shadow: 0 -6px 24px rgba(0,0,0,0.3);
+}
+.mobile-bottom-nav a,
+.mobile-bottom-nav button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  color: rgba(249,245,240,0.7);
+  font-size: 0.62rem;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  position: relative;
+  background: transparent;
+}
+.mobile-bottom-nav i { font-size: 1.1rem; }
+.mobile-bottom-nav a:hover,
+.mobile-bottom-nav button:hover { color: var(--color-brass); }
+.bottom-nav-badge {
+  position: absolute;
+  top: -4px;
+  right: 22%;
+  background: var(--color-ember);
+  color: #fff;
+  font-size: 0.6rem;
+  min-width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+}
+
+/* --- Booked-out time slot --- */
+.time-slot.slot-full {
+  opacity: 0.4;
+  text-decoration: line-through;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .mobile-bottom-nav { display: flex; }
+  .quick-actions { bottom: 5.5rem; right: 1rem; }
+  body { padding-bottom: 60px; }
+}
+
+@media (max-width: 600px) {
+  .menu-search-row { flex-direction: column; }
+  .menu-search-box { max-width: 100%; }
+  .order-type-toggle { flex-wrap: wrap; }
+  .quick-action-btn { width: 46px; height: 46px; font-size: 1.2rem; }
+}
+
+@media print {
+  body * { visibility: hidden; }
+  .receipt-modal, .receipt-modal * { visibility: visible; }
+  .receipt-modal { position: absolute; inset: 0; background: #fff; }
+  .receipt-close, .receipt-actions { display: none; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <span class="preloader-mark">आ</span>
+    <div class="preloader-bar"><span></span></div>
+    <p>lighting the hearth</p>
+  </div>
+</div>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark">आ</span>
+      <span class="brand-name">Angithi</span>
+      <span class="pure-veg-badge"><i class="fa-solid fa-leaf"></i> Pure Veg</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+        <li><a href="#story" class="nav-link" data-section="story">Our Story</a></li>
+        <li><a href="#menu" class="nav-link" data-section="menu">Menu</a></li>
+        <li><a href="#order" class="nav-link" data-section="order">Order Online</a></li>
+        <li><a href="#gallery" class="nav-link" data-section="gallery">Gallery</a></li>
+        <li><a href="#reserve" class="nav-link" data-section="reserve">Reserve</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+        <span>EN</span>
+      </button>
+      <span class="open-status-badge" id="openStatusBadge"><span class="status-dot"></span> Checking hours…</span>
+      <a href="tel:+911126543210" class="header-phone"><i class="fa-solid fa-phone"></i> +91 11 2654 3210</a>
+      <button class="cart-btn" id="cartBtn" aria-label="View cart">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <span class="cart-count">0</span>
+      </button>
+      <a href="#reserve" class="btn btn-brass btn-sm">Reserve a Table</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SHOPPING CART SIDEBAR ============ -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Order <i class="fa-solid fa-leaf"></i></h3>
+    <button class="cart-close" id="cartClose"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+
+  <div class="order-type-toggle" role="group" aria-label="Order type">
+    <button type="button" class="order-type-btn" data-type="dine-in"><i class="fa-solid fa-utensils"></i> Dine-in</button>
+    <button type="button" class="order-type-btn" data-type="takeaway"><i class="fa-solid fa-bag-shopping"></i> Takeaway</button>
+    <button type="button" class="order-type-btn active" data-type="delivery"><i class="fa-solid fa-motorcycle"></i> Delivery</button>
+  </div>
+
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty"><i class="fa-solid fa-basket-shopping"></i><br>Your cart is empty</p>
+  </div>
+
+  <div class="delivery-address-wrap" id="deliveryAddressWrap">
+    <label for="deliveryAddress">Delivery address</label>
+    <textarea id="deliveryAddress" rows="2" placeholder="House no, street, area, landmark"></textarea>
+  </div>
+
+  <div class="coupon-box">
+    <div class="coupon-input-row">
+      <input type="text" id="couponInput" placeholder="Coupon code (try WELCOME10)">
+      <button type="button" id="couponApplyBtn" class="btn btn-sm btn-outline">Apply</button>
+    </div>
+    <p class="coupon-msg" id="couponMsg"></p>
+  </div>
+
+  <div class="cart-footer">
+    <div class="cart-summary-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+    <div class="cart-summary-row" id="cartDiscountRow" style="display:none"><span>Discount</span><span id="cartDiscountVal">₹0</span></div>
+    <div class="cart-summary-row"><span>Delivery</span><span id="cartDeliveryVal">₹0</span></div>
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+    <button class="btn btn-brass btn-full" id="checkoutBtn">Proceed to Checkout</button>
+  </div>
+</div>
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- ============ ORDER RECEIPT / CONFIRMATION MODAL ============ -->
+<div class="receipt-modal" id="receiptModal">
+  <div class="receipt-modal-inner">
+    <button class="receipt-close" id="receiptClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="receipt-check"><i class="fa-solid fa-circle-check"></i></div>
+    <h3>Order Confirmed!</h3>
+    <div id="receiptBody"></div>
+    <div class="receipt-actions">
+      <button class="btn btn-outline" id="receiptPrint"><i class="fa-solid fa-print"></i> Print Receipt</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <canvas id="emberCanvas" class="ember-canvas"></canvas>
+  <div class="hero-vignette"></div>
+
+  <div class="hero-content">
+    <span class="eyebrow reveal">est. since the first flame — 1996</span>
+    <div class="pure-veg-hero-badge reveal">
+      <i class="fa-solid fa-leaf"></i> 100% Pure Vegetarian
+    </div>
+    <h1 class="hero-title reveal">
+      <span class="hero-title-line">ANGITHI</span>
+    </h1>
+    <p class="hero-sub reveal">Fire-fed flavours, rooted in home.</p>
+    <p class="hero-desc reveal">A coal hearth that hasn't gone cold in three generations, and a table
+      that has always kept room for one more. No shortcuts, no gas flames — just smoke, patience,
+      and a family recipe book held together with tape. <strong>Pure vegetarian, pure tradition.</strong></p>
+
+    <div class="hero-cta reveal">
+      <a href="#reserve" class="btn btn-brass">Reserve a Table</a>
+      <a href="#order" class="btn btn-ghost">Order Online <i class="fa-solid fa-arrow-right-long"></i></a>
+    </div>
+    
+    <div class="hero-features reveal">
+      <div class="hero-feature">
+        <i class="fa-solid fa-leaf"></i>
+        <span>100% Vegetarian</span>
+      </div>
+      <div class="hero-feature">
+        <i class="fa-solid fa-fire"></i>
+        <span>Coal-Fired</span>
+      </div>
+      <div class="hero-feature">
+        <i class="fa-solid fa-clock"></i>
+        <span>Since 1996</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-cue">
+    <span></span>
+    <small>scroll</small>
+  </div>
+</section>
+
+<!-- ============ MARQUEE TICKER ============ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>100% PURE VEG <i class="fa-solid fa-leaf"></i></span>
+    <span>SMOKED ON COAL <i class="fa-solid fa-fire"></i></span>
+    <span>HAND-GROUND MASALA <i class="fa-solid fa-mortar-pestle"></i></span>
+    <span>SLOW-CHURNED GHEE <i class="fa-solid fa-droplet"></i></span>
+    <span>CLAY-FIRED TANDOOR <i class="fa-solid fa-fire-flame-curved"></i></span>
+    <span>THREE GENERATIONS <i class="fa-solid fa-people-roof"></i></span>
+    <span>SUN-DRIED SPICES <i class="fa-solid fa-sun"></i></span>
+    <span>JAIN FOOD AVAILABLE <i class="fa-solid fa-carrot"></i></span>
+    <span>100% PURE VEG <i class="fa-solid fa-leaf"></i></span>
+    <span>SMOKED ON COAL <i class="fa-solid fa-fire"></i></span>
+  </div>
+</div>
+
+<!-- ============ QUICK BOOKING BAR ============ -->
+<div class="quick-booking-bar">
+  <div class="quick-booking-inner">
+    <div class="quick-booking-item">
+      <i class="fa-solid fa-calendar-check"></i>
+      <div>
+        <strong>Book a Table</strong>
+        <span>Reserve your spot now</span>
+      </div>
+      <a href="#reserve" class="btn btn-sm btn-outline">Book Now</a>
+    </div>
+    <div class="quick-booking-item">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <div>
+        <strong>Order Online</strong>
+        <span>Get it delivered</span>
+      </div>
+      <a href="#order" class="btn btn-sm btn-outline">Order Now</a>
+    </div>
+    <div class="quick-booking-item">
+      <i class="fa-solid fa-gift"></i>
+      <div>
+        <strong>Gift Cards</strong>
+        <span>Share the taste</span>
+      </div>
+      <a href="#giftcards" class="btn btn-sm btn-outline">Buy Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ OUR STORY ============ -->
+<section class="story" id="story">
+  <div class="story-inner">
+    <div class="story-media reveal">
+      <div class="story-img story-img-1">
+        <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?auto=format&fit=crop&w=900&q=80" alt="Tandoor fire glowing with clay walls">
+      </div>
+      <div class="story-img story-img-2">
+        <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=700&q=80" alt="Bowls of hand-ground Indian spices">
+      </div>
+      <div class="story-badge">
+        <span class="story-badge-num">1996</span>
+        <span class="story-badge-txt">the year the first tandoor<br>was lit at Angithi</span>
+      </div>
+    </div>
+
+    <div class="story-text reveal">
+      <span class="eyebrow">our story</span>
+      <h2>A Hearth That Never Went Cold</h2>
+      <p>It began as one coal <em>angithi</em> in the corner of a Chandni Chowk courtyard, where our
+        grandmother cooked dal through the night so it would be ready by the time the family woke.
+        There was no restaurant then — only a fire that was never allowed to go out, and a rule that
+        nobody left the table hungry.</p>
+      <p>Three generations later, the rule hasn't changed. We still hand-grind our masalas every
+        morning, still let the dal simmer for twelve hours over coal, and still write new recipes
+        into the same battered notebook our grandmother started. We just built a dining room around
+        the fire, and set a few more places at the table. <strong>We remain proudly 100% vegetarian.</strong></p>
+
+      <blockquote class="story-quote">
+        "We don't cook to impress. We cook the way we'd feed our own family — and then we set a
+        place for you."
+        <cite>— Kamla Rawat, Founder</cite>
+      </blockquote>
+
+      <div class="story-highlights">
+        <div class="highlight-item">
+          <i class="fa-solid fa-leaf"></i>
+          <span>100% Vegetarian</span>
+        </div>
+        <div class="highlight-item">
+          <i class="fa-solid fa-wheat-awn"></i>
+          <span>No Onion/Garlic Available</span>
+        </div>
+        <div class="highlight-item">
+          <i class="fa-solid fa-carrot"></i>
+          <span>Jain Options</span>
+        </div>
+      </div>
+
+      <a href="#reserve" class="btn btn-outline">Come Sit With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats" id="stats">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num" data-count="29">0</span>
+      <span class="stat-suffix">yrs</span>
+      <p>at the same coal fire</p>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-count="3">0</span>
+      <span class="stat-suffix"></span>
+      <p>generations behind the tandoor</p>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-count="140">0</span>
+      <span class="stat-suffix">+</span>
+      <p>pure veg recipes, handwritten</p>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-count="50000">0</span>
+      <span class="stat-suffix">+</span>
+      <p>happy vegetarian guests</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHEF'S SPECIALS ============ -->
+<section class="chef-specials">
+  <div class="section-head">
+    <span class="eyebrow reveal">chef's recommendations</span>
+    <h2 class="reveal">Must-Try Signatures</h2>
+    <p class="reveal">Hand-picked by our chefs, these dishes define the Angithi experience</p>
+  </div>
+
+  <div class="specials-grid">
+    <article class="special-card reveal" data-tilt>
+      <div class="special-img">
+        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=80" alt="Dal Angithi">
+        <span class="special-badge">Most Popular</span>
+      </div>
+      <div class="special-content">
+        <h3>Dal Angithi</h3>
+        <p>Black lentils simmered overnight over coal, finished with smoked butter</p>
+        <div class="special-meta">
+          <span><i class="fa-solid fa-fire"></i> 12-hr cook</span>
+          <span><i class="fa-solid fa-leaf"></i> Vegan option</span>
+        </div>
+        <div class="special-price">₹380</div>
+      </div>
+    </article>
+
+    <article class="special-card reveal" data-tilt>
+      <div class="special-img">
+        <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=600&q=80" alt="Paneer Lababdar">
+        <span class="special-badge">Chef's Pick</span>
+      </div>
+      <div class="special-content">
+        <h3>Paneer Lababdar</h3>
+        <p>Cottage cheese in rich tomato gravy with fenugreek and cream</p>
+        <div class="special-meta">
+          <span><i class="fa-solid fa-fire"></i> Tandoor cooked</span>
+          <span><i class="fa-solid fa-leaf"></i> Vegetarian</span>
+        </div>
+        <div class="special-price">410</div>
+      </div>
+    </article>
+
+    <article class="special-card reveal" data-tilt>
+      <div class="special-img">
+        <img src="https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=600&q=80" alt="Garlic Naan">
+        <span class="special-badge">Fresh from Tandoor</span>
+      </div>
+      <div class="special-content">
+        <h3>Garlic Naan</h3>
+        <p>Hand-stretched bread brushed with garlic butter, baked in clay tandoor</p>
+        <div class="special-meta">
+          <span><i class="fa-solid fa-fire"></i> Clay oven</span>
+          <span><i class="fa-solid fa-leaf"></i> Vegetarian</span>
+        </div>
+        <div class="special-price">₹90</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="menu-section" id="menu">
+  <div class="section-head">
+    <span class="eyebrow reveal">the menu</span>
+    <h2 class="reveal">Written on the Same Board Since Day One</h2>
+    <p class="reveal">Everything below still leaves the kitchen the way it did in 1996 — over coal,
+      by hand, and rarely in a hurry. <strong>100% Pure Vegetarian.</strong></p>
+  </div>
+
+  <!-- Menu Search & Favorites -->
+  <div class="menu-search-row reveal">
+    <div class="menu-search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="menuSearchInput" placeholder="Search the menu — e.g. paneer, biryani, chai…" aria-label="Search menu">
+    </div>
+    <button type="button" id="favToggleBtn" class="fav-toggle-btn"><i class="fa-solid fa-heart"></i> My Favorites</button>
+  </div>
+
+  <!-- Menu Filters -->
+  <div class="menu-filters reveal">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="veg">Vegetarian</button>
+    <button class="filter-btn" data-filter="vegan">Vegan</button>
+    <button class="filter-btn" data-filter="jain">Jain</button>
+    <button class="filter-btn" data-filter="gluten-free">Gluten Free</button>
+    <button class="filter-btn" data-filter="no-onion-garlic">No Onion/Garlic</button>
+  </div>
+
+  <div class="menu-tabs reveal" id="menuTabs">
+    <button class="menu-tab active" data-cat="starters">Shuruaat <span>Starters</span></button>
+    <button class="menu-tab" data-cat="mains">Angithi Specials <span>Mains</span></button>
+    <button class="menu-tab" data-cat="breads">Tandoor Se <span>Breads</span></button>
+    <button class="menu-tab" data-cat="rice">Chawal <span>Rice &amp; Biryani</span></button>
+    <button class="menu-tab" data-cat="desserts">Meetha <span>Desserts</span></button>
+    <button class="menu-tab" data-cat="drinks">Peene Ko <span>Beverages</span></button>
+  </div>
+
+  <p class="menu-empty-state" id="menuEmptyState" style="display:none">
+    <i class="fa-solid fa-bowl-food"></i><br>
+    No dishes match your search just yet — try a different keyword or filter.
+  </p>
+
+  <div class="menu-grid" id="menuGrid">
+
+    <!-- Starters -->
+    <article class="menu-item" data-cat="starters" data-tags="veg">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80" alt="Tandoori smoked cauliflower">
+        <button class="add-to-cart-btn" data-name="Tandoori Gobhi" data-price="320">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Tandoori Gobhi</h3>
+          <span class="price">₹320</span>
+        </div>
+        <p>Smoked cauliflower, mint chutney, chaat masala</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-spice mild"><i class="fa-solid fa-pepper-hot"></i> mild</span>
+          <span class="tag-jain"><i class="fa-solid fa-carrot"></i> Jain</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 180 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="starters" data-tags="veg jain">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=500&q=80" alt="Dahi ke kebab platter">
+        <button class="add-to-cart-btn" data-name="Dahi Ke Kebab" data-price="340">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Dahi Ke Kebab</h3>
+          <span class="price">₹340</span>
+        </div>
+        <p>Hung curd, cashew, a thread of saffron</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-spice mild"><i class="fa-solid fa-pepper-hot"></i> mild</span>
+          <span class="tag-jain"><i class="fa-solid fa-carrot"></i> Jain</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 220 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="starters" data-tags="veg vegan">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=500&q=80" alt="Hara Bhara Kebab">
+        <button class="add-to-cart-btn" data-name="Hara Bhara Kebab" data-price="360">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Hara Bhara Kebab</h3>
+          <span class="price">₹360</span>
+        </div>
+        <p>Spinach and pea patties, mint chutney</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-vegan"><i class="fa-solid fa-seedling"></i> vegan</span>
+          <span class="tag-spice medium"><i class="fa-solid fa-pepper-hot"></i> medium</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 240 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="starters" data-tags="veg">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=500&q=80" alt="Paneer Tikka">
+        <button class="add-to-cart-btn" data-name="Paneer Tikka" data-price="420">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Paneer Tikka</h3>
+          <span class="price">₹420</span>
+        </div>
+        <p>Cottage cheese, bell peppers, tandoor smoked</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-spice medium"><i class="fa-solid fa-pepper-hot"></i> medium</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 320 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Mains -->
+    <article class="menu-item" data-cat="mains" data-tags="veg vegan" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=500&q=80" alt="Black dal simmered overnight">
+        <button class="add-to-cart-btn" data-name="Dal Angithi" data-price="380">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Dal Angithi</h3>
+          <span class="price">₹380</span>
+        </div>
+        <p>Black lentils, simmered overnight, smoked butter</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-vegan"><i class="fa-solid fa-seedling"></i> vegan option</span>
+          <span class="tag-time"><i class="fa-solid fa-clock"></i> 12-hr cook</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 280 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="mains" data-tags="veg" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=500&q=80" alt="Paneer lababdar in tomato gravy">
+        <button class="add-to-cart-btn" data-name="Paneer Lababdar" data-price="410">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Paneer Lababdar</h3>
+          <span class="price">₹410</span>
+        </div>
+        <p>Cottage cheese, tomato, fenugreek, cream</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-spice medium"><i class="fa-solid fa-pepper-hot"></i> medium</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 380 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="mains" data-tags="veg jain" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=500&q=80" alt="Kadhai Paneer">
+        <button class="add-to-cart-btn" data-name="Kadhai Paneer" data-price="390">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Kadhai Paneer</h3>
+          <span class="price">₹390</span>
+        </div>
+        <p>Cottage cheese, bell peppers, crushed coriander</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-jain"><i class="fa-solid fa-carrot"></i> Jain</span>
+          <span class="tag-spice hot"><i class="fa-solid fa-pepper-hot"></i> hot</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 340 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="mains" data-tags="veg vegan" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1606471190009-63994c53433b?auto=format&fit=crop&w=500&q=80" alt="Chana Masala">
+        <button class="add-to-cart-btn" data-name="Chana Masala" data-price="320">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Chana Masala</h3>
+          <span class="price">₹320</span>
+        </div>
+        <p>Chickpeas, tomatoes, aromatic spices</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-vegan"><i class="fa-solid fa-seedling"></i> vegan</span>
+          <span class="tag-spice medium"><i class="fa-solid fa-pepper-hot"></i> medium</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 260 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="mains" data-tags="veg" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=500&q=80" alt="Malai Kofta">
+        <button class="add-to-cart-btn" data-name="Malai Kofta" data-price="440">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Malai Kofta</h3>
+          <span class="price">₹440</span>
+        </div>
+        <p>Vegetable dumplings in creamy tomato gravy</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-spice mild"><i class="fa-solid fa-pepper-hot"></i> mild</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 420 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Breads -->
+    <article class="menu-item" data-cat="breads" data-tags="veg vegan" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1601924582970-9238bcb495d9?auto=format&fit=crop&w=500&q=80" alt="Tandoori roti stack">
+        <button class="add-to-cart-btn" data-name="Tandoori Roti" data-price="60">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Tandoori Roti</h3>
+          <span class="price">₹60</span>
+        </div>
+        <p>Whole wheat, blistered on clay walls</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-vegan"><i class="fa-solid fa-seedling"></i> vegan</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 120 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="breads" data-tags="veg" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=500&q=80" alt="Garlic naan fresh from the oven">
+        <button class="add-to-cart-btn" data-name="Garlic Naan" data-price="90">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Garlic Naan</h3>
+          <span class="price">₹90</span>
+        </div>
+        <p>Hand-stretched, brushed with garlic butter</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 280 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="breads" data-tags="veg" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1633504581786-316c8002b1b9?auto=format&fit=crop&w=500&q=80" alt="Layered laccha paratha">
+        <button class="add-to-cart-btn" data-name="Laccha Paratha" data-price="100">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Laccha Paratha</h3>
+          <span class="price">₹100</span>
+        </div>
+        <p>Layered, ghee-brushed, folded by hand</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 320 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="breads" data-tags="veg vegan" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=500&q=80" alt="Missi roti with ajwain">
+        <button class="add-to-cart-btn" data-name="Missi Roti" data-price="80">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Missi Roti</h3>
+          <span class="price">₹80</span>
+        </div>
+        <p>Gram flour, ajwain, a knob of white butter</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-vegan"><i class="fa-solid fa-seedling"></i> vegan option</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 180 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Rice & Biryani -->
+    <article class="menu-item" data-cat="rice" data-tags="veg" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=500&q=80" alt="Veg Dum Biryani">
+        <button class="add-to-cart-btn" data-name="Veg Dum Biryani" data-price="420">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Veg Dum Biryani</h3>
+          <span class="price">₹420</span>
+        </div>
+        <p>Seasonal vegetables, sealed and slow-cooked in its own steam</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-spice medium"><i class="fa-solid fa-pepper-hot"></i> medium</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 480 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="rice" data-tags="veg vegan" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1596560548464-f010549b84d7?auto=format&fit=crop&w=500&q=80" alt="Vegetable pulao">
+        <button class="add-to-cart-btn" data-name="Vegetable Yakhni Pulao" data-price="360">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Vegetable Yakhni Pulao</h3>
+          <span class="price">₹360</span>
+        </div>
+        <p>Seasonal vegetables, whole spice stock</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-vegan"><i class="fa-solid fa-seedling"></i> vegan</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 380 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="rice" data-tags="veg vegan" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=500&q=80" alt="Jeera rice bowl">
+        <button class="add-to-cart-btn" data-name="Jeera Rice" data-price="180">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Jeera Rice</h3>
+          <span class="price">₹180</span>
+        </div>
+        <p>Basmati, toasted cumin, ghee</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+          <span class="tag-vegan"><i class="fa-solid fa-seedling"></i> vegan option</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 280 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Desserts -->
+    <article class="menu-item" data-cat="desserts" data-tags="veg" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1601303516361-8d31d1b5c4d5?auto=format&fit=crop&w=500&q=80" alt="Warm gulab jamun in syrup">
+        <button class="add-to-cart-btn" data-name="Gulab Jamun" data-price="180">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Gulab Jamun, Warm</h3>
+          <span class="price">₹180</span>
+        </div>
+        <p>Milk dumplings, cardamom syrup</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 320 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="desserts" data-tags="veg" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1606471190009-63994c53433b?auto=format&fit=crop&w=500&q=80" alt="Saffron pistachio phirni">
+        <button class="add-to-cart-btn" data-name="Phirni" data-price="220">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Phirni</h3>
+          <span class="price">₹220</span>
+        </div>
+        <p>Saffron and pistachio, set in clay bowls</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 280 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="desserts" data-tags="veg" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=500&q=80" alt="Shahi tukda dessert">
+        <button class="add-to-cart-btn" data-name="Shahi Tukda" data-price="210">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Shahi Tukda</h3>
+          <span class="price">₹210</span>
+        </div>
+        <p>Fried bread, saffron rabri, slivered nuts</p>
+        <div class="menu-item-tags">
+          <span class="tag-veg"><i class="fa-solid fa-leaf"></i> veg</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 380 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Beverages -->
+    <article class="menu-item" data-cat="drinks" data-tags="veg" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?auto=format&fit=crop&w=500&q=80" alt="Masala chai in a kettle">
+        <button class="add-to-cart-btn" data-name="Masala Chai" data-price="90">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Masala Chai</h3>
+          <span class="price">₹90</span>
+        </div>
+        <p>Slow-boiled with whole spices and milk</p>
+        <div class="menu-item-tags">
+          <span class="tag-hot"><i class="fa-solid fa-mug-hot"></i> hot</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 120 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="drinks" data-tags="veg" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=500&q=80" alt="Sweet lassi glass">
+        <button class="add-to-cart-btn" data-name="Sweet Lassi" data-price="150">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Sweet Lassi</h3>
+          <span class="price">₹150</span>
+        </div>
+        <p>Churned yogurt, a little cream on top</p>
+        <div class="menu-item-tags">
+          <span class="tag-cold"><i class="fa-solid fa-glass-water"></i> cold</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 220 kcal</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="menu-item" data-cat="drinks" data-tags="veg vegan" style="display:none">
+      <div class="menu-item-img">
+        <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=500&q=80" alt="Nimbu paani with mint">
+        <button class="add-to-cart-btn" data-name="Nimbu Paani" data-price="90">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="menu-item-body">
+        <div class="menu-item-top">
+          <h3>Nimbu Paani</h3>
+          <span class="price">₹90</span>
+        </div>
+        <p>Fresh lime, black salt, mint</p>
+        <div class="menu-item-tags">
+          <span class="tag-cold"><i class="fa-solid fa-glass-water"></i> cold</span>
+          <span class="tag-vegan"><i class="fa-solid fa-seedling"></i> vegan</span>
+        </div>
+        <div class="nutrition-info">
+          <span><i class="fa-solid fa-fire"></i> 60 kcal</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ ONLINE ORDERING SECTION ============ -->
+<section class="online-order" id="order">
+  <div class="section-head">
+    <span class="eyebrow reveal">order online</span>
+    <h2 class="reveal">Angithi at Home</h2>
+    <p class="reveal">Can't make it to us? We'll bring the tandoor to your doorstep. Free delivery within 5km.</p>
+  </div>
+
+  <div class="order-platforms reveal">
+    <a href="#" class="platform-card" data-tilt>
+      <i class="fa-solid fa-motorcycle"></i>
+      <h3>Direct Order</h3>
+      <p>Order directly from us for fastest service</p>
+      <span class="platform-tag">Best Price</span>
+    </a>
+    <a href="#" class="platform-card" data-tilt>
+      <i class="fa-solid fa-utensils"></i>
+      <h3>Zomato</h3>
+      <p>Order on Zomato</p>
+    </a>
+    <a href="#" class="platform-card" data-tilt>
+      <i class="fa-solid fa-bag-shopping"></i>
+      <h3>Swiggy</h3>
+      <p>Order on Swiggy</p>
+    </a>
+  </div>
+
+  <div class="order-benefits reveal">
+    <div class="benefit-item">
+      <i class="fa-solid fa-truck-fast"></i>
+      <div>
+        <h4>Free Delivery</h4>
+        <p>On orders above ₹500</p>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <i class="fa-solid fa-clock"></i>
+      <div>
+        <h4>30 Min Delivery</h4>
+        <p>Within 5km radius</p>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <i class="fa-solid fa-shield-halved"></i>
+      <div>
+        <h4>Safe & Hygienic</h4>
+        <p>Contactless delivery</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="gallery">
+  <div class="section-head">
+    <span class="eyebrow reveal">from the kitchen</span>
+    <h2 class="reveal">A Little Smoke Never Hurt Anyone</h2>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <button class="gallery-item reveal" data-caption="The tandoor is lit every morning at five." style="grid-area: g1">
+      <img src="https://images.unsplash.com/photo-1517244683847-7456b63c5969?auto=format&fit=crop&w=800&q=80" alt="Chef tending the tandoor fire">
+      <span class="gallery-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+    </button>
+    <button class="gallery-item reveal" data-caption="Naan, stretched by hand, never rolled." style="grid-area: g2">
+      <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=80" alt="Hand-stretched naan bread">
+      <span class="gallery-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+    </button>
+    <button class="gallery-item reveal" data-caption="Whole spices, dry-roasted before every grind." style="grid-area: g3">
+      <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="Bowl of whole roasted spices">
+      <span class="gallery-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+    </button>
+    <button class="gallery-item reveal" data-caption="The dining room, built around the same fire." style="grid-area: g4">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Warm restaurant dining room interior">
+      <span class="gallery-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+    </button>
+    <button class="gallery-item reveal" data-caption="A thali the way it's meant to be — plenty." style="grid-area: g5">
+      <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=800&q=80" alt="Full Indian thali platter">
+      <span class="gallery-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+    </button>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials">
+  <div class="section-head">
+    <span class="eyebrow reveal">guest book</span>
+    <h2 class="reveal">Said Around Our Tables</h2>
+  </div>
+
+  <div class="testimonial-carousel reveal" id="testimonialCarousel">
+    <div class="testimonial-track" id="testimonialTrack">
+      <figure class="testimonial-slide">
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <blockquote>"The dal tastes like it's been simmering since before I was born. I've been
+          coming here for eleven years and it has never once changed — and I hope it never does. 
+          Best pure veg restaurant in Delhi!"</blockquote>
+        <figcaption>Meera Kapoor <span>— regular since 2013</span></figcaption>
+      </figure>
+      <figure class="testimonial-slide">
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <blockquote>"You can smell the coal from the street. My father used to bring me here as a
+          child; now I bring my own kids to the same table. Pure vegetarian, pure love."</blockquote>
+        <figcaption>Arjun Sethi <span>— second-generation guest</span></figcaption>
+      </figure>
+      <figure class="testimonial-slide">
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+        <blockquote>"Booked a table for eight with two days' notice for a family function. They
+          treated us like the whole restaurant was ours for the evening. The Jain thali was exceptional!"</blockquote>
+        <figcaption>Farhan Ali <span>— private dining guest</span></figcaption>
+      </figure>
+    </div>
+    <div class="testimonial-controls">
+      <button id="testimonialPrev" aria-label="Previous testimonial"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="testimonial-dots" id="testimonialDots"></div>
+      <button id="testimonialNext" aria-label="Next testimonial"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GIFT CARDS SECTION ============ -->
+<section class="gift-cards" id="giftcards">
+  <div class="gift-cards-inner reveal">
+    <div class="gift-content">
+      <span class="eyebrow">gift cards</span>
+      <h2>Share the Taste of Angithi</h2>
+      <p>Give the gift of pure vegetarian goodness. Our gift cards never expire and can be used for dine-in or online orders.</p>
+      <ul class="gift-features">
+        <li><i class="fa-solid fa-check"></i> Valid for 12 months</li>
+        <li><i class="fa-solid fa-check"></i> Customizable amounts</li>
+        <li><i class="fa-solid fa-check"></i> Instant email delivery</li>
+        <li><i class="fa-solid fa-check"></i> Beautiful digital design</li>
+      </ul>
+      <a href="#" class="btn btn-brass">Buy Gift Card</a>
+    </div>
+    <div class="gift-image">
+      <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Gift Card">
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESERVATION ============ -->
+<section class="reserve" id="reserve">
+  <div class="reserve-inner">
+    <div class="reserve-text reveal">
+      <span class="eyebrow">reserve a table</span>
+      <h2>Keep a Place Warm For You</h2>
+      <p>Tables go quickly on weekends, especially around the tandoor window where you can watch
+        the bread being made. Book ahead and we'll have it ready.</p>
+
+      <ul class="reserve-points">
+        <li><i class="fa-solid fa-clock"></i> Lunch 12:30 pm – 3:00 pm · Dinner 7:00 pm – 11:00 pm</li>
+        <li><i class="fa-solid fa-users"></i> Large parties (10+) — call us directly</li>
+        <li><i class="fa-solid fa-champagne-glasses"></i> Private dining room available on request</li>
+        <li><i class="fa-solid fa-leaf"></i> Jain & vegan options available</li>
+      </ul>
+    </div>
+
+    <form class="reserve-form reveal" id="reserveForm" novalidate>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="fullName">Full name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Your name" required>
+          <span class="field-error">Please tell us your name.</span>
+        </div>
+        <div class="form-field">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="98XXX XXXXX" required>
+          <span class="field-error">A valid phone number helps us confirm faster.</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" required>
+          <span class="field-error">Pick a date for your visit.</span>
+        </div>
+        <div class="form-field">
+          <label>Guests</label>
+          <div class="stepper" id="guestStepper">
+            <button type="button" class="stepper-btn" id="guestMinus" aria-label="Fewer guests">−</button>
+            <span id="guestCount">2</span>
+            <button type="button" class="stepper-btn" id="guestPlus" aria-label="More guests">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Preferred time</label>
+        <div class="time-slots" id="timeSlots">
+          <button type="button" class="time-slot" data-time="12:30 PM">12:30 PM</button>
+          <button type="button" class="time-slot" data-time="1:00 PM">1:00 PM</button>
+          <button type="button" class="time-slot" data-time="1:30 PM">1:30 PM</button>
+          <button type="button" class="time-slot" data-time="7:00 PM">7:00 PM</button>
+          <button type="button" class="time-slot" data-time="7:30 PM">7:30 PM</button>
+          <button type="button" class="time-slot" data-time="8:00 PM">8:00 PM</button>
+          <button type="button" class="time-slot" data-time="8:30 PM">8:30 PM</button>
+          <button type="button" class="time-slot" data-time="9:00 PM">9:00 PM</button>
+        </div>
+        <span class="field-error" id="timeError">Choose a time slot.</span>
+      </div>
+
+      <div class="form-field">
+        <label for="occasion">Occasion (optional)</label>
+        <select id="occasion" name="occasion">
+          <option value="">No particular occasion</option>
+          <option value="birthday">Birthday</option>
+          <option value="anniversary">Anniversary</option>
+          <option value="family">Family Get-Together</option>
+          <option value="business">Business Meal</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="dietary">Dietary Preferences</label>
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="dietary" value="jain">
+            <span>Jain Food (No onion/garlic)</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="dietary" value="vegan">
+            <span>Vegan Options</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="dietary" value="gluten-free">
+            <span>Gluten-Free</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="notes">Special requests</label>
+        <textarea id="notes" name="notes" rows="3" placeholder="Allergies, seating preference, anything else we should know"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-brass btn-full">
+        <span class="btn-label">Confirm Reservation</span>
+        <span class="btn-loading"><i class="fa-solid fa-spinner fa-spin"></i></span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ EVENTS / PRIVATE DINING BANNER ============ -->
+<section class="events-banner">
+  <div class="events-inner reveal">
+    <div>
+      <span class="eyebrow">gatherings &amp; celebrations</span>
+      <h2>Angithi, at Your Own Table</h2>
+      <p>From a wedding sangeet for two hundred to a quiet anniversary dinner for two — we cook off-site
+        with the same coal, the same recipes, and the same rule about nobody leaving hungry. 
+        <strong>100% vegetarian catering available.</strong></p>
+    </div>
+    <a href="#contact" class="btn btn-outline btn-light">Enquire About Events</a>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER SECTION ============ -->
+<section class="newsletter-section">
+  <div class="newsletter-inner reveal">
+    <div class="newsletter-content">
+      <i class="fa-solid fa-envelope-open-text"></i>
+      <h3>A Note From the Kitchen</h3>
+      <p>New seasonal dishes, festival menus, and the odd story from the kitchen — a few times a
+        month, nothing more.</p>
+    </div>
+    <form id="newsletterForm" class="newsletter-form">
+      <input type="email" placeholder="Your email address" required aria-label="Email address">
+      <button type="submit" aria-label="Subscribe">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER / CONTACT ============ -->
+<footer class="site-footer" id="contact">
+  <div class="footer-top">
+
+    <div class="footer-col footer-about">
+      <a href="#home" class="brand brand-footer">
+        <span class="brand-mark">आ</span>
+        <span class="brand-name">Angithi</span>
+        <span class="pure-veg-badge-small"><i class="fa-solid fa-leaf"></i> Pure Veg</span>
+      </a>
+      <p>A coal-fired, family-run pure vegetarian kitchen in the heart of the city — serving the same recipes since
+        1996, one generation at a time.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <p><i class="fa-solid fa-location-dot"></i> 14 Meherchand Market, Lodhi Road, New Delhi 110003</p>
+      <p><i class="fa-solid fa-phone"></i> <a href="tel:+911126543210">+91 11 2654 3210</a></p>
+      <p><i class="fa-solid fa-envelope"></i> <a href="mailto:table@angithi.example">table@angithi.example</a></p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <table class="hours-table">
+        <tr><td>Mon – Fri</td><td>12:30 – 3:00 pm</td></tr>
+        <tr><td></td><td>7:00 – 11:00 pm</td></tr>
+        <tr><td>Sat – Sun</td><td>12:00 – 3:30 pm</td></tr>
+        <tr><td></td><td>6:30 – 11:30 pm</td></tr>
+      </table>
+    </div>
+
+    <div class="footer-col footer-newsletter">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#menu">Our Menu</a></li>
+        <li><a href="#order">Order Online</a></li>
+        <li><a href="#reserve">Reservations</a></li>
+        <li><a href="#giftcards">Gift Cards</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> Angithi. All recipes are ours; please don't ask for them.</p>
+    <p class="footer-credit">Cooked over coal, coded by hand. <i class="fa-solid fa-leaf"></i> 100% Pure Vegetarian</p>
+  </div>
+</footer>
+
+
+<!-- ============ BACK TO TOP ============ -->
+<button id="backToTop" class="back-to-top" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+  <img src="" alt="" id="lightboxImg">
+  <p id="lightboxCaption"></p>
+</div>
+
+<!-- ============ TOAST CONTAINER ============ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+/* ==========================================================================
+   ANGITHI — Pure Veg | Advanced JavaScript Implementation
+   Features: Cart System, Dual Filtering, Dark Mode, GSAP, Particles, & More
+   ========================================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+  'use strict';
+
+  // ==========================================================================
+  // 0. HELPER FUNCTIONS
+  // ==========================================================================
+  function showToast(message, type = 'success') {
+    if (typeof Toastify === 'undefined') return;
+    const bg = type === 'success' ? '#1E1E1E' : '#E53935';
+    const border = type === 'success' ? '#43A047' : '#E53935';
+    Toastify({
+      text: message,
+      duration: 4000,
+      gravity: 'bottom',
+      position: 'right',
+      backgroundColor: bg,
+      style: { borderLeft: `4px solid ${border}`, borderRadius: '8px', color: '#F9F5F0' },
+      close: true
+    }).showToast();
+  }
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ==========================================================================
+  // 1. THEME & LANGUAGE TOGGLES
+  // ==========================================================================
+  const themeToggle = document.getElementById('themeToggle');
+  const langToggle = document.getElementById('langToggle');
+  const body = document.body;
+
+  // Theme Logic
+  if (themeToggle) {
+    const themeIcon = themeToggle.querySelector('i');
+    if (localStorage.getItem('angithi-theme') === 'dark') {
+      body.classList.add('dark-theme');
+      themeIcon.classList.replace('fa-moon', 'fa-sun');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-theme');
+      if (body.classList.contains('dark-theme')) {
+        localStorage.setItem('angithi-theme', 'dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        localStorage.setItem('angithi-theme', 'light');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+      }
+    });
+  }
+
+  // Language Logic (Mock for demonstration)
+  if (langToggle) {
+    let currentLang = 'EN';
+    langToggle.addEventListener('click', () => {
+      currentLang = currentLang === 'EN' ? 'HI' : 'EN';
+      langToggle.querySelector('span').textContent = currentLang;
+      showToast(currentLang === 'HI' ? 'भाषा हिंदी में बदल दी गई है (डेमो)' : 'Language switched to English', 'success');
+    });
+  }
+
+  // ==========================================================================
+  // 2. NATIVE SMOOTH SCROLL & ANCHOR LINKS
+  // ==========================================================================
+  document.documentElement.style.scrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const targetId = anchor.getAttribute('href');
+      if (targetId === '#' || targetId.length < 2) return;
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      }
+    });
+  });
+
+  // ==========================================================================
+  // 3. GSAP & SCROLLTRIGGER SETUP
+  // ==========================================================================
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    if (!prefersReducedMotion) {
+      window.addEventListener('scroll', () => ScrollTrigger.update(), { passive: true });
+    }
+  }
+
+  // ==========================================================================
+  // 4. SCROLL PROGRESS BAR
+  // ==========================================================================
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  progressBar.style.cssText = `
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: linear-gradient(90deg, #D94E2A, #C5A059);
+    z-index: 9998; pointer-events: none; transition: width 0.1s linear;
+  `;
+  document.body.appendChild(progressBar);
+
+  // ==========================================================================
+  // 5. PRELOADER ANIMATION
+  // ==========================================================================
+  const preloader = document.getElementById('preloader');
+  if (preloader && typeof gsap !== 'undefined') {
+    const preloaderTimeline = gsap.timeline({
+      onComplete: () => {
+        preloader.classList.add('hidden');
+        setTimeout(() => {
+          preloader.style.display = 'none';
+          initHeroAnimations();
+          if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+        }, 600);
+      }
+    });
+
+    preloaderTimeline
+      .to('.preloader-bar span', { width: '100%', duration: 1.5, ease: 'power2.inOut' })
+      .to('.preloader-inner', { opacity: 0, y: -20, duration: 0.5 }, '+=0.3')
+      .to(preloader, { opacity: 0, duration: 0.5 });
+  } else if (preloader) {
+    preloader.classList.add('hidden');
+    preloader.style.display = 'none';
+  }
+
+  // ==========================================================================
+  // 6. HERO ANIMATIONS & PARALLAX
+  // ==========================================================================
+  function initHeroAnimations() {
+    if (typeof Splitting !== 'undefined') {
+      Splitting({ target: '.hero-title', by: 'chars' });
+    }
+
+    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+      gsap.from('.hero-title .char', {
+        y: 100, opacity: 0, rotateX: -90, stagger: 0.03, duration: 1, ease: 'back.out(1.7)'
+      });
+
+      gsap.from('.hero-sub, .hero-desc, .hero-cta, .eyebrow, .pure-veg-hero-badge, .hero-features', {
+        y: 30, opacity: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out', delay: 0.5
+      });
+
+      // Mouse parallax
+      const hero = document.querySelector('.hero');
+      const heroContent = document.querySelector('.hero-content');
+      if (hero && heroContent) {
+        hero.addEventListener('mousemove', (e) => {
+          const { innerWidth, innerHeight } = window;
+          const x = (e.clientX / innerWidth - 0.5) * 20;
+          const y = (e.clientY / innerHeight - 0.5) * 20;
+          gsap.to(heroContent, { x: x * 0.5, y: y * 0.5, duration: 0.6, ease: 'power2.out' });
+        });
+        hero.addEventListener('mouseleave', () => {
+          gsap.to(heroContent, { x: 0, y: 0, duration: 0.8, ease: 'power2.out' });
+        });
+      }
+    }
+  }
+
+  // ==========================================================================
+  // 7. TSPARTICLES (EMBER EFFECT)
+  // ==========================================================================
+  if (document.getElementById('emberCanvas') && typeof tsParticles !== 'undefined') {
+    tsParticles.load('emberCanvas', {
+      fullScreen: { enable: false },
+      particles: {
+        number: { value: 60, density: { enable: true, area: 800 } },
+        color: { value: ['#D94E2A', '#C5A059', '#FF7F50'] },
+        shape: { type: 'circle' },
+        opacity: { value: { min: 0.1, max: 0.6 }, animation: { enable: true, speed: 0.5, sync: false } },
+        size: { value: { min: 1, max: 4 }, animation: { enable: true, speed: 2, sync: false } },
+        move: {
+          enable: true, speed: { min: 0.5, max: 1.5 }, direction: 'top', random: true,
+          straight: false, outModes: 'out', drift: 0.5,
+        },
+        life: { duration: { sync: false, value: 10 }, count: 1, delay: { value: { min: 1, max: 3 } } }
+      },
+      interactivity: {
+        events: { onHover: { enable: true, mode: 'repulse' } },
+        modes: { repulse: { distance: 100, duration: 0.4 } }
+      },
+      detectRetina: true
+    });
+  }
+
+  // ==========================================================================
+  // 8. SCROLL REVEAL & PARALLAX
+  // ==========================================================================
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
+    document.querySelectorAll('.reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { y: 50, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' }
+        }
+      );
+    });
+
+    gsap.to('.story-img-1', {
+      yPercent: -15, ease: 'none',
+      scrollTrigger: { trigger: '.story', start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+    gsap.to('.story-img-2', {
+      yPercent: 15, ease: 'none',
+      scrollTrigger: { trigger: '.story', start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+  }
+
+  // ==========================================================================
+  // 9. COUNTUP.JS FOR STATS
+  // ==========================================================================
+  const statNums = document.querySelectorAll('.stat-num');
+  if (statNums.length > 0 && typeof countUp !== 'undefined') {
+    const countUpInstances = [];
+    statNums.forEach((el) => {
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      const instance = new countUp.CountUp(el, target, {
+        duration: 2.5, separator: ',',
+        suffix: el.nextElementSibling ? el.nextElementSibling.textContent : ''
+      });
+      countUpInstances.push({ el, instance });
+    });
+
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.create({
+        trigger: '.stats', start: 'top 80%',
+        onEnter: () => { countUpInstances.forEach(({ instance }) => instance.start()); },
+        once: true
+      });
+    }
+  }
+
+  // ==========================================================================
+  // 10. ADVANCED MENU FILTERING (Category + Dietary)
+  // ==========================================================================
+  let activeCategory = 'starters';
+  let activeFilter = 'all';
+  let searchQuery = '';
+  let favoritesOnly = false;
+  const menuItems = document.querySelectorAll('.menu-item');
+  const menuEmptyState = document.getElementById('menuEmptyState');
+
+  const FAV_KEY = 'angithi-favorites';
+  let favorites = [];
+  try {
+    const savedFav = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+    if (Array.isArray(savedFav)) favorites = savedFav;
+  } catch (err) { favorites = []; }
+
+  function itemMatches(item) {
+    const cat = item.dataset.cat;
+    const tags = item.dataset.tags ? item.dataset.tags.split(' ') : [];
+    const name = (item.querySelector('h3')?.textContent || '').toLowerCase();
+    const desc = (item.querySelector('.menu-item-body > p')?.textContent || '').toLowerCase();
+    const matchesCategory = favoritesOnly ? true : (activeCategory === 'all' || cat === activeCategory);
+    const matchesFilter = (activeFilter === 'all' || tags.includes(activeFilter));
+    const matchesSearch = !searchQuery || name.includes(searchQuery) || desc.includes(searchQuery);
+    const matchesFav = !favoritesOnly || favorites.includes(item.querySelector('.add-to-cart-btn')?.dataset.name);
+    return matchesCategory && matchesFilter && matchesSearch && matchesFav;
+  }
+
+  function applyVisibility() {
+    let visibleCount = 0;
+    menuItems.forEach(item => {
+      const show = itemMatches(item);
+      item.style.display = show ? 'flex' : 'none';
+      item.classList.toggle('is-hidden', !show);
+      if (show) visibleCount++;
+    });
+    if (menuEmptyState) menuEmptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+    return visibleCount;
+  }
+
+  function filterMenu() {
+    if (typeof gsap === 'undefined') {
+      applyVisibility();
+      return;
+    }
+
+    gsap.to(menuItems, {
+      opacity: 0, y: 20, duration: 0.25,
+      onComplete: () => {
+        applyVisibility();
+        const visibleItems = Array.from(menuItems).filter(item => item.style.display === 'flex');
+        gsap.fromTo(visibleItems,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power2.out' }
+        );
+      }
+    });
+  }
+
+  document.querySelectorAll('.menu-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeCategory = tab.dataset.cat;
+      favoritesOnly = false;
+      const favToggle = document.getElementById('favToggleBtn');
+      if (favToggle) favToggle.classList.remove('active');
+      filterMenu();
+    });
+  });
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      filterMenu();
+    });
+  });
+
+  // Menu search box
+  const menuSearchInput = document.getElementById('menuSearchInput');
+  if (menuSearchInput) {
+    let searchDebounce;
+    menuSearchInput.addEventListener('input', (e) => {
+      clearTimeout(searchDebounce);
+      searchDebounce = setTimeout(() => {
+        searchQuery = e.target.value.trim().toLowerCase();
+        filterMenu();
+      }, 200);
+    });
+  }
+
+  // Favorites — heart button injected onto every menu card
+  menuItems.forEach(item => {
+    const addBtn = item.querySelector('.add-to-cart-btn');
+    const imgWrap = item.querySelector('.menu-item-img');
+    if (!addBtn || !imgWrap) return;
+    const name = addBtn.dataset.name;
+    const heart = document.createElement('button');
+    heart.className = 'fav-btn';
+    heart.setAttribute('aria-label', 'Add to favorites');
+    heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
+    if (favorites.includes(name)) heart.classList.add('active');
+    heart.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (favorites.includes(name)) {
+        favorites = favorites.filter(f => f !== name);
+        heart.classList.remove('active');
+        showToast(`${name} removed from favorites`, 'error');
+      } else {
+        favorites.push(name);
+        heart.classList.add('active');
+        showToast(`${name} added to favorites ❤️`, 'success');
+      }
+      try { localStorage.setItem(FAV_KEY, JSON.stringify(favorites)); } catch (err) { /* ignore */ }
+      if (favoritesOnly) filterMenu();
+    });
+    imgWrap.appendChild(heart);
+  });
+
+  const favToggleBtn = document.getElementById('favToggleBtn');
+  if (favToggleBtn) {
+    favToggleBtn.addEventListener('click', () => {
+      favoritesOnly = !favoritesOnly;
+      favToggleBtn.classList.toggle('active', favoritesOnly);
+      if (favoritesOnly) {
+        document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      } else {
+        document.querySelector(`.menu-tab[data-cat="${activeCategory}"]`)?.classList.add('active');
+      }
+      filterMenu();
+    });
+  }
+
+  // Initialize menu state
+  filterMenu();
+
+  // ==========================================================================
+  // 11. SHOPPING CART SYSTEM — with qty, coupons, order-type & localStorage
+  // ==========================================================================
+  const CART_KEY = 'angithi-cart-v2';
+  let cart = [];
+  try {
+    const saved = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+    if (Array.isArray(saved)) cart = saved;
+  } catch (err) { cart = []; }
+
+  const cartBtn = document.getElementById('cartBtn');
+  const cartSidebar = document.getElementById('cartSidebar');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const cartClose = document.getElementById('cartClose');
+  const cartItemsContainer = document.getElementById('cartItems');
+  const cartTotalEl = document.getElementById('cartTotal');
+  const cartCountEl = document.querySelector('.cart-count');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  const cartSubtotalEl = document.getElementById('cartSubtotal');
+  const cartDiscountEl = document.getElementById('cartDiscountRow');
+  const cartDiscountVal = document.getElementById('cartDiscountVal');
+  const cartDeliveryEl = document.getElementById('cartDeliveryVal');
+  const couponInput = document.getElementById('couponInput');
+  const couponApplyBtn = document.getElementById('couponApplyBtn');
+  const couponMsg = document.getElementById('couponMsg');
+  const orderTypeBtns = document.querySelectorAll('.order-type-btn');
+  const deliveryAddressWrap = document.getElementById('deliveryAddressWrap');
+
+  const COUPONS = {
+    'WELCOME10': { type: 'percent', value: 10, label: '10% off' },
+    'ANGITHI50': { type: 'flat', value: 50, label: '₹50 off' },
+    'PUREVEG20': { type: 'percent', value: 20, label: '20% off (min ₹1000)', min: 1000 }
+  };
+  let appliedCoupon = null;
+  let orderType = 'delivery';
+
+  function saveCart() {
+    try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (err) { /* storage full/unavailable */ }
+  }
+
+  function cartSubtotal() {
+    return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  }
+
+  function cartDiscount(subtotal) {
+    if (!appliedCoupon) return 0;
+    const c = COUPONS[appliedCoupon];
+    if (!c) return 0;
+    if (c.min && subtotal < c.min) return 0;
+    return c.type === 'percent' ? Math.round(subtotal * (c.value / 100)) : Math.min(c.value, subtotal);
+  }
+
+  function updateCartUI() {
+    if (!cartCountEl) return;
+    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    cartCountEl.textContent = totalQty;
+    cartCountEl.setAttribute('aria-live', 'polite');
+
+    if (cart.length === 0) {
+      if (cartItemsContainer) cartItemsContainer.innerHTML = '<p class="cart-empty"><i class="fa-solid fa-basket-shopping"></i><br>Your cart is empty</p>';
+      if (cartTotalEl) cartTotalEl.textContent = '₹0';
+      if (cartSubtotalEl) cartSubtotalEl.textContent = '₹0';
+      if (cartDeliveryEl) cartDeliveryEl.textContent = '₹0';
+      if (cartDiscountEl) cartDiscountEl.style.display = 'none';
+      saveCart();
+      return;
+    }
+
+    if (cartItemsContainer) {
+      cartItemsContainer.innerHTML = cart.map((item, index) => `
+          <div class="cart-item">
+            <div class="cart-item-img"><img src="${item.img}" alt="${item.name}"></div>
+            <div class="cart-item-details">
+              <h4>${item.name}</h4>
+              <span class="price">₹${item.price} × ${item.qty} = ₹${item.price * item.qty}</span>
+              <div class="cart-item-actions">
+                <div class="cart-qty-stepper">
+                  <button class="cart-qty-btn" data-action="dec" data-index="${index}" aria-label="Decrease quantity">−</button>
+                  <span>${item.qty}</span>
+                  <button class="cart-qty-btn" data-action="inc" data-index="${index}" aria-label="Increase quantity">+</button>
+                </div>
+                <button class="cart-item-remove" data-index="${index}">
+                  <i class="fa-solid fa-trash"></i> Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+    }
+
+    const subtotal = cartSubtotal();
+    const discount = cartDiscount(subtotal);
+    const deliveryFee = (orderType === 'delivery' && subtotal < 500 && subtotal > 0) ? 40 : 0;
+    const total = Math.max(subtotal - discount + deliveryFee, 0);
+
+    if (cartSubtotalEl) cartSubtotalEl.textContent = `₹${subtotal}`;
+    if (cartDeliveryEl) cartDeliveryEl.textContent = deliveryFee ? `₹${deliveryFee}` : 'FREE';
+    if (cartDiscountEl) {
+      if (discount > 0) {
+        cartDiscountEl.style.display = 'flex';
+        if (cartDiscountVal) cartDiscountVal.textContent = `− ₹${discount}`;
+      } else {
+        cartDiscountEl.style.display = 'none';
+      }
+    }
+    if (cartTotalEl) cartTotalEl.textContent = `₹${total}`;
+
+    document.querySelectorAll('.cart-item-remove').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idx = parseInt(e.currentTarget.dataset.index, 10);
+        const removedItem = cart.splice(idx, 1)[0];
+        updateCartUI();
+        showToast(`${removedItem.name} removed from cart`, 'error');
+      });
+    });
+
+    document.querySelectorAll('.cart-qty-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idx = parseInt(e.currentTarget.dataset.index, 10);
+        const action = e.currentTarget.dataset.action;
+        if (!cart[idx]) return;
+        if (action === 'inc') cart[idx].qty += 1;
+        if (action === 'dec') {
+          cart[idx].qty -= 1;
+          if (cart[idx].qty <= 0) cart.splice(idx, 1);
+        }
+        updateCartUI();
+      });
+    });
+  }
+
+  document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const name = btn.dataset.name;
+      const price = parseInt(btn.dataset.price, 10);
+      const img = btn.closest('.menu-item').querySelector('img').src;
+
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, img, qty: 1 });
+      }
+      updateCartUI();
+      showToast(`${name} added to cart!`, 'success');
+
+      if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+        gsap.fromTo(cartBtn, { scale: 1.5 }, { scale: 1, duration: 0.3, ease: 'back.out' });
+      }
+
+      // Mini confetti burst
+      if (typeof confetti !== 'undefined' && !prefersReducedMotion) {
+        const rect = btn.getBoundingClientRect();
+        confetti({
+          particleCount: 30, spread: 50,
+          origin: { x: (rect.left + rect.width / 2) / window.innerWidth, y: (rect.top + rect.height / 2) / window.innerHeight },
+          colors: ['#C5A059', '#2E7D32'], disableForReducedMotion: true
+        });
+      }
+    });
+  });
+
+  if (cartBtn && cartSidebar && cartOverlay) {
+    cartBtn.addEventListener('click', () => {
+      cartSidebar.classList.add('active');
+      cartOverlay.classList.add('active');
+    });
+
+    const closeCart = () => {
+      cartSidebar.classList.remove('active');
+      cartOverlay.classList.remove('active');
+    };
+
+    cartClose.addEventListener('click', closeCart);
+    cartOverlay.addEventListener('click', closeCart);
+  }
+
+  // Order type toggle (Dine-in / Takeaway / Delivery)
+  if (orderTypeBtns.length) {
+    orderTypeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        orderTypeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        orderType = btn.dataset.type;
+        if (deliveryAddressWrap) {
+          deliveryAddressWrap.style.display = orderType === 'delivery' ? 'block' : 'none';
+        }
+        updateCartUI();
+      });
+    });
+  }
+
+  // Coupon logic
+  if (couponApplyBtn && couponInput) {
+    couponApplyBtn.addEventListener('click', () => {
+      const code = couponInput.value.trim().toUpperCase();
+      if (!code) return;
+      const c = COUPONS[code];
+      const subtotal = cartSubtotal();
+      if (!c) {
+        if (couponMsg) { couponMsg.textContent = 'Invalid coupon code.'; couponMsg.className = 'coupon-msg error'; }
+        showToast('Invalid coupon code', 'error');
+        return;
+      }
+      if (c.min && subtotal < c.min) {
+        if (couponMsg) { couponMsg.textContent = `Add ₹${c.min - subtotal} more to use this code.`; couponMsg.className = 'coupon-msg error'; }
+        return;
+      }
+      appliedCoupon = code;
+      if (couponMsg) { couponMsg.textContent = `Applied: ${c.label} 🎉`; couponMsg.className = 'coupon-msg success'; }
+      showToast(`Coupon ${code} applied!`, 'success');
+      updateCartUI();
+    });
+  }
+
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      if (cart.length === 0) {
+        showToast('Your cart is empty!', 'error');
+        return;
+      }
+      if (orderType === 'delivery' && deliveryAddressWrap) {
+        const addrInput = deliveryAddressWrap.querySelector('textarea');
+        if (addrInput && !addrInput.value.trim()) {
+          showToast('Please add a delivery address', 'error');
+          addrInput.focus();
+          return;
+        }
+      }
+      openReceiptModal();
+    });
+  }
+
+  // ==========================================================================
+  // 11b. ORDER CONFIRMATION / RECEIPT MODAL
+  // ==========================================================================
+  function orderId() {
+    return 'AGT-' + Math.floor(100000 + Math.random() * 900000);
+  }
+
+  function openReceiptModal() {
+    const modal = document.getElementById('receiptModal');
+    const body = document.getElementById('receiptBody');
+    if (!modal || !body) return;
+
+    const subtotal = cartSubtotal();
+    const discount = cartDiscount(subtotal);
+    const deliveryFee = (orderType === 'delivery' && subtotal < 500) ? 40 : 0;
+    const total = Math.max(subtotal - discount + deliveryFee, 0);
+    const id = orderId();
+    const eta = orderType === 'dine-in' ? 'Table will be ready shortly' : (orderType === 'takeaway' ? '20–25 mins' : '30–40 mins');
+
+    body.innerHTML = `
+      <p class="receipt-id">Order <strong>#${id}</strong></p>
+      <p class="receipt-type"><i class="fa-solid fa-tag"></i> ${orderType.charAt(0).toUpperCase() + orderType.slice(1)}</p>
+      <ul class="receipt-list">
+        ${cart.map(i => `<li><span>${i.name} × ${i.qty}</span><span>₹${i.price * i.qty}</span></li>`).join('')}
+      </ul>
+      <div class="receipt-totals">
+        <p><span>Subtotal</span><span>₹${subtotal}</span></p>
+        ${discount > 0 ? `<p><span>Discount</span><span>− ₹${discount}</span></p>` : ''}
+        ${deliveryFee > 0 ? `<p><span>Delivery</span><span>₹${deliveryFee}</span></p>` : ''}
+        <p class="receipt-grand"><span>Total</span><span>₹${total}</span></p>
+      </div>
+      <p class="receipt-eta"><i class="fa-solid fa-clock"></i> Estimated: ${eta}</p>
+    `;
+
+    modal.classList.add('active');
+    if (cartSidebar) cartSidebar.classList.remove('active');
+    if (cartOverlay) cartOverlay.classList.remove('active');
+
+    if (typeof confetti !== 'undefined' && !prefersReducedMotion) {
+      confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 }, colors: ['#D94E2A', '#C5A059', '#2E7D32'] });
+    }
+
+    cart = [];
+    appliedCoupon = null;
+    if (couponInput) couponInput.value = '';
+    if (couponMsg) { couponMsg.textContent = ''; couponMsg.className = 'coupon-msg'; }
+    updateCartUI();
+  }
+
+  const receiptClose = document.getElementById('receiptClose');
+  const receiptPrint = document.getElementById('receiptPrint');
+  const receiptModal = document.getElementById('receiptModal');
+  if (receiptClose && receiptModal) {
+    receiptClose.addEventListener('click', () => receiptModal.classList.remove('active'));
+    receiptModal.addEventListener('click', (e) => { if (e.target === receiptModal) receiptModal.classList.remove('active'); });
+  }
+  if (receiptPrint) {
+    receiptPrint.addEventListener('click', () => window.print());
+  }
+
+  // Init cart on load
+  updateCartUI();
+
+  // ==========================================================================
+  // 12. VANILLA TILT (3D HOVER EFFECT)
+  // ==========================================================================
+  if (typeof VanillaTilt !== 'undefined' && !prefersReducedMotion) {
+    VanillaTilt.init(document.querySelectorAll('.menu-item, .special-card, .platform-card'), {
+      max: 8, speed: 400, glare: true, 'max-glare': 0.15, scale: 1.02
+    });
+  }
+
+  // ==========================================================================
+  // 13. SWIPER FOR TESTIMONIALS
+  // ==========================================================================
+  if (document.getElementById('testimonialCarousel') && typeof Swiper !== 'undefined') {
+    new Swiper('.testimonial-carousel', {
+      loop: true, speed: 800,
+      autoplay: { delay: 5000, disableOnInteraction: false },
+      pagination: { el: '.testimonial-dots', clickable: true },
+      navigation: { nextEl: '#testimonialNext', prevEl: '#testimonialPrev' },
+      effect: 'fade', fadeEffect: { crossFade: true }
+    });
+  }
+
+  // ==========================================================================
+  // 14. GLIGHTBOX FOR GALLERY
+  // ==========================================================================
+  if (typeof GLightbox !== 'undefined') {
+    const lightbox = GLightbox({
+      selector: '.gallery-item', touchNavigation: true, loop: true,
+      autoplayVideos: true, zoomable: true, draggable: true,
+      openEffect: 'zoom', closeEffect: 'fade', descPosition: 'bottom'
+    });
+
+    document.querySelectorAll('.gallery-item').forEach((item) => {
+      const img = item.querySelector('img');
+      if (img) {
+        item.setAttribute('href', img.src);
+        item.setAttribute('data-glightbox', item.getAttribute('data-caption') || '');
+      }
+    });
+  }
+
+  // ==========================================================================
+  // 15. TIPPY.JS TOOLTIPS
+  // ==========================================================================
+  if (typeof tippy !== 'undefined') {
+    tippy('.menu-item-tags span', {
+      content: (reference) => reference.textContent.trim(),
+      placement: 'top', theme: 'light', animation: 'scale', delay: [200, 0]
+    });
+  }
+
+  // ==========================================================================
+  // 16. RESERVATION FORM LOGIC
+  // ==========================================================================
+  const form = document.getElementById('reserveForm');
+  if (form) {
+    const dateInput = document.getElementById('date');
+    const phoneInput = document.getElementById('phone');
+    const guestCountEl = document.getElementById('guestCount');
+
+    // Day.js: Set min date to today
+    if (dateInput && typeof dayjs !== 'undefined') {
+      dateInput.min = dayjs().format('YYYY-MM-DD');
+    }
+
+    // IMask: Phone number formatting
+    if (phoneInput && typeof IMask !== 'undefined') {
+      IMask(phoneInput, { mask: '+{91} 00000 00000' });
+    }
+
+    // Guest Stepper Logic
+    let guestCount = 2;
+    const guestMinus = document.getElementById('guestMinus');
+    const guestPlus = document.getElementById('guestPlus');
+
+    if (guestMinus && guestPlus && guestCountEl) {
+      guestMinus.addEventListener('click', () => {
+        if (guestCount > 1) {
+          guestCount--;
+          guestCountEl.textContent = guestCount;
+          if (typeof gsap !== 'undefined') gsap.from(guestCountEl, { scale: 1.5, duration: 0.3, ease: 'back.out' });
+        }
+      });
+
+      guestPlus.addEventListener('click', () => {
+        if (guestCount < 20) {
+          guestCount++;
+          guestCountEl.textContent = guestCount;
+          if (typeof gsap !== 'undefined') gsap.from(guestCountEl, { scale: 1.5, duration: 0.3, ease: 'back.out' });
+        }
+      });
+    }
+
+    // Time Slot Selection
+    document.querySelectorAll('.time-slot').forEach((slot) => {
+      slot.addEventListener('click', () => {
+        document.querySelectorAll('.time-slot').forEach((s) => s.classList.remove('active'));
+        slot.classList.add('active');
+        const timeError = document.getElementById('timeError');
+        if (timeError) timeError.style.display = 'none';
+      });
+    });
+
+    // Form Validation & Submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      const nameField = form.querySelector('#fullName').parentElement;
+      if (!form.fullName.value.trim()) { nameField.classList.add('invalid'); isValid = false; }
+      else nameField.classList.remove('invalid');
+
+      const phoneField = form.querySelector('#phone').parentElement;
+      if (form.phone.value.replace(/\D/g, '').length < 10) { phoneField.classList.add('invalid'); isValid = false; }
+      else phoneField.classList.remove('invalid');
+
+      const dateField = form.querySelector('#date').parentElement;
+      if (!form.date.value) { dateField.classList.add('invalid'); isValid = false; }
+      else dateField.classList.remove('invalid');
+
+      const selectedTime = document.querySelector('.time-slot.active');
+      const timeError = document.getElementById('timeError');
+      if (!selectedTime) { if (timeError) timeError.style.display = 'block'; isValid = false; }
+
+      if (isValid) {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.classList.add('is-loading');
+        submitBtn.disabled = true;
+
+        // Gather dietary preferences
+        const dietaryCheckboxes = form.querySelectorAll('input[name="dietary"]:checked');
+        const dietaryValues = Array.from(dietaryCheckboxes).map(cb => cb.value);
+        console.log('Reservation submitted with dietary preferences:', dietaryValues);
+
+        setTimeout(() => {
+          submitBtn.classList.remove('is-loading');
+          submitBtn.disabled = false;
+
+          if (typeof confetti !== 'undefined' && !prefersReducedMotion) {
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#D94E2A', '#C5A059', '#2E7D32'] });
+          }
+
+          // Persist this slot as booked & refresh availability
+          if (selectedTime && dateInput && dateInput.value) {
+            saveBooking(dateInput.value, selectedTime.dataset.time);
+          }
+
+          const bookingCode = 'RSV-' + Math.floor(1000 + Math.random() * 9000);
+          showToast(`🔥 Table reserved! Confirmation code ${bookingCode}. We look forward to hosting you.`, 'success');
+
+          form.reset();
+          guestCount = 2;
+          if (guestCountEl) guestCountEl.textContent = guestCount;
+          document.querySelectorAll('.time-slot').forEach((s) => s.classList.remove('active'));
+          if (timeError) timeError.style.display = 'none';
+          refreshSlotAvailability();
+        }, 2000);
+      } else {
+        if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+          gsap.to(form, { x: [-10, 10, -10, 10, 0], duration: 0.4 });
+        }
+      }
+    });
+
+    // Remove invalid class on input
+    form.querySelectorAll('input, select, textarea').forEach((input) => {
+      input.addEventListener('input', () => input.parentElement.classList.remove('invalid'));
+    });
+  }
+
+  // ==========================================================================
+  // 17. HEADER SCROLL BEHAVIOR & BACK TO TOP
+  // ==========================================================================
+  const header = document.getElementById('siteHeader');
+  const backToTop = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+
+    // Scroll progress bar
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+    if (progressBar) progressBar.style.width = progress + '%';
+
+    // Header state & Back to top
+    if (scrollY > 50) {
+      if (header) header.classList.add('scrolled');
+      if (backToTop) backToTop.classList.add('visible');
+    } else {
+      if (header) header.classList.remove('scrolled');
+      if (backToTop) backToTop.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+  }
+
+  // ==========================================================================
+  // 18. MOBILE NAVIGATION TOGGLE
+  // ==========================================================================
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (navToggle && mainNav) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      mainNav.classList.toggle('active');
+    });
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+      });
+    });
+  }
+
+  // ==========================================================================
+  // 19. ACTIVE NAV LINK ON SCROLL
+  // ==========================================================================
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY + 150;
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        navLinks.forEach((link) => {
+          link.classList.remove('active');
+          if (link.getAttribute('data-section') === sectionId) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { passive: true });
+
+  // ==========================================================================
+  // 20. NEWSLETTER & GIFT CARD FORMS
+  // ==========================================================================
+  const newsletterForm = document.getElementById('newsletterForm');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = newsletterForm.querySelector('input[type="email"]').value;
+      if (email) {
+        showToast('✨ Welcome to the Angithi inner circle!', 'success');
+        newsletterForm.reset();
+      }
+    });
+  }
+
+  document.querySelector('.gift-cards .btn-brass')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    showToast('🎁 Gift card feature coming soon!', 'success');
+  });
+
+  // ==========================================================================
+  // 21. DYNAMIC YEAR
+  // ==========================================================================
+  const yearSpan = document.getElementById('year');
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+  // ==========================================================================
+  // 22. CUSTOM CURSOR (Ember Glow Follower)
+  // ==========================================================================
+  if (window.matchMedia('(pointer: fine)').matches && !prefersReducedMotion && typeof gsap !== 'undefined') {
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    cursor.style.cssText = `
+      position: fixed; width: 20px; height: 20px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,78,42,0.6), transparent 70%);
+      pointer-events: none; z-index: 9997; transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s, background 0.3s; mix-blend-mode: screen;
+    `;
+    document.body.appendChild(cursor);
+
+    const cursorDot = document.createElement('div');
+    cursorDot.style.cssText = `
+      position: fixed; width: 6px; height: 6px; border-radius: 50%;
+      background: #C5A059; pointer-events: none; z-index: 9997; transform: translate(-50%, -50%);
+    `;
+    document.body.appendChild(cursorDot);
+
+    let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursorDot.style.left = mouseX + 'px'; cursorDot.style.top = mouseY + 'px';
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      cursor.style.left = cursorX + 'px'; cursor.style.top = cursorY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button, .menu-item, .gallery-item, .time-slot, .add-to-cart-btn').forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width = '50px'; cursor.style.height = '50px';
+        cursor.style.background = 'radial-gradient(circle, rgba(197,160,89,0.5), transparent 70%)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width = '20px'; cursor.style.height = '20px';
+        cursor.style.background = 'radial-gradient(circle, rgba(217,78,42,0.6), transparent 70%)';
+      });
+    });
+  }
+
+  // ==========================================================================
+  // 23. MAGNETIC BUTTONS
+  // ==========================================================================
+  if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+    document.querySelectorAll('.btn-brass, .btn-ghost').forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        gsap.to(btn, { x: x * 0.25, y: y * 0.25, duration: 0.3, ease: 'power2.out' });
+      });
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+      });
+    });
+  }
+
+  // ==========================================================================
+  // 24. TEXT SCRAMBLE ON HERO SUBTITLE
+  // ==========================================================================
+  const heroSub = document.querySelector('.hero-sub');
+  if (heroSub && !prefersReducedMotion) {
+    const originalText = heroSub.textContent;
+    const chars = 'आअइउएओऔकखगघचछजझटठडढणतथदधनपफबभमयरलवशषसह';
+    let scrambleInterval;
+
+    heroSub.addEventListener('mouseenter', () => {
+      let iterations = 0;
+      scrambleInterval = setInterval(() => {
+        heroSub.textContent = originalText.split('').map((char, i) => {
+          if (char === ' ') return ' ';
+          if (i < iterations) return originalText[i];
+          return chars[Math.floor(Math.random() * chars.length)];
+        }).join('');
+        if (iterations >= originalText.length) clearInterval(scrambleInterval);
+        iterations += 1 / 2;
+      }, 40);
+    });
+
+    heroSub.addEventListener('mouseleave', () => {
+      clearInterval(scrambleInterval);
+      heroSub.textContent = originalText;
+    });
+  }
+
+  // ==========================================================================
+  // 25. KEYBOARD SHORTCUTS
+  // ==========================================================================
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (mainNav && mainNav.classList.contains('active')) {
+        navToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+      }
+      if (cartSidebar && cartSidebar.classList.contains('active')) {
+        cartSidebar.classList.remove('active');
+        cartOverlay.classList.remove('active');
+      }
+    }
+    if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+      e.preventDefault();
+      const newsletterInput = document.querySelector('.newsletter-form input');
+      if (newsletterInput) newsletterInput.focus();
+    }
+  });
+
+  // ==========================================================================
+  // 27. LIVE OPEN / CLOSED STATUS BADGE
+  // ==========================================================================
+  function updateOpenStatus() {
+    const badge = document.getElementById('openStatusBadge');
+    if (!badge) return;
+    const now = typeof dayjs !== 'undefined' ? dayjs() : new Date();
+    const day = typeof dayjs !== 'undefined' ? now.day() : now.getDay();
+    const minutes = (typeof dayjs !== 'undefined' ? now.hour() : now.getHours()) * 60 +
+                     (typeof dayjs !== 'undefined' ? now.minute() : now.getMinutes());
+    const isWeekend = day === 0 || day === 6;
+    const lunch = isWeekend ? [12 * 60, 15 * 60 + 30] : [12 * 60 + 30, 15 * 60];
+    const dinner = isWeekend ? [18 * 60 + 30, 23 * 60 + 30] : [19 * 60, 23 * 60];
+    const isOpen = (minutes >= lunch[0] && minutes <= lunch[1]) || (minutes >= dinner[0] && minutes <= dinner[1]);
+
+    badge.classList.toggle('is-open', isOpen);
+    badge.classList.toggle('is-closed', !isOpen);
+    badge.innerHTML = isOpen
+      ? '<span class="status-dot"></span> Open Now'
+      : '<span class="status-dot"></span> Currently Closed';
+  }
+  updateOpenStatus();
+  setInterval(updateOpenStatus, 60000);
+
+  // ==========================================================================
+  // 28. TABLE AVAILABILITY CHECKER (mock, persisted to localStorage)
+  // ==========================================================================
+  const BOOKINGS_KEY = 'angithi-bookings';
+  function getBookings() {
+    try { return JSON.parse(localStorage.getItem(BOOKINGS_KEY) || '{}'); } catch (err) { return {}; }
+  }
+  function saveBooking(dateVal, timeVal) {
+    const bookings = getBookings();
+    const key = dateVal;
+    bookings[key] = bookings[key] || [];
+    bookings[key].push(timeVal);
+    try { localStorage.setItem(BOOKINGS_KEY, JSON.stringify(bookings)); } catch (err) { /* ignore */ }
+  }
+  function refreshSlotAvailability() {
+    const dateInput = document.getElementById('date');
+    if (!dateInput || !dateInput.value) return;
+    const bookings = getBookings()[dateInput.value] || [];
+    document.querySelectorAll('.time-slot').forEach(slot => {
+      const time = slot.dataset.time;
+      const count = bookings.filter(t => t === time).length;
+      const full = count >= 6; // mock capacity per slot
+      slot.classList.toggle('slot-full', full);
+      slot.disabled = full;
+      slot.title = full ? 'Fully booked — please pick another time' : '';
+      if (full && slot.classList.contains('active')) {
+        slot.classList.remove('active');
+      }
+    });
+  }
+  const dateInputEl = document.getElementById('date');
+  if (dateInputEl) {
+    dateInputEl.addEventListener('change', refreshSlotAvailability);
+  }
+
+  // ==========================================================================
+  // 29. FLOATING QUICK-ACTION BUTTONS (Call / WhatsApp)
+  // ==========================================================================
+  const quickActions = document.createElement('div');
+  quickActions.className = 'quick-actions';
+  quickActions.innerHTML = `
+    <a href="https://wa.me/911126543210?text=${encodeURIComponent('Namaste Angithi! I would like to place an order.')}" target="_blank" rel="noopener" class="quick-action-btn whatsapp" aria-label="Order on WhatsApp" title="Order on WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="tel:+911126543210" class="quick-action-btn call" aria-label="Call Angithi" title="Call Us">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  `;
+  document.body.appendChild(quickActions);
+
+  // ==========================================================================
+  // 30. MOBILE BOTTOM NAV BAR
+  // ==========================================================================
+  const bottomNav = document.createElement('nav');
+  bottomNav.className = 'mobile-bottom-nav';
+  bottomNav.innerHTML = `
+    <a href="#home"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a href="#menu"><i class="fa-solid fa-utensils"></i><span>Menu</span></a>
+    <button id="bottomNavCart"><i class="fa-solid fa-basket-shopping"></i><span>Cart</span><span class="bottom-nav-badge" id="bottomNavBadge">0</span></button>
+    <a href="#reserve"><i class="fa-solid fa-calendar-check"></i><span>Reserve</span></a>
+    <a href="tel:+911126543210"><i class="fa-solid fa-phone"></i><span>Call</span></a>
+  `;
+  document.body.appendChild(bottomNav);
+  document.getElementById('bottomNavCart')?.addEventListener('click', () => {
+    document.getElementById('cartSidebar')?.classList.add('active');
+    document.getElementById('cartOverlay')?.classList.add('active');
+  });
+  // keep bottom-nav badge synced with the header cart badge
+  const bottomNavBadge = document.getElementById('bottomNavBadge');
+  if (bottomNavBadge && cartCountEl) {
+    const syncBadge = () => { bottomNavBadge.textContent = cartCountEl.textContent; };
+    syncBadge();
+    new MutationObserver(syncBadge).observe(cartCountEl, { childList: true, characterData: true, subtree: true });
+  }
+
+  // ==========================================================================
+  // 26. CONSOLE EASTER EGG
+  // ==========================================================================
+  console.log(
+    '%c🌿 ANGITHI %c— 100% Pure Veg. Cooked over coal, coded by hand.',
+    'background:#2E7D32;color:#F9F5F0;padding:6px 12px;font-weight:bold;font-size:14px;border-radius:4px 0 0 4px;',
+    'background:#121212;color:#C5A059;padding:6px 12px;font-size:14px;border-radius:0 4px 4px 0;'
+  );
+
+});
+</script>
+</body>
+</html>
