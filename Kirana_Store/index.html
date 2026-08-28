@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en" x-data="kirana()" x-init="init()" :class="{ 'dark': darkMode }">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<title>Kirana Cart — Your Everyday Bazaar</title>
+<meta name="description" content="Kirana Cart — Sabka saaman, ek hi jagah. 480+ everyday products delivered in 24–48 hours across India." />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Fraunces"', 'serif'],
+          sans: ['"Inter"', 'sans-serif'],
+          hindi: ['"Noto Sans Devanagari"', 'sans-serif'],
+        },
+        colors: {
+          marigold: { DEFAULT: '#ffa630', deep: '#e88a12' },
+          coral: '#ff6f59',
+          cream: { DEFAULT: '#f6f1e7', dim: '#b8b2a3' },
+          indigo: { 950: '#0b0c1a', 900: '#13152d', 800: '#1e2145' },
+          success: '#16a34a',
+        },
+        animation: {
+          'marquee': 'marquee 30s linear infinite',
+          'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+        },
+        keyframes: {
+          marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+          fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root { --line: rgba(33,29,46,0.1); --shadow: 0 10px 30px -10px rgba(0,0,0,0.1); }
+  .dark { --line: rgba(246,241,231,0.08); --shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
+
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; transition: background-color 0.3s ease, color 0.3s ease; }
+  ::selection { background: #ffa630; color: #0b0c1a; }
+  [x-cloak] { display: none !important; }
+
+  *:focus-visible { outline: 2px solid #ffa630; outline-offset: 2px; border-radius: 4px; }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+  .dark ::-webkit-scrollbar-thumb { background: #1e2145; }
+  ::-webkit-scrollbar-thumb:hover { background: #ffa630; }
+
+  .veg-icon { width: 16px; height: 16px; border: 1.5px solid #16a34a; display: flex; align-items: center; justify-content: center; border-radius: 3px; flex-shrink: 0; }
+  .veg-icon::after { content: ''; width: 8px; height: 8px; background: #16a34a; border-radius: 50%; }
+
+  .marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+
+  .theme-switch { font-size: 17px; position: relative; display: inline-block; width: 58px; height: 31px; flex-shrink: 0; }
+  .theme-switch input { opacity: 0; width: 0; height: 0; }
+  .theme-switch .ts-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #73c0fc; transition: 0.4s; border-radius: 30px; }
+  .theme-switch .ts-slider:before { position: absolute; content: ''; height: 25px; width: 25px; border-radius: 50%; left: 3px; bottom: 3px; z-index: 2; background-color: #fff8ea; transition: 0.4s; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+  .theme-switch .sun, .theme-switch .moon { position: absolute; top: 0; z-index: 1; width: 22px; height: 22px; pointer-events: none; }
+  .theme-switch .sun { top: 5px; left: 31px; }
+  .theme-switch .sun svg { width: 20px; height: 20px; animation: ts-rotate 12s linear infinite; }
+  .theme-switch .moon { top: 4px; left: 4px; }
+  .theme-switch .moon svg { width: 20px; height: 20px; fill: #5a86ff; animation: ts-tilt 5s linear infinite; }
+  @keyframes ts-rotate { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
+  @keyframes ts-tilt { 0% { transform: rotate(0deg); } 25% { transform: rotate(-10deg); } 75% { transform: rotate(10deg); } 100% { transform: rotate(0deg); } }
+  .theme-switch input:checked + .ts-slider { background-color: #1e2145; border: 1px solid var(--line); }
+  .theme-switch input:checked + .ts-slider:before { transform: translateX(27px); background-color: #0b0c1a; }
+
+  .product-card { content-visibility: auto; contain-intrinsic-size: 0 500px; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s; }
+  .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: rgba(255,166,48,0.35); }
+  .product-card:hover .card-media img { transform: scale(1.05); }
+
+  .drawer { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform; }
+  .modal-overlay { transition: opacity 0.25s ease; }
+  .modal { transition: transform 0.25s ease, opacity 0.25s ease; will-change: transform, opacity; }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .texture-jute { background-image: repeating-linear-gradient(45deg, rgba(11,12,26,0.035) 0, rgba(11,12,26,0.035) 2px, transparent 2px, transparent 9px), repeating-linear-gradient(-45deg, rgba(11,12,26,0.035) 0, rgba(11,12,26,0.035) 2px, transparent 2px, transparent 9px); }
+  .dark .texture-jute { background-image: repeating-linear-gradient(45deg, rgba(246,241,231,0.03) 0, rgba(246,241,231,0.03) 2px, transparent 2px, transparent 9px), repeating-linear-gradient(-45deg, rgba(246,241,231,0.03) 0, rgba(246,241,231,0.03) 2px, transparent 2px, transparent 9px); }
+
+  .coupon-ticket { position: relative; }
+  .coupon-ticket::before, .coupon-ticket::after { content: ''; position: absolute; width: 16px; height: 16px; background: #0b0c1a; border-radius: 50%; top: 50%; transform: translateY(-50%); }
+  .coupon-ticket::before { left: -9px; }
+  .coupon-ticket::after { right: -9px; }
+
+  .signboard { transform: rotate(-1.5deg); }
+
+  .wa-fab { animation: wa-pulse 2.6s ease-out infinite; }
+  @keyframes wa-pulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.45); } 70% { box-shadow: 0 0 0 14px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+
+  .step-track { display: flex; align-items: center; }
+  .step-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--line); flex-shrink: 0; }
+  .step-line { flex: 1; height: 2px; background: var(--line); }
+  .step-dot.done { background: #ffa630; border-color: #ffa630; }
+  .step-line.done { background: #ffa630; }
+</style>
+</head>
+
+<body class="bg-cream dark:bg-indigo-950 text-indigo-950 dark:text-cream font-sans overflow-x-hidden">
+
+<div x-show="loading" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-[100] bg-cream dark:bg-indigo-950 flex flex-col items-center justify-center gap-6">
+  <div class="flex items-center gap-3 font-display text-3xl font-bold text-indigo-950 dark:text-cream">
+    <i class="fa-solid fa-store text-marigold"></i> Kirana<span class="text-marigold">.</span>Cart
+  </div>
+  <div class="w-56 h-3 bg-indigo-800/20 dark:bg-indigo-800 rounded-full overflow-hidden">
+    <div class="h-full bg-gradient-to-r from-marigold-deep to-marigold rounded-full" style="animation: load 1.5s ease-out forwards;"></div>
+  </div>
+  <style>@keyframes load { 0% { width: 0%; } 100% { width: 100%; } }</style>
+</div>
+
+<div class="bg-gradient-to-r from-marigold-deep to-marigold text-indigo-950 overflow-hidden whitespace-nowrap font-bold text-[13px] tracking-wide">
+  <div class="marquee-track py-2.5">
+    <span class="mx-8"><i class="fa-solid fa-tag mr-2"></i>Flat 10% off with code KIRANA10</span>
+    <span class="mx-8"><i class="fa-solid fa-truck-fast mr-2"></i>Free delivery above ₹499</span>
+    <span class="mx-8"><i class="fa-solid fa-leaf mr-2"></i>Fresh from local growers every Tuesday</span>
+    <span class="mx-8"><i class="fa-solid fa-star mr-2"></i>12,000+ happy households across India</span>
+    <span class="mx-8"><i class="fa-solid fa-tag mr-2"></i>Flat 10% off with code KIRANA10</span>
+    <span class="mx-8"><i class="fa-solid fa-truck-fast mr-2"></i>Free delivery above ₹499</span>
+    <span class="mx-8"><i class="fa-solid fa-leaf mr-2"></i>Fresh from local growers every Tuesday</span>
+    <span class="mx-8"><i class="fa-solid fa-star mr-2"></i>12,000+ happy households across India</span>
+  </div>
+</div>
+
+<header class="sticky top-0 z-50 bg-cream/95 dark:bg-indigo-950/95 backdrop-blur-md border-b border-[var(--line)] transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+    <a href="#home" class="flex items-center gap-2 shrink-0 font-display text-2xl font-bold">
+      <i class="fa-solid fa-store text-marigold"></i> Kirana<span class="text-marigold">.</span>Cart
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-cream-dim dark:text-cream-dim">
+      <a href="#home" class="hover:text-indigo-950 dark:hover:text-cream transition-colors relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-marigold transition-all group-hover:w-full"></span></a>
+      <a href="#shop" class="hover:text-indigo-950 dark:hover:text-cream transition-colors relative group">Shop<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-marigold transition-all group-hover:w-full"></span></a>
+      <a href="#offer" class="hover:text-indigo-950 dark:hover:text-cream transition-colors relative group">Offers<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-marigold transition-all group-hover:w-full"></span></a>
+      <a href="#reviews" class="hover:text-indigo-950 dark:hover:text-cream transition-colors relative group">Reviews<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-marigold transition-all group-hover:w-full"></span></a>
+      <a href="#faq" class="hover:text-indigo-950 dark:hover:text-cream transition-colors relative group">FAQs<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-marigold transition-all group-hover:w-full"></span></a>
+    </nav>
+
+    <div class="flex items-center gap-1 sm:gap-2">
+      <button @click="pincodeModalOpen = true" class="hidden lg:flex items-center gap-2 text-xs text-cream-dim dark:text-cream-dim bg-indigo-800/10 dark:bg-indigo-800 px-3 py-1.5 rounded-full border border-[var(--line)] mr-1 hover:border-marigold transition-colors">
+        <i class="fa-solid fa-location-dot text-marigold"></i>
+        <span>Deliver to <strong class="text-indigo-950 dark:text-cream" x-text="deliveryPincode"></strong></span>
+        <span class="w-px h-3 bg-[var(--line)]"></span>
+        <span class="flex items-center gap-1" :class="storeOpen ? 'text-success' : 'text-coral'">
+          <span class="w-1.5 h-1.5 rounded-full" :class="storeOpen ? 'bg-success' : 'bg-coral'"></span>
+          <span x-text="storeOpen ? 'Open now' : 'Opens 8 AM'"></span>
+        </span>
+      </button>
+
+      <label class="theme-switch" title="Toggle dark / light mode">
+        <span class="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="#ffd43b"><circle r="5" cy="12" cx="12"></circle><path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path></g></svg></span>
+        <span class="moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path></svg></span>
+        <input type="checkbox" x-model="darkMode" @change="savePrefs()">
+        <span class="ts-slider"></span>
+      </label>
+
+      <button @click="searchOpen = !searchOpen" class="w-10 h-10 rounded-full hover:bg-indigo-800/10 dark:hover:bg-indigo-800 flex items-center justify-center transition-colors">
+        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+      </button>
+      <button @click="wishlistOpen = true" class="relative w-10 h-10 rounded-full hover:bg-indigo-800/10 dark:hover:bg-indigo-800 flex items-center justify-center transition-colors">
+        <i class="fa-regular fa-heart text-lg"></i>
+        <span x-show="wishlist.length" x-text="wishlist.length" class="absolute -top-0.5 -right-0.5 bg-coral text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-cream dark:border-indigo-950"></span>
+      </button>
+      <button @click="ordersOpen = true" class="hidden sm:flex relative w-10 h-10 rounded-full hover:bg-indigo-800/10 dark:hover:bg-indigo-800 items-center justify-center transition-colors">
+        <i class="fa-solid fa-receipt text-lg"></i>
+        <span x-show="orders.length" x-text="orders.length" class="absolute -top-0.5 -right-0.5 bg-indigo-800 dark:bg-cream text-cream dark:text-indigo-950 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-cream dark:border-indigo-950"></span>
+      </button>
+      <button @click="cartOpen = true" class="relative w-10 h-10 rounded-full hover:bg-indigo-800/10 dark:hover:bg-indigo-800 flex items-center justify-center transition-colors">
+        <i class="fa-solid fa-bag-shopping text-lg"></i>
+        <span x-show="cartCount" x-text="cartCount" class="absolute -top-0.5 -right-0.5 bg-marigold text-indigo-950 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-cream dark:border-indigo-950"></span>
+      </button>
+      <button @click="mobileMenu = !mobileMenu" class="lg:hidden w-10 h-10 rounded-full hover:bg-indigo-800/10 dark:hover:bg-indigo-800 flex items-center justify-center transition-colors">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+    </div>
+  </div>
+
+  <div x-show="searchOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="border-b border-[var(--line)] bg-indigo-900 dark:bg-indigo-900 overflow-hidden" x-cloak>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="flex items-center gap-4">
+        <i class="fa-solid fa-magnifying-glass text-marigold shrink-0"></i>
+        <input x-model="searchQuery" type="text" placeholder="Search for atta, ghee, chai..." class="flex-1 bg-transparent border-none border-b-2 border-marigold text-cream text-lg font-display py-2 outline-none placeholder-cream-dim" />
+        <button @click="searchQuery=''" x-show="searchQuery" class="text-cream-dim hover:text-coral transition-colors p-2">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div x-show="searchQuery && searchSuggestions.length" class="mt-3 grid sm:grid-cols-2 gap-2" x-cloak>
+        <template x-for="p in searchSuggestions" :key="'sug-' + p.id">
+          <button @click="searchOpen = false; openQuickView(p)" class="flex items-center gap-3 bg-indigo-950/50 hover:bg-indigo-950 rounded-xl p-2 text-left transition-colors">
+            <img :src="p.img" width="44" height="44" class="w-11 h-11 rounded-lg object-cover shrink-0" loading="lazy" decoding="async" :alt="p.name" />
+            <span class="min-w-0">
+              <span class="block text-sm text-cream font-medium line-clamp-1" x-text="p.name"></span>
+              <span class="block text-xs text-marigold font-bold" x-text="'₹' + p.price"></span>
+            </span>
+          </button>
+        </template>
+      </div>
+      <div x-show="searchQuery && searchSuggestions.length === 0" class="mt-3 text-sm text-cream-dim" x-cloak>No products match that search.</div>
+    </div>
+  </div>
+
+  <div x-show="mobileMenu" x-transition class="lg:hidden border-t border-[var(--line)] bg-cream dark:bg-indigo-950" x-cloak>
+    <nav class="px-6 py-4 flex flex-col gap-3 text-sm font-medium">
+      <a href="#home" @click="mobileMenu=false" class="py-2 border-b border-[var(--line)]">Home</a>
+      <a href="#shop" @click="mobileMenu=false" class="py-2 border-b border-[var(--line)]">Shop</a>
+      <a href="#offer" @click="mobileMenu=false" class="py-2 border-b border-[var(--line)]">Offers</a>
+      <a href="#reviews" @click="mobileMenu=false" class="py-2 border-b border-[var(--line)]">Reviews</a>
+      <a href="#faq" @click="mobileMenu=false" class="py-2 border-b border-[var(--line)]">FAQs</a>
+      <button @click="mobileMenu=false; ordersOpen=true" class="py-2 border-b border-[var(--line)] text-left flex items-center gap-2"><i class="fa-solid fa-receipt text-marigold"></i> My Orders</button>
+      <button @click="mobileMenu=false; pincodeModalOpen=true" class="py-2 text-left flex items-center gap-2"><i class="fa-solid fa-location-dot text-marigold"></i> Check delivery at your pincode</button>
+    </nav>
+  </div>
+</header>
+
+<section id="home" class="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-32">
+  <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-marigold/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-success/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center relative z-10">
+    <div class="animate-fade-in-up">
+      <div class="inline-flex items-center gap-2 text-marigold text-xs font-bold tracking-[0.25em] uppercase mb-6">
+        <i class="fa-solid fa-shop text-[10px]"></i> Your everyday bazaar, online
+      </div>
+      <h1 class="font-display text-5xl lg:text-7xl font-bold leading-[1.05]">
+        Sabka <span class="font-hindi italic text-marigold font-medium">saaman</span>,<br>ek hi jagah.
+      </h1>
+      <p class="mt-6 text-lg text-cream-dim dark:text-cream-dim leading-relaxed max-w-lg">
+        From roasted masalas to handwoven baskets — Kirana Cart brings your neighbourhood store's warmth to your doorstep, curated and delivered fresh.
+      </p>
+
+      <div class="flex flex-wrap gap-3 mt-8">
+        <span class="flex items-center gap-2 text-xs font-semibold text-cream-dim dark:text-cream-dim bg-indigo-800/10 dark:bg-indigo-800 px-4 py-2 rounded-full border border-[var(--line)]">
+          <i class="fa-solid fa-certificate text-success"></i> FSSAI Certified
+        </span>
+        <span class="flex items-center gap-2 text-xs font-semibold text-cream-dim dark:text-cream-dim bg-indigo-800/10 dark:bg-indigo-800 px-4 py-2 rounded-full border border-[var(--line)]">
+          <i class="fa-solid fa-leaf text-success"></i> 100% Vegetarian
+        </span>
+        <span class="flex items-center gap-2 text-xs font-semibold text-cream-dim dark:text-cream-dim bg-indigo-800/10 dark:bg-indigo-800 px-4 py-2 rounded-full border border-[var(--line)]">
+          <span class="w-1.5 h-1.5 rounded-full" :class="storeOpen ? 'bg-success' : 'bg-coral'"></span>
+          <span x-text="storeOpen ? 'Store open now' : 'Opens 8 AM tomorrow'"></span>
+        </span>
+      </div>
+
+      <div class="flex flex-wrap gap-4 mt-10">
+        <a href="#shop" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-marigold text-indigo-950 font-bold text-sm hover:translate-y-[-3px] hover:shadow-[0_14px_30px_rgba(255,166,48,0.3)] transition-all duration-300">
+          <i class="fa-solid fa-bag-shopping"></i> Start Shopping
+        </a>
+        <a href="#offer" class="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-[var(--line)] text-indigo-950 dark:text-cream font-semibold text-sm hover:border-marigold hover:text-marigold transition-all duration-300">
+          <i class="fa-solid fa-percent"></i> View Offers
+        </a>
+      </div>
+
+      <div class="flex gap-8 mt-12 border-l-2 border-marigold pl-4">
+        <div><strong class="block font-display text-2xl">480+</strong><span class="text-xs text-cream-dim">Everyday Products</span></div>
+        <div><strong class="block font-display text-2xl">12k+</strong><span class="text-xs text-cream-dim">Happy Homes</span></div>
+        <div><strong class="block font-display text-2xl">4.8</strong><span class="text-xs text-cream-dim">Average Rating</span></div>
+      </div>
+    </div>
+
+    <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
+      <div class="bg-indigo-900 dark:bg-indigo-900 border border-[var(--line)] rounded-3xl p-6 shadow-[var(--shadow)] relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="Spice basket" width="800" height="600" class="rounded-2xl w-full h-[340px] object-cover" loading="eager" decoding="async" />
+        <div class="absolute bottom-10 left-10 bg-indigo-950/90 dark:bg-indigo-950/90 backdrop-blur-md border border-[var(--line)] rounded-2xl p-4 flex items-center gap-3 shadow-[var(--shadow)]">
+          <i class="fa-solid fa-truck-fast text-marigold text-xl"></i>
+          <div>
+            <div class="text-sm font-bold text-cream">Delivered in 2 days</div>
+            <div class="text-xs text-cream-dim">Packed fresh from source</div>
+          </div>
+        </div>
+        <div class="signboard absolute -top-4 -right-4 bg-marigold text-indigo-950 rounded-2xl px-4 py-2 shadow-[var(--shadow)] border-2 border-indigo-950/10 hidden sm:block">
+          <span class="font-display font-bold text-sm">Since 1998</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="shop" class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+    <div>
+      <div class="text-marigold text-xs font-bold tracking-[0.25em] uppercase mb-2">The Bazaar</div>
+      <h2 class="font-display text-4xl lg:text-5xl font-bold">Browse today's picks</h2>
+      <p class="mt-3 text-cream-dim max-w-md">Handpicked staples, snacks and home goods — filter by what you're craving.</p>
+    </div>
+  </div>
+
+  <div class="flex gap-3 overflow-x-auto no-scrollbar pb-4 mb-6">
+    <template x-for="cat in categories" :key="cat">
+      <button @click="activeCat = cat"
+        :class="activeCat === cat ? 'bg-marigold text-indigo-950 border-marigold' : 'bg-transparent text-cream-dim border-[var(--line)] hover:border-marigold hover:text-marigold'"
+        class="flex items-center gap-2 px-5 py-2.5 rounded-full border text-sm font-medium whitespace-nowrap transition-all duration-300 shrink-0">
+        <i :class="getCatIcon(cat)" class="text-xs"></i> <span x-text="cat === 'all' ? 'All' : cat"></span>
+      </button>
+    </template>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-4 mb-8 bg-indigo-900/40 dark:bg-indigo-900 border border-[var(--line)] rounded-2xl px-5 py-4">
+    <div class="flex items-center gap-3">
+      <label class="text-xs text-cream-dim font-medium">Under <strong class="text-marigold" x-text="'₹' + maxPrice"></strong></label>
+      <input type="range" min="100" max="900" step="50" x-model.number="maxPrice" class="w-32 accent-[#ffa630]" />
+    </div>
+    <label class="flex items-center gap-2 text-xs text-cream-dim font-medium cursor-pointer">
+      <input type="checkbox" x-model="inStockOnly" class="w-4 h-4 accent-[#ffa630] cursor-pointer" /> In stock only
+    </label>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+    <span class="text-sm text-cream-dim">Showing <strong class="text-indigo-950 dark:text-cream" x-text="filteredProducts.length"></strong> products</span>
+    <select x-model="sortBy" class="bg-indigo-900 dark:bg-indigo-900 border border-[var(--line)] text-cream px-4 py-2.5 rounded-xl text-sm outline-none focus:border-marigold transition-colors cursor-pointer">
+      <option value="feat">Sort: Featured</option>
+      <option value="low">Price: Low to High</option>
+      <option value="high">Price: High to Low</option>
+      <option value="rating">Rating: Best First</option>
+    </select>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <template x-for="p in filteredProducts" :key="p.id">
+      <article class="product-card bg-indigo-900 dark:bg-indigo-900 border border-[var(--line)] rounded-2xl overflow-hidden relative group">
+        <div class="card-media relative h-56 overflow-hidden bg-indigo-800">
+          <img :src="p.img" :alt="p.name" width="400" height="400" class="w-full h-full object-cover transition-transform duration-500" loading="lazy" decoding="async" />
+          <span x-show="p.badge && p.stock > 0" class="absolute top-3 left-3 bg-coral text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wide" x-text="p.badge"></span>
+          <span x-show="p.stock === 0" class="absolute inset-0 bg-indigo-950/70 flex items-center justify-center text-cream text-xs font-bold uppercase tracking-widest">Out of Stock</span>
+          <button @click="toggleWish(p.id)" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-indigo-950/70 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110" :class="isWished(p.id) ? 'text-coral' : 'text-cream'">
+            <i :class="isWished(p.id) ? 'fa-solid fa-heart' : 'fa-regular fa-heart'" class="text-sm"></i>
+          </button>
+          <button @click="openQuickView(p)" class="absolute bottom-0 left-0 right-0 bg-indigo-950/90 backdrop-blur-sm text-center py-3 text-xs font-bold tracking-wider text-cream translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+            QUICK VIEW
+          </button>
+        </div>
+
+        <div class="p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="veg-icon"></div>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-marigold" x-text="p.cat"></span>
+            <span class="text-[10px] text-cream-dim ml-auto" x-text="p.unit"></span>
+          </div>
+          <h3 class="font-display text-lg font-semibold leading-tight line-clamp-2" x-text="p.name"></h3>
+          <div class="flex items-center gap-1.5 mt-2 text-xs text-cream-dim">
+            <div class="flex text-marigold">
+              <template x-for="i in 5">
+                <i :class="i <= Math.round(p.rating) ? 'fa-solid fa-star' : 'fa-regular fa-star'" class="text-[10px]"></i>
+              </template>
+            </div>
+            <span x-text="p.rating + ' (' + p.reviews + ')'"></span>
+          </div>
+          <div x-show="p.stock > 0 && p.stock <= 5" class="text-[11px] font-bold text-coral mt-2" x-text="'Only ' + p.stock + ' left'"></div>
+
+          <div class="flex items-end justify-between mt-5">
+            <div>
+              <span class="font-display text-xl font-bold text-cream" x-text="(p.variants ? 'From ₹' : '₹') + p.price"></span>
+              <span x-show="p.mrp > p.price" class="text-xs text-cream-dim line-through ml-2" x-text="'₹' + p.mrp"></span>
+            </div>
+
+            <template x-if="p.stock === 0">
+              <button @click="notifyMe(p.id)" class="flex items-center gap-2 px-4 h-9 rounded-full border border-[var(--line)] text-cream-dim text-xs font-bold hover:border-marigold hover:text-marigold transition-all duration-300">
+                <i class="fa-solid fa-bell text-xs"></i> NOTIFY ME
+              </button>
+            </template>
+            <template x-if="p.stock > 0 && p.variants">
+              <button @click="openQuickView(p)" class="flex items-center gap-2 px-4 h-9 rounded-full bg-marigold text-indigo-950 text-xs font-bold hover:bg-coral hover:text-white transition-all duration-300">
+                <span x-show="getProductTotalQty(p.id) === 0"><i class="fa-solid fa-plus text-xs"></i> ADD</span>
+                <span x-show="getProductTotalQty(p.id) > 0" x-text="getProductTotalQty(p.id) + ' in basket'"></span>
+              </button>
+            </template>
+            <template x-if="p.stock > 0 && !p.variants && getCartQty(cardKey(p)) === 0">
+              <button @click="addToCart(p.id)" class="flex items-center gap-2 px-4 h-9 rounded-full bg-marigold text-indigo-950 text-xs font-bold hover:bg-coral hover:text-white transition-all duration-300">
+                <i class="fa-solid fa-plus text-xs"></i> ADD
+              </button>
+            </template>
+            <template x-if="p.stock > 0 && !p.variants && getCartQty(cardKey(p)) > 0">
+              <div class="flex items-center gap-2 bg-cream dark:bg-indigo-950 rounded-full border border-[var(--line)] p-1">
+                <button @click="updateQty(cardKey(p), -1)" class="w-7 h-7 rounded-full flex items-center justify-center hover:bg-marigold hover:text-indigo-950 transition-colors text-xs font-bold">−</button>
+                <span class="text-xs font-bold w-4 text-center" x-text="getCartQty(cardKey(p))"></span>
+                <button @click="updateQty(cardKey(p), 1)" class="w-7 h-7 rounded-full flex items-center justify-center hover:bg-marigold hover:text-indigo-950 transition-colors text-xs font-bold">+</button>
+              </div>
+            </template>
+          </div>
+        </div>
+      </article>
+    </template>
+  </div>
+
+  <div x-show="filteredProducts.length === 0" class="text-center py-20" x-cloak>
+    <i class="fa-solid fa-magnifying-glass text-4xl text-marigold/50 mx-auto mb-4"></i>
+    <h3 class="font-display text-xl font-bold mb-2">No products match your search</h3>
+    <p class="text-cream-dim text-sm">Try adjusting your filters or search terms.</p>
+  </div>
+
+  <div x-show="recentlyViewed.length > 0" class="mt-16" x-cloak>
+    <h3 class="font-display text-xl font-bold mb-5 flex items-center gap-2"><i class="fa-regular fa-clock text-marigold"></i> Recently Viewed</h3>
+    <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+      <template x-for="id in recentlyViewed" :key="'rv-' + id">
+        <button @click="openQuickView(getProduct(id))" class="shrink-0 w-40 text-left bg-indigo-900 dark:bg-indigo-900 border border-[var(--line)] rounded-xl overflow-hidden hover:border-marigold transition-colors">
+          <img :src="getProduct(id).img" width="160" height="112" class="w-full h-28 object-cover" loading="lazy" decoding="async" :alt="getProduct(id).name" />
+          <div class="p-3">
+            <div class="text-xs font-semibold line-clamp-1" x-text="getProduct(id).name"></div>
+            <div class="text-xs text-marigold font-bold mt-1" x-text="'₹' + getProduct(id).price"></div>
+          </div>
+        </button>
+      </template>
+    </div>
+  </div>
+</section>
+
+<section id="offer" class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+  <div class="relative bg-gradient-to-br from-indigo-800 to-indigo-900 border border-[var(--line)] rounded-3xl p-8 lg:p-14 overflow-hidden texture-jute">
+    <div class="absolute inset-0 opacity-[0.06] pointer-events-none" style="background-image: radial-gradient(circle, #ffa630 1.4px, transparent 1.6px); background-size: 26px 26px;"></div>
+    <div class="relative grid lg:grid-cols-2 gap-8 items-center">
+      <div>
+        <span class="inline-flex items-center gap-2 bg-coral text-white px-3 py-1 rounded-full text-xs font-bold mb-4">
+          <i class="fa-solid fa-fire"></i> FESTIVE DHAMAKA
+        </span>
+        <h3 class="font-display text-3xl lg:text-4xl font-bold">Diwali Stock-Up Sale — Flat 10% off</h3>
+        <p class="mt-3 text-cream-dim">Use the code below at checkout on orders above ₹499. Valid for a limited time only, on the house from all of us at Kirana Cart.</p>
+      </div>
+      <div class="coupon-ticket flex items-center gap-4 bg-indigo-950 border-2 border-dashed border-marigold rounded-2xl p-5 max-w-sm">
+        <i class="fa-solid fa-ticket text-marigold text-xl shrink-0"></i>
+        <div class="flex-1">
+          <div class="text-[10px] uppercase tracking-widest text-cream-dim mb-1">Coupon Code</div>
+          <div class="font-display text-2xl font-bold text-marigold tracking-wider">KIRANA10</div>
+        </div>
+        <button @click="copyCoupon()" class="px-5 py-2.5 rounded-lg bg-marigold text-indigo-950 text-xs font-bold hover:bg-coral hover:text-white transition-all duration-300 shrink-0">
+          <span x-text="copied ? 'Copied!' : 'COPY'"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--line)] border border-[var(--line)] rounded-2xl overflow-hidden">
+    <div class="bg-cream dark:bg-indigo-950 p-8 flex gap-4 items-start">
+      <i class="fa-solid fa-truck-fast text-marigold text-xl shrink-0 mt-1"></i>
+      <div>
+        <strong class="block text-sm font-bold mb-1">Fast Delivery</strong>
+        <span class="text-xs text-cream-dim leading-relaxed">Doorstep in 24–48 hours across most cities</span>
+      </div>
+    </div>
+    <div class="bg-cream dark:bg-indigo-950 p-8 flex gap-4 items-start">
+      <i class="fa-solid fa-shield-halved text-marigold text-xl shrink-0 mt-1"></i>
+      <div>
+        <strong class="block text-sm font-bold mb-1">Quality Checked</strong>
+        <span class="text-xs text-cream-dim leading-relaxed">Every batch sampled before it ships</span>
+      </div>
+    </div>
+    <div class="bg-cream dark:bg-indigo-950 p-8 flex gap-4 items-start">
+      <i class="fa-solid fa-rotate-left text-marigold text-xl shrink-0 mt-1"></i>
+      <div>
+        <strong class="block text-sm font-bold mb-1">Easy Returns</strong>
+        <span class="text-xs text-cream-dim leading-relaxed">7-day no-questions return window</span>
+      </div>
+    </div>
+    <div class="bg-cream dark:bg-indigo-950 p-8 flex gap-4 items-start">
+      <i class="fa-solid fa-headset text-marigold text-xl shrink-0 mt-1"></i>
+      <div>
+        <strong class="block text-sm font-bold mb-1">Real Support</strong>
+        <span class="text-xs text-cream-dim leading-relaxed">Talk to a human, not a bot, 7 days a week</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+  <div class="text-center max-w-xl mx-auto mb-12">
+    <div class="text-marigold text-xs font-bold tracking-[0.25em] uppercase mb-2">Word on the Street</div>
+    <h2 class="font-display text-4xl lg:text-5xl font-bold">What our households say</h2>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <template x-for="(t, idx) in testimonials" :key="t.name">
+      <div class="bg-indigo-900 dark:bg-indigo-900 border border-[var(--line)] rounded-2xl p-6">
+        <i class="fa-solid fa-quote-left text-marigold/40 text-2xl"></i>
+        <p class="mt-4 text-sm text-cream-dim leading-relaxed" x-text="t.text"></p>
+        <div class="flex items-center gap-3 mt-6">
+          <div class="w-11 h-11 rounded-full flex items-center justify-center font-display font-bold text-sm shrink-0"
+            :class="['bg-marigold text-indigo-950', 'bg-coral text-white', 'bg-success text-white', 'bg-indigo-800 text-cream'][idx % 4]"
+            x-text="t.name.split(' ').map(n => n[0]).join('')"></div>
+          <div>
+            <div class="text-sm font-bold" x-text="t.name"></div>
+            <div class="text-xs text-cream-dim" x-text="t.city"></div>
+          </div>
+          <div class="flex text-marigold ml-auto">
+            <template x-for="i in 5">
+              <i :class="i <= t.rating ? 'fa-solid fa-star' : 'fa-regular fa-star'" class="text-[10px]"></i>
+            </template>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+</section>
+
+<section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 py-20">
+  <div class="text-center max-w-xl mx-auto mb-12">
+    <div class="text-marigold text-xs font-bold tracking-[0.25em] uppercase mb-2">Good to Know</div>
+    <h2 class="font-display text-4xl lg:text-5xl font-bold">Frequently asked questions</h2>
+  </div>
+  <div class="space-y-3">
+    <template x-for="(f, idx) in faqs" :key="f.q">
+      <div class="bg-indigo-900 dark:bg-indigo-900 border border-[var(--line)] rounded-2xl overflow-hidden">
+        <button @click="toggleFaq(idx)" class="w-full flex items-center justify-between gap-4 px-6 py-5 text-left">
+          <span class="font-semibold text-sm" x-text="f.q"></span>
+          <i class="fa-solid fa-chevron-down text-marigold text-xs transition-transform duration-300 shrink-0" :class="activeFaq === idx ? 'rotate-180' : ''"></i>
+        </button>
+        <div x-show="activeFaq === idx" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="px-6 pb-5 text-sm text-cream-dim leading-relaxed" x-cloak x-text="f.a"></div>
+      </div>
+    </template>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
+  <div class="bg-indigo-900 dark:bg-indigo-900 border border-[var(--line)] rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div>
+      <h3 class="font-display text-xl font-bold">Prefer to order the old-fashioned way?</h3>
+      <p class="text-sm text-cream-dim mt-1">Call our store desk or drop us a message on WhatsApp — same-day confirmation.</p>
+    </div>
+    <div class="flex gap-3 shrink-0">
+      <a href="tel:+911234567890" class="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-[var(--line)] text-sm font-bold hover:border-marigold hover:text-marigold transition-colors">
+        <i class="fa-solid fa-phone"></i> +91 12345 67890
+      </a>
+      <a :href="waLink" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#25D366] text-white text-sm font-bold hover:brightness-95 transition-all">
+        <svg viewBox="0 0 32 32" width="16" height="16" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.9c1.8 1 3.9 1.5 6.3 1.5 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-2 0-3.9-.5-5.5-1.5l-.4-.2-4.6 1.2 1.2-4.5-.3-.4C5.3 17.8 4.8 16.4 4.8 15c0-6.2 5-11.2 11.2-11.2S27.2 8.8 27.2 15 22.2 24.8 16 24.8zm6.1-8.4c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.2 3.3 5.2 4.7.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer" class="border-t border-[var(--line)] mt-4 bg-cream dark:bg-indigo-950 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div>
+      <a href="#home" class="flex items-center gap-2 font-display text-xl font-bold mb-4">
+        <i class="fa-solid fa-store text-marigold"></i> Kirana<span class="text-marigold">.</span>Cart
+      </a>
+      <p class="text-sm text-cream-dim leading-relaxed max-w-xs">Your neighbourhood kirana store, now online — staples, spices and handmade goods delivered fresh across India.</p>
+      <div class="flex gap-3 mt-6">
+        <a href="#" class="w-9 h-9 rounded-full border border-[var(--line)] flex items-center justify-center text-cream-dim hover:bg-marigold hover:text-indigo-950 hover:border-marigold transition-all duration-300"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full border border-[var(--line)] flex items-center justify-center text-cream-dim hover:bg-marigold hover:text-indigo-950 hover:border-marigold transition-all duration-300"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full border border-[var(--line)] flex items-center justify-center text-cream-dim hover:bg-marigold hover:text-indigo-950 hover:border-marigold transition-all duration-300"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <div>
+      <h4 class="text-xs font-bold uppercase tracking-widest text-marigold mb-5">Shop</h4>
+      <ul class="space-y-3 text-sm text-cream-dim">
+        <li><a href="#shop" class="hover:text-marigold transition-colors">Atta & Rice</a></li>
+        <li><a href="#shop" class="hover:text-marigold transition-colors">Spices (Masale)</a></li>
+        <li><a href="#shop" class="hover:text-marigold transition-colors">Snacks</a></li>
+        <li><a href="#shop" class="hover:text-marigold transition-colors">Pooja & Craft</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-xs font-bold uppercase tracking-widest text-marigold mb-5">Company</h4>
+      <ul class="space-y-3 text-sm text-cream-dim">
+        <li><a href="#" class="hover:text-marigold transition-colors">About Us</a></li>
+        <li><a href="#" class="hover:text-marigold transition-colors">Careers</a></li>
+        <li><a href="#" class="hover:text-marigold transition-colors">Sustainability</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-xs font-bold uppercase tracking-widest text-marigold mb-5">Support</h4>
+      <ul class="space-y-3 text-sm text-cream-dim">
+        <li><button @click="ordersOpen = true" class="hover:text-marigold transition-colors">Track Order</button></li>
+        <li><a href="#" class="hover:text-marigold transition-colors">Returns</a></li>
+        <li><a href="#faq" class="hover:text-marigold transition-colors">FAQs</a></li>
+        <li><a href="tel:+911234567890" class="hover:text-marigold transition-colors">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-[var(--line)] py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-cream-dim">
+      <span>© 2026 Kirana Cart. All rights reserved.</span>
+      <div class="flex items-center gap-6">
+        <span class="font-hindi text-marigold text-sm tracking-wider">धन्यवाद</span>
+        <div class="flex gap-4 text-lg">
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-solid fa-qrcode"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div x-show="cartOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm" @click.self="cartOpen = false" x-cloak></div>
+
+<aside x-show="cartOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="fixed top-0 right-0 h-full w-full max-w-md bg-cream dark:bg-indigo-950 border-l border-[var(--line)] z-[70] flex flex-col shadow-2xl drawer" x-cloak>
+  <div class="p-6 border-b border-[var(--line)] flex items-center justify-between shrink-0">
+    <h3 class="font-display text-xl font-bold flex items-center gap-2">
+      <i class="fa-solid fa-bag-shopping text-marigold"></i> Your Basket
+    </h3>
+    <button @click="cartOpen = false" class="w-9 h-9 rounded-full hover:bg-indigo-800/10 dark:hover:bg-indigo-800 flex items-center justify-center transition-colors">
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+  </div>
+
+  <div class="px-6 pt-6 shrink-0" x-show="cart.length > 0">
+    <div class="text-xs mb-2 flex items-center gap-2" :class="cartSubtotal >= 499 ? 'text-success' : 'text-cream-dim'">
+      <i :class="cartSubtotal >= 499 ? 'fa-solid fa-circle-check' : 'fa-solid fa-truck'" class="text-sm"></i>
+      <span x-show="cartSubtotal < 499">Add <strong class="text-marigold" x-text="'₹' + (499 - cartSubtotal)"></strong> more for FREE delivery</span>
+      <span x-show="cartSubtotal >= 499" class="font-bold">You've unlocked FREE delivery!</span>
+    </div>
+    <div class="h-2 bg-indigo-800/20 dark:bg-indigo-800 rounded-full overflow-hidden">
+      <div class="h-full rounded-full transition-all duration-700 ease-out" :class="cartSubtotal >= 499 ? 'bg-success' : 'bg-gradient-to-r from-marigold-deep to-marigold'" :style="'width: ' + Math.min(100, (cartSubtotal / 499) * 100) + '%'"></div>
+    </div>
+  </div>
+
+  <div class="flex-1 overflow-y-auto p-6 space-y-4">
+    <template x-for="item in cart" :key="item.key">
+      <div class="flex gap-4 bg-indigo-900/50 dark:bg-indigo-900 rounded-xl p-3 border border-[var(--line)]">
+        <img :src="getProduct(item.id).img" width="80" height="80" class="w-20 h-20 rounded-lg object-cover shrink-0" loading="lazy" decoding="async" :alt="getProduct(item.id).name" />
+        <div class="flex-1 min-w-0 flex flex-col justify-between">
+          <div>
+            <h4 class="font-semibold text-sm line-clamp-1" x-text="getProduct(item.id).name"></h4>
+            <div class="text-xs text-cream-dim mt-0.5" x-text="item.variant"></div>
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex items-center gap-2 bg-cream dark:bg-indigo-950 rounded-full border border-[var(--line)] p-0.5">
+              <button @click="updateQty(item.key, -1)" class="w-7 h-7 rounded-full flex items-center justify-center hover:bg-marigold hover:text-indigo-950 transition-colors text-xs font-bold">−</button>
+              <span class="text-xs font-bold w-4 text-center" x-text="item.qty"></span>
+              <button @click="updateQty(item.key, 1)" class="w-7 h-7 rounded-full flex items-center justify-center hover:bg-marigold hover:text-indigo-950 transition-colors text-xs font-bold">+</button>
+            </div>
+            <span class="font-display font-bold text-sm" x-text="'₹' + (cartItemPrice(item) * item.qty)"></span>
+          </div>
+        </div>
+        <button @click="removeFromCart(item.key)" class="text-cream-dim hover:text-coral transition-colors self-start p-1">
+          <i class="fa-solid fa-trash-can text-sm"></i>
+        </button>
+      </div>
+    </template>
+    <div x-show="cart.length === 0" class="text-center py-16">
+      <svg viewBox="0 0 120 100" width="110" height="92" class="mx-auto mb-4 opacity-40">
+        <path d="M20 40 L100 40 L92 92 L28 92 Z" fill="none" stroke="#ffa630" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M38 40 C38 20 82 20 82 40" fill="none" stroke="#ffa630" stroke-width="3"/>
+        <line x1="40" y1="55" x2="80" y2="55" stroke="#ffa630" stroke-width="2" opacity="0.5"/>
+        <line x1="40" y1="68" x2="80" y2="68" stroke="#ffa630" stroke-width="2" opacity="0.5"/>
+        <line x1="42" y1="81" x2="78" y2="81" stroke="#ffa630" stroke-width="2" opacity="0.5"/>
+      </svg>
+      <h3 class="font-display text-lg font-bold mb-1">Your basket is empty</h3>
+      <p class="text-sm text-cream-dim mb-6">Time to fix that. Add some goodies!</p>
+      <button @click="cartOpen = false" class="px-6 py-2.5 rounded-full bg-marigold text-indigo-950 font-bold text-sm hover:bg-coral hover:text-white transition-all duration-300">Start Shopping</button>
+    </div>
+  </div>
+
+  <div x-show="cart.length > 0" class="p-6 border-t border-[var(--line)] bg-cream dark:bg-indigo-950 shrink-0 overflow-y-auto max-h-[60vh]">
+    <div class="flex gap-2 mb-4">
+      <input x-model="couponInput" type="text" placeholder="Try KIRANA10" class="flex-1 px-4 py-2.5 rounded-xl bg-indigo-900 dark:bg-indigo-900 border border-[var(--line)] text-sm outline-none focus:border-marigold transition-colors" />
+      <button @click="applyCoupon()" class="px-4 py-2.5 rounded-xl bg-indigo-800 text-cream text-sm font-bold hover:bg-marigold hover:text-indigo-950 transition-all duration-300">Apply</button>
+    </div>
+    <div x-show="appliedCoupon" class="flex items-center gap-2 text-xs text-success mb-4">
+      <i class="fa-solid fa-circle-check"></i>
+      <span x-text="'Code ' + appliedCoupon + ' applied — you save ₹' + discount"></span>
+    </div>
+
+    <div class="mb-4">
+      <div class="text-xs font-bold uppercase tracking-widest text-cream-dim mb-2">Delivery Slot</div>
+      <div class="flex flex-wrap gap-2">
+        <template x-for="s in slots" :key="s">
+          <button @click="deliverySlot = s" :class="deliverySlot === s ? 'bg-marigold text-indigo-950 border-marigold' : 'border-[var(--line)] text-cream-dim hover:border-marigold'" class="px-3 py-1.5 rounded-full border text-xs font-medium transition-colors" x-text="s"></button>
+        </template>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <div class="text-xs font-bold uppercase tracking-widest text-cream-dim mb-2">Payment Method</div>
+      <div class="flex flex-wrap gap-2">
+        <template x-for="m in paymentMethods" :key="m">
+          <button @click="paymentMethod = m" :class="paymentMethod === m ? 'bg-marigold text-indigo-950 border-marigold' : 'border-[var(--line)] text-cream-dim hover:border-marigold'" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition-colors">
+            <i :class="getPaymentIcon(m)" class="text-xs"></i> <span x-text="m"></span>
+          </button>
+        </template>
+      </div>
+    </div>
+
+    <div class="space-y-2 text-sm mb-4">
+      <div class="flex justify-between text-cream-dim"><span>Subtotal</span><span x-text="'₹' + cartSubtotal"></span></div>
+      <div x-show="discount > 0" class="flex justify-between text-success"><span>Discount</span><span x-text="'-₹' + discount"></span></div>
+      <div class="flex justify-between text-cream-dim"><span>Delivery</span><span x-text="cartSubtotal >= 499 ? 'FREE' : '₹40'"></span></div>
+      <div class="flex justify-between font-display font-bold text-lg pt-3 border-t border-[var(--line)]">
+        <span>Total</span>
+        <span class="text-marigold" x-text="'₹' + cartTotal"></span>
+      </div>
+      <div class="flex items-center gap-1.5 text-xs text-cream-dim pt-1"><i class="fa-solid fa-star text-marigold"></i> <span x-text="'Earn ' + pointsPreview + ' reward points on this order'"></span></div>
+    </div>
+    <button @click="checkout()" class="w-full py-4 rounded-full bg-gradient-to-r from-marigold to-marigold-deep text-indigo-950 font-bold shadow-lg hover:shadow-marigold/30 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
+      <i class="fa-solid fa-lock text-sm"></i> Checkout Securely
+    </button>
+  </div>
+</aside>
+
+<div x-show="wishlistOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm" @click.self="wishlistOpen = false" x-cloak></div>
+
+<aside x-show="wishlistOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="fixed top-0 right-0 h-full w-full max-w-md bg-cream dark:bg-indigo-950 border-l border-[var(--line)] z-[70] flex flex-col shadow-2xl drawer" x-cloak>
+  <div class="p-6 border-b border-[var(--line)] flex items-center justify-between shrink-0">
+    <h3 class="font-display text-xl font-bold flex items-center gap-2">
+      <i class="fa-solid fa-heart text-coral"></i> Your Wishlist
+    </h3>
+    <button @click="wishlistOpen = false" class="w-9 h-9 rounded-full hover:bg-indigo-800/10 dark:hover:bg-indigo-800 flex items-center justify-center transition-colors">
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+  </div>
+  <div class="flex-1 overflow-y-auto p-6 space-y-4">
+    <template x-for="id in wishlist" :key="'w-' + id">
+      <div class="flex gap-4 bg-indigo-900/50 dark:bg-indigo-900 rounded-xl p-3 border border-[var(--line)]">
+        <img :src="getProduct(id).img" width="80" height="80" class="w-20 h-20 rounded-lg object-cover shrink-0" loading="lazy" decoding="async" :alt="getProduct(id).name" />
+        <div class="flex-1 min-w-0 flex flex-col justify-between">
+          <div>
+            <h4 class="font-semibold text-sm line-clamp-1" x-text="getProduct(id).name"></h4>
+            <div class="text-xs text-marigold font-bold mt-0.5" x-text="'₹' + getProduct(id).price"></div>
+          </div>
+          <button @click="moveWishToCart(id)" class="self-start text-xs font-bold text-indigo-950 bg-marigold px-3 py-1.5 rounded-full hover:bg-coral hover:text-white transition-all duration-300 mt-2">Move to Basket</button>
+        </div>
+        <button @click="toggleWish(id)" class="text-cream-dim hover:text-coral transition-colors self-start p-1">
+          <i class="fa-solid fa-trash-can text-sm"></i>
+        </button>
+      </div>
+    </template>
+    <div x-show="wishlist.length === 0" class="text-center py-16">
+      <svg viewBox="0 0 100 90" width="100" height="90" class="mx-auto mb-4 opacity-40">
+        <path d="M50 82 C20 62 6 44 6 27 C6 12 18 4 32 4 C42 4 48 10 50 16 C52 10 58 4 68 4 C82 4 94 12 94 27 C94 44 80 62 50 82 Z" fill="none" stroke="#ff6f59" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+      <h3 class="font-display text-lg font-bold mb-1">Your wishlist is empty</h3>
+      <p class="text-sm text-cream-dim mb-6">Tap the heart on any product to save it here.</p>
+      <button @click="wishlistOpen = false" class="px-6 py-2.5 rounded-full bg-marigold text-indigo-950 font-bold text-sm hover:bg-coral hover:text-white transition-all duration-300">Browse Products</button>
+    </div>
+  </div>
+</aside>
+
+<div x-show="ordersOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm" @click.self="ordersOpen = false" x-cloak></div>
+
+<aside x-show="ordersOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="fixed top-0 left-0 h-full w-full max-w-md bg-cream dark:bg-indigo-950 border-r border-[var(--line)] z-[70] flex flex-col shadow-2xl drawer" x-cloak>
+  <div class="p-6 border-b border-[var(--line)] flex items-center justify-between shrink-0">
+    <div>
+      <h3 class="font-display text-xl font-bold flex items-center gap-2">
+        <i class="fa-solid fa-receipt text-marigold"></i> My Orders
+      </h3>
+      <div class="text-xs text-cream-dim mt-1 flex items-center gap-1.5"><i class="fa-solid fa-star text-marigold"></i> <span x-text="rewardPoints + ' reward points'"></span></div>
+    </div>
+    <button @click="ordersOpen = false" class="w-9 h-9 rounded-full hover:bg-indigo-800/10 dark:hover:bg-indigo-800 flex items-center justify-center transition-colors">
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+  </div>
+  <div class="flex-1 overflow-y-auto p-6 space-y-4">
+    <template x-for="o in orders" :key="o.id">
+      <div class="bg-indigo-900/50 dark:bg-indigo-900 rounded-xl p-4 border border-[var(--line)]">
+        <div class="flex items-center justify-between mb-1">
+          <span class="font-display font-bold text-sm" x-text="o.id"></span>
+          <span class="text-xs text-cream-dim" x-text="formatDate(o.date)"></span>
+        </div>
+        <div class="text-xs text-cream-dim mb-3" x-text="o.items.reduce((s,i) => s + i.qty, 0) + ' item(s) · ₹' + o.total + ' · ' + o.payment"></div>
+        <div class="step-track mb-2">
+          <div class="step-dot done"></div><div class="step-line done"></div>
+          <div class="step-dot"></div><div class="step-line"></div>
+          <div class="step-dot"></div><div class="step-line"></div>
+          <div class="step-dot"></div>
+        </div>
+        <div class="flex justify-between text-[10px] text-cream-dim uppercase tracking-wide">
+          <span class="text-marigold font-bold">Placed</span><span>Packed</span><span>Shipped</span><span>Delivered</span>
+        </div>
+        <div class="text-xs text-cream-dim mt-3"><i class="fa-regular fa-clock mr-1 text-marigold"></i> Arriving <span x-text="o.slot"></span></div>
+      </div>
+    </template>
+    <div x-show="orders.length === 0" class="text-center py-16">
+      <i class="fa-solid fa-receipt text-5xl text-marigold/30 mx-auto mb-4"></i>
+      <h3 class="font-display text-lg font-bold mb-1">No orders yet</h3>
+      <p class="text-sm text-cream-dim mb-6">Your placed orders will show up here.</p>
+      <button @click="ordersOpen = false" class="px-6 py-2.5 rounded-full bg-marigold text-indigo-950 font-bold text-sm hover:bg-coral hover:text-white transition-all duration-300">Start Shopping</button>
+    </div>
+  </div>
+</aside>
+
+<div x-show="quickView" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-[80] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4" @click.self="quickView = null" x-cloak>
+  <div x-show="quickView" x-transition:enter="transition ease-out duration-200 transform" x-transition:enter-start="scale-95 opacity-0" x-transition:enter-end="scale-100 opacity-100" x-transition:leave="transition ease-in duration-150 transform" x-transition:leave-start="scale-100 opacity-100" x-transition:leave-end="scale-95 opacity-0" class="bg-cream dark:bg-indigo-950 border border-[var(--line)] rounded-3xl max-w-3xl w-full overflow-hidden grid md:grid-cols-2 shadow-2xl max-h-[90vh] modal">
+    <template x-if="quickView">
+      <div class="relative bg-indigo-800">
+        <img :src="quickView.img" width="600" height="600" class="w-full h-full object-cover min-h-[320px]" loading="eager" decoding="async" :alt="quickView.name" />
+        <span x-show="quickView.badge && quickView.stock > 0" class="absolute top-4 left-4 bg-coral text-white text-xs font-bold px-3 py-1 rounded-full" x-text="quickView.badge"></span>
+        <span x-show="quickView.stock === 0" class="absolute inset-0 bg-indigo-950/70 flex items-center justify-center text-cream text-sm font-bold uppercase tracking-widest">Out of Stock</span>
+      </div>
+    </template>
+    <div class="p-8 relative overflow-y-auto">
+      <button @click="quickView = null" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-indigo-800/50 hover:bg-coral flex items-center justify-center transition-colors">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+      <template x-if="quickView">
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <div class="veg-icon"></div>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-marigold" x-text="quickView.cat"></span>
+          </div>
+          <h2 class="font-display text-3xl font-bold mb-3" x-text="quickView.name"></h2>
+          <div class="flex items-center gap-2 text-sm text-cream-dim mb-6">
+            <div class="flex text-marigold">
+              <template x-for="i in 5">
+                <i :class="i <= Math.round(quickView.rating) ? 'fa-solid fa-star' : 'fa-regular fa-star'" class="text-xs"></i>
+              </template>
+            </div>
+            <span x-text="quickView.rating + ' · ' + quickView.reviews + ' reviews'"></span>
+          </div>
+          <p class="text-cream-dim leading-relaxed mb-6" x-text="quickView.desc"></p>
+
+          <div x-show="quickView.variants" class="mb-6">
+            <div class="text-xs font-bold uppercase tracking-widest text-cream-dim mb-2">Choose Weight</div>
+            <div class="flex flex-wrap gap-2">
+              <template x-for="v in (quickView.variants || [])" :key="v.label">
+                <button @click="modalVariant = v.label" :class="modalVariant === v.label ? 'bg-marigold text-indigo-950 border-marigold' : 'border-[var(--line)] text-cream-dim hover:border-marigold'" class="px-4 py-2 rounded-xl border text-sm font-medium transition-colors" x-text="v.label"></button>
+              </template>
+            </div>
+          </div>
+
+          <div class="flex items-end gap-3 mb-2">
+            <span class="font-display text-3xl font-bold text-marigold" x-text="'₹' + getVariant(quickView, modalVariant).price"></span>
+            <span x-show="getVariant(quickView, modalVariant).mrp > getVariant(quickView, modalVariant).price" class="text-cream-dim line-through text-lg" x-text="'₹' + getVariant(quickView, modalVariant).mrp"></span>
+            <span x-show="getVariant(quickView, modalVariant).mrp > getVariant(quickView, modalVariant).price" class="text-xs font-bold text-success bg-success/10 px-2 py-1 rounded" x-text="Math.round((1 - getVariant(quickView, modalVariant).price/getVariant(quickView, modalVariant).mrp)*100) + '% OFF'"></span>
+          </div>
+          <div x-show="quickView.stock > 0 && quickView.stock <= 5" class="text-xs font-bold text-coral mb-6" x-text="'Only ' + quickView.stock + ' left in stock'"></div>
+          <div x-show="quickView.stock > 5" class="mb-6"></div>
+
+          <template x-if="quickView.stock > 0">
+            <div>
+              <div class="flex items-center gap-4 mb-8">
+                <span class="text-sm font-medium">Qty:</span>
+                <div class="flex items-center gap-3 bg-indigo-900 dark:bg-indigo-900 rounded-full border border-[var(--line)] p-1">
+                  <button @click="modalQty = Math.max(1, modalQty - 1)" class="w-9 h-9 rounded-full bg-marigold text-indigo-950 flex items-center justify-center font-bold hover:bg-coral hover:text-white transition-colors">−</button>
+                  <span class="text-sm font-bold w-6 text-center" x-text="modalQty"></span>
+                  <button @click="modalQty++" class="w-9 h-9 rounded-full bg-marigold text-indigo-950 flex items-center justify-center font-bold hover:bg-coral hover:text-white transition-colors">+</button>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <button @click="addToCart(quickView.id, modalVariant, true, modalQty); const n = quickView.name; quickView = null; modalQty = 1; showToast(n + ' added to basket', 'fa-circle-check')" class="flex-1 py-3.5 rounded-full bg-marigold text-indigo-950 font-bold hover:bg-coral hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-bag-shopping text-sm"></i> Add to Basket
+                </button>
+                <button @click="toggleWish(quickView.id)" class="w-12 h-12 rounded-full border border-[var(--line)] flex items-center justify-center hover:border-coral hover:text-coral transition-colors" :class="isWished(quickView.id) ? 'text-coral border-coral' : 'text-cream-dim'">
+                  <i :class="isWished(quickView.id) ? 'fa-solid fa-heart' : 'fa-regular fa-heart'" class="text-lg"></i>
+                </button>
+              </div>
+            </div>
+          </template>
+          <template x-if="quickView.stock === 0">
+            <button @click="notifyMe(quickView.id)" class="w-full py-3.5 rounded-full border border-[var(--line)] font-bold hover:border-marigold hover:text-marigold transition-all duration-300 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-bell text-sm"></i> Notify Me When Available
+            </button>
+          </template>
+
+          <div x-show="relatedProducts(quickView).length > 0" class="mt-8 pt-6 border-t border-[var(--line)]">
+            <div class="text-xs font-bold uppercase tracking-widest text-cream-dim mb-3">You may also like</div>
+            <div class="flex gap-3 overflow-x-auto no-scrollbar">
+              <template x-for="rp in relatedProducts(quickView)" :key="'rel-' + rp.id">
+                <button @click="openQuickView(rp)" class="shrink-0 w-24 text-left">
+                  <img :src="rp.img" width="96" height="72" class="w-24 h-18 rounded-lg object-cover" loading="lazy" decoding="async" :alt="rp.name" />
+                  <div class="text-[11px] font-semibold mt-1 line-clamp-1" x-text="rp.name"></div>
+                  <div class="text-[11px] text-marigold font-bold" x-text="'₹' + rp.price"></div>
+                </button>
+              </template>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+</div>
+
+<div x-show="pincodeModalOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-[80] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4" @click.self="pincodeModalOpen = false" x-cloak>
+  <div class="bg-cream dark:bg-indigo-950 border border-[var(--line)] rounded-3xl max-w-sm w-full p-8 relative shadow-2xl modal">
+    <button @click="pincodeModalOpen = false" class="absolute top-4 right-4 w-9 h-9 rounded-full hover:bg-indigo-800/10 dark:hover:bg-indigo-800 flex items-center justify-center transition-colors">
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+    <i class="fa-solid fa-location-dot text-marigold text-2xl mb-4"></i>
+    <h3 class="font-display text-2xl font-bold mb-2">Check delivery</h3>
+    <p class="text-sm text-cream-dim mb-6">Enter your pincode to see estimated delivery time in your area.</p>
+    <div class="flex gap-2 mb-3">
+      <input x-model="pincodeInput" @keydown.enter="checkPincode()" type="text" maxlength="6" placeholder="e.g. 400001" class="flex-1 px-4 py-3 rounded-xl bg-indigo-900/10 dark:bg-indigo-900 border border-[var(--line)] text-sm outline-none focus:border-marigold transition-colors" />
+      <button @click="checkPincode()" class="px-5 py-3 rounded-xl bg-marigold text-indigo-950 text-sm font-bold hover:bg-coral hover:text-white transition-all duration-300">Check</button>
+    </div>
+    <div x-show="pincodeChecked && pincodeServiceable" class="flex items-center gap-2 text-sm text-success" x-cloak>
+      <i class="fa-solid fa-circle-check"></i> <span x-text="'Delivering to ' + pincodeInput + ' — ' + pincodeEta"></span>
+    </div>
+    <div x-show="pincodeChecked && !pincodeServiceable" class="flex items-center gap-2 text-sm text-coral" x-cloak>
+      <i class="fa-solid fa-circle-xmark"></i> Sorry, we don't deliver to this pincode yet
+    </div>
+  </div>
+</div>
+
+<div x-show="orderConfirmOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-[85] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4" x-cloak>
+  <div class="bg-cream dark:bg-indigo-950 border border-[var(--line)] rounded-3xl max-w-sm w-full p-8 text-center shadow-2xl modal">
+    <i class="fa-solid fa-circle-check text-success text-5xl mb-4"></i>
+    <h3 class="font-display text-2xl font-bold mb-1">Order placed!</h3>
+    <p class="text-sm text-cream-dim mb-6">Thank you for shopping with your neighbourhood bazaar.</p>
+    <template x-if="lastOrder">
+      <div class="bg-indigo-900/50 dark:bg-indigo-900 rounded-2xl p-5 text-left space-y-2 text-sm mb-6">
+        <div class="flex justify-between"><span class="text-cream-dim">Order ID</span><strong x-text="lastOrder.id"></strong></div>
+        <div class="flex justify-between"><span class="text-cream-dim">Arriving</span><strong x-text="lastOrder.slot"></strong></div>
+        <div class="flex justify-between"><span class="text-cream-dim">Total Paid</span><strong x-text="'₹' + lastOrder.total"></strong></div>
+        <div class="flex justify-between text-marigold"><span>Points Earned</span><strong x-text="'+' + lastOrderPoints"></strong></div>
+      </div>
+    </template>
+    <div class="flex gap-3">
+      <button @click="orderConfirmOpen = false; ordersOpen = true" class="flex-1 py-3 rounded-full border border-[var(--line)] font-bold text-sm hover:border-marigold hover:text-marigold transition-colors">Track Order</button>
+      <button @click="orderConfirmOpen = false" class="flex-1 py-3 rounded-full bg-marigold text-indigo-950 font-bold text-sm hover:bg-coral hover:text-white transition-all duration-300">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] flex flex-col gap-3 pointer-events-none w-full max-w-sm px-4">
+  <template x-for="t in toasts" :key="t.id">
+    <div x-show="t.show" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-4" class="pointer-events-auto bg-cream dark:bg-indigo-900 border border-[var(--line)] border-l-4 rounded-xl shadow-2xl px-5 py-4 flex items-center gap-4" :class="t.type === 'remove' ? 'border-l-coral' : 'border-l-marigold'">
+      <i :class="[t.icon, t.type === 'remove' ? 'text-coral' : 'text-marigold']" class="text-lg"></i>
+      <div class="text-sm font-semibold" x-text="t.title"></div>
+    </div>
+  </template>
+</div>
+
+<a :href="waLink" target="_blank" rel="noopener" class="wa-fab fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-300" title="Order on WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.9c1.8 1 3.9 1.5 6.3 1.5 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-2 0-3.9-.5-5.5-1.5l-.4-.2-4.6 1.2 1.2-4.5-.3-.4C5.3 17.8 4.8 16.4 4.8 15c0-6.2 5-11.2 11.2-11.2S27.2 8.8 27.2 15 22.2 24.8 16 24.8zm6.1-8.4c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.2 3.3 5.2 4.7.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/></svg>
+</a>
+
+<button x-show="showTop" @click="window.scrollTo({top:0, behavior:'smooth'})" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-4" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-marigold text-indigo-950 shadow-lg flex items-center justify-center hover:bg-coral hover:text-white hover:scale-110 transition-all duration-300" x-cloak>
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+function kirana() {
+  return {
+    loading: true,
+    darkMode: false,
+    cartOpen: false,
+    wishlistOpen: false,
+    ordersOpen: false,
+    searchOpen: false,
+    mobileMenu: false,
+    quickView: null,
+    modalQty: 1,
+    modalVariant: null,
+    searchQuery: '',
+    activeCat: 'all',
+    sortBy: 'feat',
+    maxPrice: 900,
+    inStockOnly: false,
+    couponInput: '',
+    appliedCoupon: null,
+    copied: false,
+    showTop: false,
+    pincodeModalOpen: false,
+    pincodeInput: '',
+    pincodeChecked: false,
+    pincodeServiceable: false,
+    pincodeEta: '',
+    deliveryPincode: '400001',
+    deliverySlot: 'Today, 6–8 PM',
+    paymentMethod: 'Cash on Delivery',
+    orderConfirmOpen: false,
+    lastOrder: null,
+    lastOrderPoints: 0,
+    rewardPoints: 0,
+    activeFaq: 0,
+    cart: [],
+    wishlist: [],
+    orders: [],
+    recentlyViewed: [],
+    toasts: [],
+
+    categories: ['all', 'Pantry', 'Spices', 'Snacks', 'Home', 'Wellness', 'Craft'],
+    slots: ['Today, 6–8 PM', 'Tomorrow, 8–10 AM', 'Tomorrow, 5–7 PM'],
+    paymentMethods: ['Cash on Delivery', 'UPI', 'Credit / Debit Card'],
+
+    faqs: [
+      { q: 'How fast is delivery?', a: 'Most orders reach you within 24–48 hours. Pick a delivery slot at checkout and we will do our best to hit it.' },
+      { q: 'What is the minimum order for free delivery?', a: 'Orders above ₹499 ship free. Below that, a flat ₹40 delivery fee applies.' },
+      { q: 'Can I return a product?', a: 'Yes, unopened staples and non-perishable items can be returned within 7 days of delivery for a full refund.' },
+      { q: 'Which payment methods do you accept?', a: 'We accept Cash on Delivery, UPI and all major credit and debit cards at checkout.' },
+      { q: 'Where do your products come from?', a: 'We work directly with local mills, spice roasters and artisan collectives across India, and every batch is quality-checked before it ships.' }
+    ],
+
+    testimonials: [
+      { name: 'Meera Iyer', city: 'Bengaluru', rating: 5, text: 'The garam masala tastes exactly like what my grandmother used to grind at home. Delivery was quick too.' },
+      { name: 'Rohan Deshmukh', city: 'Pune', rating: 5, text: 'Ordered the brass diya set for Diwali and it arrived beautifully packed, no chips or scratches at all.' },
+      { name: 'Ayesha Khan', city: 'Hyderabad', rating: 4, text: 'Great range of everyday staples. Wish they had more variety in the wellness section, but overall very reliable.' },
+      { name: 'Karthik Subramaniam', city: 'Chennai', rating: 5, text: 'The Assam chai is now a permanent fixture in our kitchen. Fresh, malty and always delivered on time.' },
+      { name: 'Priya Nair', city: 'Kochi', rating: 5, text: 'Customer support actually picks up the phone. Helped me swap an item within minutes.' },
+      { name: 'Vikram Chauhan', city: 'Jaipur', rating: 4, text: 'Good prices compared to the local market, and the coupon at checkout made it even better.' }
+    ],
+
+    products: [
+      { id:1, cat:'Spices', name:'Stone-Ground Garam Masala', price:189, mrp:229, rating:4.8, reviews:212, badge:'Bestseller', img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=400&q=80', desc:'A small-batch blend of roasted whole spices, ground fresh in-store every week.', unit:'100 g', stock:34, variants:[{label:'100 g',price:189,mrp:229},{label:'250 g',price:420,mrp:499},{label:'500 g',price:780,mrp:899}] },
+      { id:2, cat:'Snacks', name:'Handmade Banana Chips', price:99, mrp:120, rating:4.6, reviews:154, badge:'New', img:'https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=400&q=80', desc:'Thin-sliced and slow-fried in coconut oil, finished with rock salt.', unit:'200 g', stock:4 },
+      { id:3, cat:'Craft', name:'Brass Diya Set (Pack of 6)', price:349, mrp:420, rating:4.9, reviews:301, badge:'Bestseller', img:'https://images.unsplash.com/photo-1604423043492-3ac48e9573b5?auto=format&fit=crop&w=400&q=80', desc:'Hand-cast brass diyas, polished to a warm glow.', unit:'Pack of 6', stock:12 },
+      { id:4, cat:'Wellness', name:'Cold-Pressed Coconut Oil', price:259, mrp:299, rating:4.7, reviews:98, badge:'', img:'https://images.unsplash.com/photo-1519862555026-ecdb0f1e3e78?auto=format&fit=crop&w=400&q=80', desc:'Extracted the traditional way, without heat.', unit:'250 ml', stock:21, variants:[{label:'250 ml',price:259,mrp:299},{label:'500 ml',price:469,mrp:540},{label:'1 L',price:869,mrp:999}] },
+      { id:5, cat:'Craft', name:'Handwoven Cane Basket', price:449, mrp:549, rating:4.5, reviews:67, badge:'', img:'https://images.unsplash.com/photo-1622467827417-bbe6b1720ff5?auto=format&fit=crop&w=400&q=80', desc:'Woven by artisan collectives, sturdy and beautiful.', unit:'1 piece', stock:0 },
+      { id:6, cat:'Pantry', name:'Assam Orthodox Chai', price:159, mrp:190, rating:4.8, reviews:410, badge:'Bestseller', img:'https://images.unsplash.com/photo-1597318181409-cf64d0b5d8ee?auto=format&fit=crop&w=400&q=80', desc:'Full-leaf, malty and bold morning chai.', unit:'100 g', stock:58, variants:[{label:'100 g',price:159,mrp:190},{label:'250 g',price:365,mrp:430},{label:'500 g',price:699,mrp:820}] },
+      { id:7, cat:'Snacks', name:'Roasted Masala Peanuts', price:79, mrp:95, rating:4.4, reviews:88, badge:'', img:'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=400&q=80', desc:'Slow-roasted and tossed in a tangy spice mix.', unit:'200 g', stock:3 },
+      { id:8, cat:'Home', name:'Copper Water Bottle', price:399, mrp:499, rating:4.6, reviews:143, badge:'New', img:'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=400&q=80', desc:'Food-grade copper, hand-hammered finish.', unit:'1 piece', stock:17 },
+      { id:9, cat:'Wellness', name:'Ayurvedic Herbal Soap Bar', price:129, mrp:150, rating:4.7, reviews:76, badge:'', img:'https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?auto=format&fit=crop&w=400&q=80', desc:'Cold-processed with neem, tulsi and sandalwood.', unit:'1 bar', stock:40 },
+      { id:10, cat:'Craft', name:'Block-Print Table Runner', price:299, mrp:360, rating:4.5, reviews:52, badge:'', img:'https://images.unsplash.com/photo-1584589167171-541ce45f1eea?auto=format&fit=crop&w=400&q=80', desc:'Hand block-printed on pure cotton.', unit:'1 piece', stock:9 },
+      { id:11, cat:'Pantry', name:'Wildflower Forest Honey', price:219, mrp:260, rating:4.9, reviews:189, badge:'Bestseller', img:'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=400&q=80', desc:'Raw and unfiltered, harvested from forest apiaries.', unit:'250 g', stock:26, variants:[{label:'250 g',price:219,mrp:260},{label:'500 g',price:399,mrp:470},{label:'1 kg',price:749,mrp:880}] },
+      { id:12, cat:'Snacks', name:'Jaggery Til Ladoo (Box of 12)', price:189, mrp:220, rating:4.8, reviews:134, badge:'New', img:'https://images.unsplash.com/photo-1606471191009-63994c53433b?auto=format&fit=crop&w=400&q=80', desc:'Sesame and jaggery rolled the old way.', unit:'Box of 12', stock:15 }
+    ],
+
+    get cartCount() { return this.cart.reduce((s, i) => s + i.qty, 0); },
+    get cartSubtotal() { return this.cart.reduce((s, i) => s + (this.cartItemPrice(i) * i.qty), 0); },
+    get discount() { return (this.appliedCoupon === 'KIRANA10' && this.cartSubtotal >= 499) ? Math.round(this.cartSubtotal * 0.10) : 0; },
+    get cartTotal() { return this.cartSubtotal - this.discount + (this.cartSubtotal >= 499 || this.cartSubtotal === 0 ? 0 : 40); },
+    get pointsPreview() { return Math.floor(this.cartTotal / 20); },
+    get storeOpen() { const h = new Date().getHours(); return h >= 8 && h < 22; },
+    get searchSuggestions() {
+      if (!this.searchQuery) return [];
+      const q = this.searchQuery.toLowerCase();
+      return this.products.filter(p => p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)).slice(0, 6);
+    },
+    get waLink() {
+      const base = 'https://wa.me/911234567890?text=';
+      let msg;
+      if (this.cart.length === 0) {
+        msg = 'Hi! I would like to place an order at Kirana Cart.';
+      } else {
+        const lines = this.cart.map(i => '- ' + this.getProduct(i.id).name + ' (' + i.variant + ') x' + i.qty).join('\n');
+        msg = 'Hi! I would like to order:\n' + lines + '\n\nTotal: Rs ' + this.cartTotal;
+      }
+      return base + encodeURIComponent(msg);
+    },
+
+    get filteredProducts() {
+      let list = this.products;
+      if (this.activeCat !== 'all') list = list.filter(p => p.cat === this.activeCat);
+      if (this.searchQuery) {
+        const q = this.searchQuery.toLowerCase();
+        list = list.filter(p => p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q));
+      }
+      list = list.filter(p => p.price <= this.maxPrice);
+      if (this.inStockOnly) list = list.filter(p => p.stock > 0);
+      if (this.sortBy === 'low') list = [...list].sort((a, b) => a.price - b.price);
+      if (this.sortBy === 'high') list = [...list].sort((a, b) => b.price - a.price);
+      if (this.sortBy === 'rating') list = [...list].sort((a, b) => b.rating - a.rating);
+      return list;
+    },
+
+    init() {
+      setTimeout(() => { this.loading = false; }, 800);
+      this.loadPrefs();
+
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            this.showTop = window.scrollY > 500;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          this.quickView = null;
+          this.cartOpen = false;
+          this.wishlistOpen = false;
+          this.ordersOpen = false;
+          this.pincodeModalOpen = false;
+          this.orderConfirmOpen = false;
+          this.searchOpen = false;
+          this.mobileMenu = false;
+        }
+      });
+
+      this.$watch('quickView', () => this.syncOverflow());
+      this.$watch('cartOpen', () => this.syncOverflow());
+      this.$watch('wishlistOpen', () => this.syncOverflow());
+      this.$watch('ordersOpen', () => this.syncOverflow());
+      this.$watch('pincodeModalOpen', () => this.syncOverflow());
+      this.$watch('orderConfirmOpen', () => this.syncOverflow());
+    },
+
+    syncOverflow() {
+      const anyOpen = this.quickView || this.cartOpen || this.wishlistOpen || this.ordersOpen || this.pincodeModalOpen || this.orderConfirmOpen;
+      document.body.style.overflow = anyOpen ? 'hidden' : '';
+    },
+
+    loadPrefs() {
+      try {
+        const p = JSON.parse(localStorage.getItem('kc_prefs') || '{}');
+        if (p.darkMode !== undefined) this.darkMode = p.darkMode;
+        if (p.cart) this.cart = p.cart;
+        if (p.wishlist) this.wishlist = p.wishlist;
+        if (p.orders) this.orders = p.orders;
+        if (p.recentlyViewed) this.recentlyViewed = p.recentlyViewed;
+        if (p.rewardPoints) this.rewardPoints = p.rewardPoints;
+        if (p.deliveryPincode) this.deliveryPincode = p.deliveryPincode;
+      } catch(e) {}
+    },
+
+    savePrefs() {
+      localStorage.setItem('kc_prefs', JSON.stringify({
+        darkMode: this.darkMode, cart: this.cart, wishlist: this.wishlist,
+        orders: this.orders, recentlyViewed: this.recentlyViewed,
+        rewardPoints: this.rewardPoints, deliveryPincode: this.deliveryPincode
+      }));
+    },
+
+    getProduct(id) { return this.products.find(p => p.id === id) || {}; },
+
+    getVariant(p, label) {
+      if (!p) return { label: '', price: 0, mrp: 0 };
+      if (p.variants) return p.variants.find(v => v.label === label) || p.variants[0];
+      return { label: p.unit, price: p.price, mrp: p.mrp };
+    },
+
+    defaultVariantLabel(p) { return p.variants ? p.variants[0].label : p.unit; },
+    cardKey(p) { return p.id + '_' + this.defaultVariantLabel(p); },
+
+    cartItemPrice(item) {
+      const p = this.getProduct(item.id);
+      return this.getVariant(p, item.variant).price;
+    },
+
+    getCatIcon(cat) {
+      const icons = { 'all': 'fa-border-all', 'Pantry': 'fa-wheat-awn', 'Spices': 'fa-jar', 'Snacks': 'fa-cookie-bite', 'Home': 'fa-house', 'Wellness': 'fa-leaf', 'Craft': 'fa-hands' };
+      return 'fa-solid ' + (icons[cat] || 'fa-circle');
+    },
+
+    getPaymentIcon(m) {
+      const icons = { 'Cash on Delivery': 'fa-solid fa-money-bill-wave', 'UPI': 'fa-solid fa-mobile-screen-button', 'Credit / Debit Card': 'fa-solid fa-credit-card' };
+      return icons[m] || 'fa-solid fa-wallet';
+    },
+
+    getCartQty(key) { const item = this.cart.find(i => i.key === key); return item ? item.qty : 0; },
+    getProductTotalQty(id) { return this.cart.filter(i => i.id === id).reduce((s, i) => s + i.qty, 0); },
+    isWished(id) { return this.wishlist.includes(id); },
+
+    relatedProducts(p) {
+      if (!p) return [];
+      return this.products.filter(x => x.cat === p.cat && x.id !== p.id).slice(0, 4);
+    },
+
+    addToCart(id, variant = null, silent = false, qty = 1) {
+      const p = this.getProduct(id);
+      if (p.stock === 0) { this.notifyMe(id); return; }
+      const label = variant || this.defaultVariantLabel(p);
+      const key = id + '_' + label;
+      const existing = this.cart.find(i => i.key === key);
+      if (existing) existing.qty += qty;
+      else this.cart.push({ key, id, variant: label, qty });
+      this.savePrefs();
+      if (!silent) this.showToast(p.name + ' added to basket', 'fa-circle-check');
+    },
+
+    updateQty(key, delta) {
+      const item = this.cart.find(i => i.key === key);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) this.cart = this.cart.filter(i => i.key !== key);
+      this.savePrefs();
+    },
+
+    removeFromCart(key) {
+      const item = this.cart.find(i => i.key === key);
+      const p = item ? this.getProduct(item.id) : {};
+      this.cart = this.cart.filter(i => i.key !== key);
+      this.savePrefs();
+      this.showToast((p.name || 'Item') + ' removed', 'fa-trash-can', 'remove');
+    },
+
+    toggleWish(id) {
+      const p = this.getProduct(id);
+      if (this.wishlist.includes(id)) {
+        this.wishlist = this.wishlist.filter(x => x !== id);
+        this.showToast(p.name + ' removed from wishlist', 'fa-heart-crack', 'remove');
+      } else {
+        this.wishlist.push(id);
+        this.showToast(p.name + ' added to wishlist', 'fa-heart');
+      }
+      this.savePrefs();
+    },
+
+    moveWishToCart(id) {
+      this.addToCart(id, null, true);
+      this.wishlist = this.wishlist.filter(x => x !== id);
+      this.savePrefs();
+      this.showToast(this.getProduct(id).name + ' moved to basket', 'fa-circle-check');
+    },
+
+    notifyMe(id) {
+      this.showToast('We will email you when ' + this.getProduct(id).name + ' is back in stock', 'fa-bell');
+    },
+
+    openQuickView(p) {
+      this.quickView = p;
+      this.modalQty = 1;
+      this.modalVariant = this.defaultVariantLabel(p);
+      this.recentlyViewed = [p.id, ...this.recentlyViewed.filter(x => x !== p.id)].slice(0, 8);
+      this.savePrefs();
+    },
+
+    toggleFaq(idx) { this.activeFaq = this.activeFaq === idx ? null : idx; },
+
+    checkPincode() {
+      const val = this.pincodeInput.trim();
+      if (!/^\d{6}$/.test(val)) { this.showToast('Enter a valid 6-digit pincode', 'fa-circle-info', 'remove'); return; }
+      this.pincodeChecked = true;
+      const firstDigit = parseInt(val[0], 10);
+      this.pincodeServiceable = firstDigit >= 1 && firstDigit <= 8;
+      this.pincodeEta = firstDigit <= 3 ? 'arrives by tomorrow evening' : 'arrives within 2-3 days';
+      if (this.pincodeServiceable) {
+        this.deliveryPincode = val;
+        this.savePrefs();
+      }
+    },
+
+    applyCoupon() {
+      const code = this.couponInput.trim().toUpperCase();
+      if (code === 'KIRANA10') {
+        if (this.cartSubtotal < 499) { this.showToast('Min order ₹499 required', 'fa-circle-info'); return; }
+        this.appliedCoupon = code;
+        this.showToast('Coupon applied — 10% off!', 'fa-ticket');
+      } else if (code === '') {
+        this.showToast('Enter a coupon code first', 'fa-circle-info', 'remove');
+      } else {
+        this.showToast('Invalid coupon code', 'fa-circle-xmark', 'remove');
+      }
+      this.couponInput = '';
+    },
+
+    copyCoupon() {
+      navigator.clipboard.writeText('KIRANA10').then(() => {
+        this.copied = true;
+        this.showToast('Coupon code copied!', 'fa-copy');
+        setTimeout(() => { this.copied = false; }, 2000);
+      });
+    },
+
+    formatDate(iso) {
+      return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    },
+
+    checkout() {
+      if (this.cart.length === 0) return;
+      const orderId = 'KC' + Date.now().toString().slice(-8);
+      const total = this.cartTotal;
+      const points = Math.floor(total / 20);
+      const order = {
+        id: orderId,
+        date: new Date().toISOString(),
+        items: this.cart.map(i => ({ name: this.getProduct(i.id).name, variant: i.variant, qty: i.qty, price: this.cartItemPrice(i) })),
+        total,
+        slot: this.deliverySlot,
+        payment: this.paymentMethod,
+        status: 'Placed'
+      };
+      this.orders.unshift(order);
+      this.rewardPoints += points;
+      this.lastOrder = order;
+      this.lastOrderPoints = points;
+      this.cart = [];
+      this.appliedCoupon = null;
+      this.cartOpen = false;
+      this.orderConfirmOpen = true;
+      this.savePrefs();
+    },
+
+    showToast(title, icon = 'fa-circle-check', type = '') {
+      const id = Date.now() + Math.random();
+      this.toasts.push({ id, title, icon, type, show: true });
+      setTimeout(() => {
+        const t = this.toasts.find(x => x.id === id);
+        if (t) {
+          t.show = false;
+          setTimeout(() => { this.toasts = this.toasts.filter(x => x.id !== id); }, 300);
+        }
+      }, 2800);
+    }
+  }
+}
+</script>
+</body>
+</html>
