@@ -12,7 +12,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
 
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+  
+<script>
+    Fancybox.bind("[data-fancybox]", {});
+</script>
+  
 <script>
   tailwind.config = {
     darkMode: 'class',
@@ -273,7 +280,7 @@
 
     <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
       <div class="bg-indigo-900 dark:bg-indigo-900 border border-[var(--line)] rounded-3xl p-6 shadow-[var(--shadow)] relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="Spice basket" width="800" height="600" class="rounded-2xl w-full h-[340px] object-cover" loading="eager" decoding="async" />
+        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="Spice basket" width="800" height="600" class="rounded-2xl w-full h-[340px] object-cover" loading="eager" decoding="async" data-fancybox="gallery" />
         <div class="absolute bottom-10 left-10 bg-indigo-950/90 dark:bg-indigo-950/90 backdrop-blur-md border border-[var(--line)] rounded-2xl p-4 flex items-center gap-3 shadow-[var(--shadow)]">
           <i class="fa-solid fa-truck-fast text-marigold text-xl"></i>
           <div>
