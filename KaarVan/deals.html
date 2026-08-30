@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deals &amp; Offers — KAARVAN</title>
+<meta name="description" content="Browse electronics, fashion, beauty, home, grocery, sports, gaming and accessories on KAARVAN.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 3 L27 10 L27 22 L16 29 L5 22 L5 10 Z%22 fill=%22%23b8842c%22/></svg>">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<style>
+.listing-grid { display:grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: start; }
+.filter-sidebar { position: sticky; top: calc(var(--header-h) + var(--announce-h) + 16px); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
+.filter-block { padding: 16px 0; border-bottom: 1px solid var(--border); }
+.filter-block:last-child { border-bottom: none; }
+.filter-block h5 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+.filter-block label.checkbox-row { display: flex; }
+.cat-filter-links a { display: flex; justify-content: space-between; padding: 7px 0; font-size: 0.86rem; color: var(--muted); }
+.cat-filter-links a.active, .cat-filter-links a:hover { color: var(--gold-dark); font-weight: 700; }
+.listing-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+.mobile-filter-bar { display: none; gap: 10px; margin-bottom: 16px; }
+</style>
+</head>
+<body data-mode="deals">
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="site-header-root"></div>
+
+<main id="main" class="container">
+  <nav class="breadcrumbs"><a href="index.html">Home</a><span class="sep">/</span><span class="current">Deals &amp; Offers</span></nav>
+
+  <div class="page-title-bar">
+    <h1 id="listingTitle">All Products</h1>
+    <span class="count" id="resultCount"></span>
+  </div>
+
+  <div class="mobile-filter-bar">
+    <button type="button" class="btn btn-outline btn-block" id="mobileFilterOpen"><i data-lucide="sliders-horizontal" class="icon-sm"></i> Filter &amp; Sort</button>
+  </div>
+
+  <div class="listing-grid">
+    <aside class="filter-sidebar">
+      <div class="filter-block">
+        <h5>Category</h5>
+        <div class="cat-filter-links">
+          <a href="#" class="category-filter-link active" data-category="all">All Products</a>
+          <a href="#" class="category-filter-link" data-category="electronics">Electronics</a>
+          <a href="#" class="category-filter-link" data-category="fashion">Fashion</a>
+          <a href="#" class="category-filter-link" data-category="beauty">Beauty</a>
+          <a href="#" class="category-filter-link" data-category="home">Home &amp; Kitchen</a>
+          <a href="#" class="category-filter-link" data-category="grocery">Grocery</a>
+          <a href="#" class="category-filter-link" data-category="sports">Sports</a>
+          <a href="#" class="category-filter-link" data-category="gaming">Gaming</a>
+          <a href="#" class="category-filter-link" data-category="accessories">Accessories</a>
+        </div>
+      </div>
+      <div class="filter-block">
+        <h5>Price up to <span class="js-price-range-label">\u20b930,000</span></h5>
+        <input type="range" class="js-price-range" min="200" max="30000" step="100" value="30000" style="width:100%;accent-color:var(--gold)">
+      </div>
+      <div class="filter-block">
+        <h5>Customer Rating</h5>
+        <select class="js-rating-filter">
+          <option value="0">Any Rating</option>
+          <option value="4.5">4.5\u2605 &amp; above</option>
+          <option value="4">4\u2605 &amp; above</option>
+          <option value="3.5">3.5\u2605 &amp; above</option>
+        </select>
+      </div>
+      <div class="filter-block">
+        <h5>Discount</h5>
+        <select class="js-discount-filter">
+          <option value="0">Any Discount</option>
+          <option value="10">10% or more</option>
+          <option value="20">20% or more</option>
+          <option value="30">30% or more</option>
+          <option value="40">40% or more</option>
+        </select>
+      </div>
+      <div class="filter-block">
+        <h5>Availability</h5>
+        <label class="checkbox-row"><input type="checkbox" class="js-instock-filter"> In Stock Only</label>
+      </div>
+      <div class="filter-block">
+        <h5>Brand</h5>
+        <div class="js-brand-filter-list" style="max-height:220px;overflow-y:auto"></div>
+      </div>
+    </aside>
+
+    <section>
+      <div class="listing-toolbar">
+        <div class="chip-row" id="activeChips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+        <select id="sortSelect" style="margin-left:auto;padding:9px 14px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface)">
+          <option value="relevance">Sort: Relevance</option>
+          <option value="popularity">Popularity</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="rating">Customer Rating</option>
+          <option value="newest">Newest First</option>
+          <option value="discount">Biggest Discount</option>
+        </select>
+      </div>
+
+      <div class="product-grid" id="listingGrid"></div>
+
+      <div class="empty-state hide" id="listingEmpty">
+        <div class="icon-wrap"><i data-lucide="search-x" class="icon-lg"></i></div>
+        <h3>We couldn't find anything matching that</h3>
+        <p>Try a different search term or clear your filters to see more products.</p>
+        <button type="button" class="btn btn-primary" id="clearAllFilters2" onclick="document.getElementById('activeChips').querySelector('#clearAllFilters')?.click()">Clear Filters</button>
+      </div>
+
+      <div style="text-align:center;margin-top:30px">
+        <button type="button" class="btn btn-outline hide" id="loadMoreBtn">Load More Products</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Mobile filter bottom sheet -->
+<div class="overlay" id="filterOverlay"></div>
+<div class="drawer" id="filterSheet" style="right:0;top:auto;bottom:0;height:88vh;width:100%;max-width:100%;border-radius:var(--radius-lg) var(--radius-lg) 0 0;transform:translateY(100%);">
+  <div class="drawer-header"><h3>Filter &amp; Sort</h3><button type="button" class="btn-icon" id="filterSheetClose"><i data-lucide="x" class="icon-sm"></i></button></div>
+  <div class="drawer-body" id="mobileFilterBody"></div>
+  <div class="drawer-footer"><button type="button" class="btn btn-primary btn-block" id="filterSheetApply">Show Results</button></div>
+</div>
+
+<div id="site-footer-root"></div>
+<div id="float-stack-root"></div>
+<div id="mobile-nav-root"></div>
+
+<script src="js/data.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/state.js"></script>
+<script src="js/product-card.js"></script>
+<script src="js/app.js"></script>
+<script src="js/listing.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  bootShell("categories");
+  Listing.init();
+  // Mobile sheet mirrors the desktop sidebar for touch users.
+  document.getElementById("mobileFilterBody").innerHTML = document.querySelector(".filter-sidebar").innerHTML;
+  document.getElementById("filterSheet").style.transition = "transform 300ms ease";
+  document.getElementById("filterSheet").addEventListener("transitionend", () => {});
+});
+</script>
+<style>
+#filterSheet.show { transform: translateY(0) !important; }
+</style>
+</body>
+</html>

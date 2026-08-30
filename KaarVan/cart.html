@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart — KAARVAN</title>
+<meta name="description" content="Review items in your KAARVAN shopping cart before checkout.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 3 L27 10 L27 22 L16 29 L5 22 L5 10 Z%22 fill=%22%23b8842c%22/></svg>">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="site-header-root"></div>
+
+<main id="main" class="container">
+  <nav class="breadcrumbs"><a href="index.html">Home</a><span class="sep">/</span><span class="current">Cart</span></nav>
+  <div class="page-title-bar"><h1>Your Cart</h1></div>
+
+  <div style="display:grid;grid-template-columns:1fr 380px;gap:32px;align-items:start" class="checkout-grid">
+    <div id="cartItemsWrap"></div>
+    <div id="cartSummary"></div>
+  </div>
+
+  <div class="empty-state hide" id="cartEmptyState">
+    <div class="icon-wrap"><i data-lucide="shopping-cart" class="icon-lg"></i></div>
+    <h3>Your cart is empty</h3>
+    <p>Looks like you haven't added anything yet. Let's fix that.</p>
+    <a href="products.html" class="btn btn-primary">Start Shopping</a>
+  </div>
+</main>
+
+<div id="site-footer-root"></div>
+<div id="float-stack-root"></div>
+<div id="mobile-nav-root"></div>
+
+<script src="js/data.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/state.js"></script>
+<script src="js/product-card.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

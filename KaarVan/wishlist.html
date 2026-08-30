@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wishlist — KAARVAN</title>
+<meta name="description" content="Products you've saved for later on KAARVAN.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 3 L27 10 L27 22 L16 29 L5 22 L5 10 Z%22 fill=%22%23b8842c%22/></svg>">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="site-header-root"></div>
+
+<main id="main" class="container">
+  <nav class="breadcrumbs"><a href="index.html">Home</a><span class="sep">/</span><span class="current">Wishlist</span></nav>
+  <div class="page-title-bar">
+    <h1>Your Wishlist</h1>
+    <span class="count" id="wishlistCount"></span>
+  </div>
+
+  <div class="product-grid" id="wishlistGrid"></div>
+
+  <div class="empty-state hide" id="wishlistEmpty">
+    <div class="icon-wrap"><i data-lucide="heart" class="icon-lg"></i></div>
+    <h3>\u2764\ufe0f Your wishlist is waiting for you</h3>
+    <p>Save products you love and they'll show up right here.</p>
+    <a href="products.html" class="btn btn-primary">Discover Products</a>
+  </div>
+</main>
+
+<div id="site-footer-root"></div>
+<div id="float-stack-root"></div>
+<div id="mobile-nav-root"></div>
+
+<script src="js/data.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/state.js"></script>
+<script src="js/product-card.js"></script>
+<script src="js/app.js"></script>
+<script src="js/wishlist.js"></script>
+</body>
+</html>

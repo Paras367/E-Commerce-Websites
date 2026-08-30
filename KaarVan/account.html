@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account — KAARVAN</title>
+<meta name="description" content="Manage your KAARVAN account, orders, addresses and preferences.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 3 L27 10 L27 22 L16 29 L5 22 L5 10 Z%22 fill=%22%23b8842c%22/></svg>">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<style>
+.account-grid { display: grid; grid-template-columns: 240px 1fr; gap: 28px; align-items: start; }
+.account-nav { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 10px; position: sticky; top: calc(var(--header-h) + var(--announce-h) + 16px); }
+.account-nav-item { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: var(--radius-sm); font-size: 0.86rem; font-weight: 600; color: var(--muted); }
+.account-nav-item:hover { background: var(--surface-2); }
+.account-nav-item.active { background: var(--gold-light); color: var(--gold-dark); }
+.account-tab-panel { display: none; }
+.account-tab-panel.active { display: block; animation: fade-in 260ms ease; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="site-header-root"></div>
+
+<main id="main" class="container">
+  <nav class="breadcrumbs"><a href="index.html">Home</a><span class="sep">/</span><span class="current">My Account</span></nav>
+
+  <div id="authGate" class="empty-state hide">
+    <div class="icon-wrap"><i data-lucide="user" class="icon-lg"></i></div>
+    <h3>You're not signed in</h3>
+    <p>Log in to view your orders, wishlist and saved addresses.</p>
+    <a href="login.html" class="btn btn-primary">Login</a>
+  </div>
+
+  <div id="accountContent" class="hide" style="padding-bottom:50px">
+    <div class="page-title-bar"><h1>My Account</h1></div>
+    <div class="account-grid">
+      <nav class="account-nav">
+        <a href="#" class="account-nav-item active" data-tab="overview"><i data-lucide="layout-dashboard" class="icon-sm"></i> Overview</a>
+        <a href="orders.html" class="account-nav-item"><i data-lucide="package" class="icon-sm"></i> Orders</a>
+        <a href="#" class="account-nav-item" data-tab="wishlist"><i data-lucide="heart" class="icon-sm"></i> Wishlist</a>
+        <a href="#" class="account-nav-item" data-tab="addresses"><i data-lucide="map-pin" class="icon-sm"></i> Addresses</a>
+        <a href="#" class="account-nav-item" data-tab="payments"><i data-lucide="credit-card" class="icon-sm"></i> Payments</a>
+        <a href="#" class="account-nav-item" data-tab="profile"><i data-lucide="user" class="icon-sm"></i> Profile</a>
+        <a href="#" class="account-nav-item" data-tab="notifications"><i data-lucide="bell" class="icon-sm"></i> Notifications</a>
+        <a href="#" class="account-nav-item" data-tab="security"><i data-lucide="lock" class="icon-sm"></i> Security</a>
+        <a href="#" class="account-nav-item" data-tab="logout" style="color:var(--danger)"><i data-lucide="log-out" class="icon-sm"></i> Logout</a>
+      </nav>
+      <div>
+        <div class="account-tab-panel active" id="tab-overview"></div>
+        <div class="account-tab-panel" id="tab-wishlist"></div>
+        <div class="account-tab-panel" id="tab-addresses"></div>
+        <div class="account-tab-panel" id="tab-payments"></div>
+        <div class="account-tab-panel" id="tab-profile"></div>
+        <div class="account-tab-panel" id="tab-notifications"></div>
+        <div class="account-tab-panel" id="tab-security"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer-root"></div>
+<div id="mobile-nav-root"></div>
+
+<script src="js/data.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/state.js"></script>
+<script src="js/product-card.js"></script>
+<script src="js/app.js"></script>
+<script src="js/account.js"></script>
+</body>
+</html>

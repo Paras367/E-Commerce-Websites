@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAARVAN — Premium Shopping for Everyday India</title>
+<meta name="description" content="KAARVAN is a premium marketplace for electronics, fashion, beauty and home essentials, priced for the everyday Indian shopper.">
+<meta name="keywords" content="online shopping india, electronics, fashion, beauty, home and kitchen, ecommerce">
+<meta property="og:title" content="KAARVAN — Premium Shopping for Everyday India">
+<meta property="og:description" content="Electronics, fashion, beauty and home essentials — curated in one caravan.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 3 L27 10 L27 22 L16 29 L5 22 L5 10 Z%22 fill=%22%23b8842c%22/></svg>">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<div id="site-header-root"></div>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-track" id="heroTrack"></div>
+    <button type="button" class="hero-arrow prev" id="heroPrev" aria-label="Previous slide"><i data-lucide="chevron-left" class="icon"></i></button>
+    <button type="button" class="hero-arrow next" id="heroNext" aria-label="Next slide"><i data-lucide="chevron-right" class="icon"></i></button>
+    <div class="hero-controls"><div class="hero-dots" id="heroDots"></div></div>
+  </section>
+
+  <!-- CATEGORY SHORTCUTS -->
+  <section class="section-tight container">
+    <div class="section-head">
+      <div class="heading-group">
+        <span class="eyebrow">Browse</span>
+        <h2>Shop by Category</h2>
+      </div>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </section>
+
+  <!-- FLASH SALE -->
+  <section class="section container">
+    <div class="route-rule" style="margin-bottom:24px"><span class="waypoint"></span><span style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap;padding:0 6px">Limited Time</span><span class="waypoint"></span></div>
+    <div class="flash-header">
+      <div class="flash-title">
+        <i data-lucide="zap" class="icon-lg flame"></i>
+        <div>
+          <h2 style="margin-bottom:2px">Flash Sale</h2>
+          <p class="text-muted" style="font-size:0.85rem">Prices this good pack up fast</p>
+        </div>
+      </div>
+      <div class="countdown-row" id="flashCountdown"></div>
+    </div>
+    <div class="product-grid" id="flashGrid"></div>
+  </section>
+
+  <!-- TRENDING -->
+  <section class="section bg-alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="heading-group"><span class="eyebrow">Right Now</span><h2>Trending Products</h2></div>
+        <a href="products.html?sort=popularity" class="section-link">View All <i data-lucide="arrow-right" class="icon-sm"></i></a>
+      </div>
+      <div class="rail" id="trendingRail"></div>
+    </div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section class="section container">
+    <div class="section-head">
+      <div class="heading-group"><span class="eyebrow">Crowd Favourites</span><h2>Best Sellers</h2></div>
+      <a href="products.html?badge=Bestseller" class="section-link">View All <i data-lucide="arrow-right" class="icon-sm"></i></a>
+    </div>
+    <div class="rail" id="bestsellerRail"></div>
+  </section>
+
+  <!-- RECOMMENDED -->
+  <section class="section bg-alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="heading-group"><span class="eyebrow">For You</span><h2>Recommended Picks</h2></div>
+      </div>
+      <div class="product-grid" id="recommendedGrid"></div>
+    </div>
+  </section>
+
+  <!-- DEALS -->
+  <section class="section container">
+    <div class="section-head">
+      <div class="heading-group"><span class="eyebrow">Save More</span><h2>Today's Deals</h2></div>
+      <a href="deals.html" class="section-link">See All Deals <i data-lucide="arrow-right" class="icon-sm"></i></a>
+    </div>
+    <div class="product-grid" id="dealsGrid"></div>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section class="section bg-alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="heading-group"><span class="eyebrow">Just Landed</span><h2>New Arrivals</h2></div>
+        <a href="new-arrivals.html" class="section-link">View All <i data-lucide="arrow-right" class="icon-sm"></i></a>
+      </div>
+      <div class="rail" id="newArrivalsRail"></div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="section container">
+    <div class="trust-grid">
+      <div class="trust-card"><div class="trust-icon"><i data-lucide="shield-check" class="icon-lg"></i></div><h4>Secure Payments</h4><p>UPI, cards & COD, always encrypted</p></div>
+      <div class="trust-card"><div class="trust-icon"><i data-lucide="badge-check" class="icon-lg"></i></div><h4>Genuine Products</h4><p>Sourced directly from brands</p></div>
+      <div class="trust-card"><div class="trust-icon"><i data-lucide="rotate-ccw" class="icon-lg"></i></div><h4>Easy Returns</h4><p>7-day no-questions returns</p></div>
+      <div class="trust-card"><div class="trust-icon"><i data-lucide="truck" class="icon-lg"></i></div><h4>Fast Delivery</h4><p>Pan-India, tracked shipping</p></div>
+      <div class="trust-card"><div class="trust-icon"><i data-lucide="life-buoy" class="icon-lg"></i></div><h4>Customer Support</h4><p>Real answers, 7 days a week</p></div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="container" style="padding-bottom:56px">
+    <div class="newsletter">
+      <div class="newsletter-copy">
+        <h3>Join the caravan</h3>
+        <p>New drops, festive edits and early access to sales — straight to your inbox.</p>
+      </div>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" id="newsletterEmail" placeholder="you@example.com" aria-label="Email address" required>
+        <button type="submit" class="btn btn-gold">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer-root"></div>
+<div id="float-stack-root"></div>
+<div id="mobile-nav-root"></div>
+
+<script src="js/data.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/state.js"></script>
+<script src="js/product-card.js"></script>
+<script src="js/app.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>
