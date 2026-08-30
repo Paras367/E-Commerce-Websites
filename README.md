@@ -1,3 +1,16 @@
+> ⚠️ **Proprietary Project**
+>
+> © 2026 Paras Dhiman (PARAS367). All Rights Reserved.
+>
+> This repository is publicly viewable for demonstration and educational
+> purposes. The source code and templates may not be copied, redistributed,
+> resold, modified for redistribution, or used commercially without prior
+> written permission.
+>
+> See [`LICENSE`](./LICENSE) for the complete terms.
+
+
+
 # 🛒 E-Commerce Websites
 
 A collection of modern, responsive **E-Commerce website templates** built for different business types and brands.
