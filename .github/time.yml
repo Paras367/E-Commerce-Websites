@@ -1,0 +1,79 @@
+# GitHub Repository Time Configuration
+# Proposed specification: .github/time.yml
+
+version: 1
+
+# Enable or disable the repository time display
+enabled: true
+
+# Timezone used for displaying the time
+# Examples:
+#   Asia/Kolkata
+#   America/New_York
+#   Europe/London
+#   UTC
+timezone: Asia/Kolkata
+
+# Display format
+# Options: 12-hour | 24-hour
+format: 12-hour
+
+# Whether to display seconds
+show_seconds: true
+
+# Whether to display the date
+show_date: true
+
+# Date format
+# Examples:
+#   DD/MM/YYYY
+#   MM/DD/YYYY
+#   YYYY-MM-DD
+date_format: DD/MM/YYYY
+
+# Display timezone abbreviation/name
+show_timezone: true
+
+# Display style
+# Options:
+#   compact
+#   standard
+#   detailed
+display: standard
+
+# Example:
+# compact  →  6:10 PM IST
+# standard →  6:10:32 PM IST · 01/09/2026
+# detailed → 01/09/2026 · 6:10:32 PM · Asia/Kolkata
+
+# Where GitHub should display the time
+# Proposed locations:
+#   repository
+#   repository-header
+#   sidebar
+#   readme
+display_location:
+  - repository
+
+# Automatically update the displayed time
+live_update: true
+
+# Refresh interval in seconds
+# Minimum recommended value: 1
+refresh_interval: 1
+
+# Accessibility
+accessibility:
+  label: "Current repository time"
+
+# Optional custom title
+title: "Current Time"
+
+# Optional custom icon
+icon: "🕐"
+
+# Optional footer information
+show_last_updated: false
+
+# Repository owner can optionally specify a fixed locale
+locale: en-IN
